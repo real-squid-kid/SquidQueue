@@ -45,10 +45,14 @@
     End Sub
 
     Private Sub BlinkTimer_Tick(sender As Object, e As EventArgs) Handles BlinkTimer.Tick
-
+        BlinkCycle = BlinkCycle + 1
         If TicketLabel.Visible = True Then
             TicketLabel.Visible = False
         Else
+            TicketLabel.Visible = True
+        End If
+        If BlinkCycle = 10 Then
+            BlinkTimer.Enabled = False
             TicketLabel.Visible = True
         End If
     End Sub

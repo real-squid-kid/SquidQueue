@@ -25,32 +25,35 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CustomLabel = New System.Windows.Forms.TextBox()
+        Me.CustomCheck = New System.Windows.Forms.CheckBox()
+        Me.ClockCheck = New System.Windows.Forms.CheckBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.BrandedCheck = New System.Windows.Forms.RadioButton()
+        Me.GenericCheck = New System.Windows.Forms.RadioButton()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.FullHDCheck = New System.Windows.Forms.RadioButton()
+        Me.HDCheck = New System.Windows.Forms.RadioButton()
         Me.ShowScreenBtn = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.ServeButton = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.RegisterButton = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.HDCheck = New System.Windows.Forms.RadioButton()
-        Me.FullHDCheck = New System.Windows.Forms.RadioButton()
-        Me.GenericCheck = New System.Windows.Forms.RadioButton()
-        Me.BrandedCheck = New System.Windows.Forms.RadioButton()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.ClockCheck = New System.Windows.Forms.CheckBox()
-        Me.CustomCheck = New System.Windows.Forms.CheckBox()
-        Me.CustomLabel = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CurrentTicketLbl = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.RegisterButton = New System.Windows.Forms.Button()
-        Me.ServeButton = New System.Windows.Forms.Button()
+        Me.TotalTicketsLbl = New System.Windows.Forms.Label()
         Me.ReEnableTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.StatusPing = New System.Windows.Forms.Timer(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -81,6 +84,107 @@ Partial Class Form1
         Me.TabPage1.Text = "Screen"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'CustomLabel
+        '
+        Me.CustomLabel.Location = New System.Drawing.Point(102, 171)
+        Me.CustomLabel.MaxLength = 40
+        Me.CustomLabel.Name = "CustomLabel"
+        Me.CustomLabel.Size = New System.Drawing.Size(160, 20)
+        Me.CustomLabel.TabIndex = 9
+        Me.CustomLabel.Text = "Custom Label"
+        '
+        'CustomCheck
+        '
+        Me.CustomCheck.AutoSize = True
+        Me.CustomCheck.Checked = True
+        Me.CustomCheck.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CustomCheck.Location = New System.Drawing.Point(6, 174)
+        Me.CustomCheck.Name = "CustomCheck"
+        Me.CustomCheck.Size = New System.Drawing.Size(90, 17)
+        Me.CustomCheck.TabIndex = 8
+        Me.CustomCheck.Text = "Custom Label"
+        Me.CustomCheck.UseVisualStyleBackColor = True
+        '
+        'ClockCheck
+        '
+        Me.ClockCheck.AutoSize = True
+        Me.ClockCheck.Checked = True
+        Me.ClockCheck.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ClockCheck.Location = New System.Drawing.Point(6, 151)
+        Me.ClockCheck.Name = "ClockCheck"
+        Me.ClockCheck.Size = New System.Drawing.Size(53, 17)
+        Me.ClockCheck.TabIndex = 7
+        Me.ClockCheck.Text = "Clock"
+        Me.ClockCheck.UseVisualStyleBackColor = True
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.BrandedCheck)
+        Me.GroupBox2.Controls.Add(Me.GenericCheck)
+        Me.GroupBox2.Location = New System.Drawing.Point(96, 68)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(110, 77)
+        Me.GroupBox2.TabIndex = 6
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Type"
+        '
+        'BrandedCheck
+        '
+        Me.BrandedCheck.AutoSize = True
+        Me.BrandedCheck.Enabled = False
+        Me.BrandedCheck.Location = New System.Drawing.Point(6, 43)
+        Me.BrandedCheck.Name = "BrandedCheck"
+        Me.BrandedCheck.Size = New System.Drawing.Size(65, 17)
+        Me.BrandedCheck.TabIndex = 4
+        Me.BrandedCheck.Text = "Branded"
+        Me.BrandedCheck.UseVisualStyleBackColor = True
+        '
+        'GenericCheck
+        '
+        Me.GenericCheck.AutoSize = True
+        Me.GenericCheck.Checked = True
+        Me.GenericCheck.Location = New System.Drawing.Point(6, 20)
+        Me.GenericCheck.Name = "GenericCheck"
+        Me.GenericCheck.Size = New System.Drawing.Size(62, 17)
+        Me.GenericCheck.TabIndex = 4
+        Me.GenericCheck.TabStop = True
+        Me.GenericCheck.Text = "Generic"
+        Me.GenericCheck.UseVisualStyleBackColor = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.FullHDCheck)
+        Me.GroupBox1.Controls.Add(Me.HDCheck)
+        Me.GroupBox1.Location = New System.Drawing.Point(6, 68)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(84, 77)
+        Me.GroupBox1.TabIndex = 5
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Dimensions"
+        '
+        'FullHDCheck
+        '
+        Me.FullHDCheck.AutoSize = True
+        Me.FullHDCheck.Enabled = False
+        Me.FullHDCheck.Location = New System.Drawing.Point(15, 46)
+        Me.FullHDCheck.Name = "FullHDCheck"
+        Me.FullHDCheck.Size = New System.Drawing.Size(55, 17)
+        Me.FullHDCheck.TabIndex = 2
+        Me.FullHDCheck.Text = "1080p"
+        Me.FullHDCheck.UseVisualStyleBackColor = True
+        '
+        'HDCheck
+        '
+        Me.HDCheck.AutoSize = True
+        Me.HDCheck.Checked = True
+        Me.HDCheck.Location = New System.Drawing.Point(15, 23)
+        Me.HDCheck.Name = "HDCheck"
+        Me.HDCheck.Size = New System.Drawing.Size(49, 17)
+        Me.HDCheck.TabIndex = 2
+        Me.HDCheck.TabStop = True
+        Me.HDCheck.Text = "720p"
+        Me.HDCheck.UseVisualStyleBackColor = True
+        '
         'ShowScreenBtn
         '
         Me.ShowScreenBtn.Location = New System.Drawing.Point(6, 6)
@@ -101,6 +205,15 @@ Partial Class Form1
         Me.TabPage2.Text = "Operator"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'ServeButton
+        '
+        Me.ServeButton.Location = New System.Drawing.Point(6, 6)
+        Me.ServeButton.Name = "ServeButton"
+        Me.ServeButton.Size = New System.Drawing.Size(130, 62)
+        Me.ServeButton.TabIndex = 0
+        Me.ServeButton.Text = "Serve"
+        Me.ServeButton.UseVisualStyleBackColor = True
+        '
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.RegisterButton)
@@ -111,115 +224,24 @@ Partial Class Form1
         Me.TabPage3.Text = "Register"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'RegisterButton
+        '
+        Me.RegisterButton.Location = New System.Drawing.Point(3, 3)
+        Me.RegisterButton.Name = "RegisterButton"
+        Me.RegisterButton.Size = New System.Drawing.Size(164, 57)
+        Me.RegisterButton.TabIndex = 0
+        Me.RegisterButton.Text = "Register another ticket"
+        Me.RegisterButton.UseVisualStyleBackColor = True
+        '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.Button1)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(671, 390)
+        Me.TabPage4.Size = New System.Drawing.Size(464, 390)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "System settings"
         Me.TabPage4.UseVisualStyleBackColor = True
-        '
-        'HDCheck
-        '
-        Me.HDCheck.AutoSize = True
-        Me.HDCheck.Checked = True
-        Me.HDCheck.Location = New System.Drawing.Point(15, 23)
-        Me.HDCheck.Name = "HDCheck"
-        Me.HDCheck.Size = New System.Drawing.Size(49, 17)
-        Me.HDCheck.TabIndex = 2
-        Me.HDCheck.TabStop = True
-        Me.HDCheck.Text = "720p"
-        Me.HDCheck.UseVisualStyleBackColor = True
-        '
-        'FullHDCheck
-        '
-        Me.FullHDCheck.AutoSize = True
-        Me.FullHDCheck.Enabled = False
-        Me.FullHDCheck.Location = New System.Drawing.Point(15, 46)
-        Me.FullHDCheck.Name = "FullHDCheck"
-        Me.FullHDCheck.Size = New System.Drawing.Size(55, 17)
-        Me.FullHDCheck.TabIndex = 2
-        Me.FullHDCheck.Text = "1080p"
-        Me.FullHDCheck.UseVisualStyleBackColor = True
-        '
-        'GenericCheck
-        '
-        Me.GenericCheck.AutoSize = True
-        Me.GenericCheck.Checked = True
-        Me.GenericCheck.Location = New System.Drawing.Point(6, 20)
-        Me.GenericCheck.Name = "GenericCheck"
-        Me.GenericCheck.Size = New System.Drawing.Size(62, 17)
-        Me.GenericCheck.TabIndex = 4
-        Me.GenericCheck.TabStop = True
-        Me.GenericCheck.Text = "Generic"
-        Me.GenericCheck.UseVisualStyleBackColor = True
-        '
-        'BrandedCheck
-        '
-        Me.BrandedCheck.AutoSize = True
-        Me.BrandedCheck.Enabled = False
-        Me.BrandedCheck.Location = New System.Drawing.Point(6, 43)
-        Me.BrandedCheck.Name = "BrandedCheck"
-        Me.BrandedCheck.Size = New System.Drawing.Size(93, 17)
-        Me.BrandedCheck.TabIndex = 4
-        Me.BrandedCheck.Text = "Branded (MSI)"
-        Me.BrandedCheck.UseVisualStyleBackColor = True
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.FullHDCheck)
-        Me.GroupBox1.Controls.Add(Me.HDCheck)
-        Me.GroupBox1.Location = New System.Drawing.Point(6, 68)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(84, 77)
-        Me.GroupBox1.TabIndex = 5
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Dimensions"
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.BrandedCheck)
-        Me.GroupBox2.Controls.Add(Me.GenericCheck)
-        Me.GroupBox2.Location = New System.Drawing.Point(96, 68)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(110, 77)
-        Me.GroupBox2.TabIndex = 6
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Type"
-        '
-        'ClockCheck
-        '
-        Me.ClockCheck.AutoSize = True
-        Me.ClockCheck.Checked = True
-        Me.ClockCheck.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ClockCheck.Location = New System.Drawing.Point(6, 151)
-        Me.ClockCheck.Name = "ClockCheck"
-        Me.ClockCheck.Size = New System.Drawing.Size(53, 17)
-        Me.ClockCheck.TabIndex = 7
-        Me.ClockCheck.Text = "Clock"
-        Me.ClockCheck.UseVisualStyleBackColor = True
-        '
-        'CustomCheck
-        '
-        Me.CustomCheck.AutoSize = True
-        Me.CustomCheck.Checked = True
-        Me.CustomCheck.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CustomCheck.Location = New System.Drawing.Point(6, 174)
-        Me.CustomCheck.Name = "CustomCheck"
-        Me.CustomCheck.Size = New System.Drawing.Size(90, 17)
-        Me.CustomCheck.TabIndex = 8
-        Me.CustomCheck.Text = "Custom Label"
-        Me.CustomCheck.UseVisualStyleBackColor = True
-        '
-        'CustomLabel
-        '
-        Me.CustomLabel.Location = New System.Drawing.Point(102, 171)
-        Me.CustomLabel.MaxLength = 40
-        Me.CustomLabel.Name = "CustomLabel"
-        Me.CustomLabel.Size = New System.Drawing.Size(160, 20)
-        Me.CustomLabel.TabIndex = 9
-        Me.CustomLabel.Text = "Custom Label"
         '
         'Label1
         '
@@ -249,44 +271,39 @@ Partial Class Form1
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Total tickets:"
         '
-        'Label3
+        'TotalTicketsLbl
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Label3.Location = New System.Drawing.Point(491, 116)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(51, 55)
-        Me.Label3.TabIndex = 1
-        Me.Label3.Text = "0"
-        '
-        'RegisterButton
-        '
-        Me.RegisterButton.Location = New System.Drawing.Point(3, 3)
-        Me.RegisterButton.Name = "RegisterButton"
-        Me.RegisterButton.Size = New System.Drawing.Size(164, 57)
-        Me.RegisterButton.TabIndex = 0
-        Me.RegisterButton.Text = "Register another ticket"
-        Me.RegisterButton.UseVisualStyleBackColor = True
-        '
-        'ServeButton
-        '
-        Me.ServeButton.Location = New System.Drawing.Point(6, 6)
-        Me.ServeButton.Name = "ServeButton"
-        Me.ServeButton.Size = New System.Drawing.Size(130, 62)
-        Me.ServeButton.TabIndex = 0
-        Me.ServeButton.Text = "Serve"
-        Me.ServeButton.UseVisualStyleBackColor = True
+        Me.TotalTicketsLbl.AutoSize = True
+        Me.TotalTicketsLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.TotalTicketsLbl.Location = New System.Drawing.Point(491, 116)
+        Me.TotalTicketsLbl.Name = "TotalTicketsLbl"
+        Me.TotalTicketsLbl.Size = New System.Drawing.Size(51, 55)
+        Me.TotalTicketsLbl.TabIndex = 1
+        Me.TotalTicketsLbl.Text = "0"
         '
         'ReEnableTimer
         '
         Me.ReEnableTimer.Interval = 3000
+        '
+        'StatusPing
+        '
+        Me.StatusPing.Enabled = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(3, 364)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(93, 23)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "About me..."
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(704, 441)
-        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.TotalTicketsLbl)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.CurrentTicketLbl)
         Me.Controls.Add(Me.Label1)
@@ -296,12 +313,13 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage3.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage4.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -327,6 +345,8 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents CurrentTicketLbl As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
+    Friend WithEvents TotalTicketsLbl As Label
     Friend WithEvents ReEnableTimer As Timer
+    Friend WithEvents StatusPing As Timer
+    Friend WithEvents Button1 As Button
 End Class

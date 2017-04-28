@@ -29,6 +29,8 @@
 
     Private Sub RegisterButton_Click(sender As Object, e As EventArgs) Handles RegisterButton.Click
         TotalTickets = TotalTickets + 1
+        RegisterButton.Enabled = True
+        ReEnableTimer.Enabled = True
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -37,20 +39,33 @@
     End Sub
 
     Private Sub ReEnableTimer_Tick(sender As Object, e As EventArgs) Handles ReEnableTimer.Tick
+
         RegisterButton.Enabled = True
         RegisterButton.Text = "Register another ticket"
         If TotalTickets > 0 Then
             ServeButton.Text = "Serve"
             ServeButton.Enabled = True
         End If
+
     End Sub
 
     Private Sub ServeButton_Click(sender As Object, e As EventArgs) Handles ServeButton.Click
         If TotalTickets = CurrentTicket Then
             ServeButton.Text = "Can't serve, no more free tickets"
+            ReEnableTimer.Enabled = True
             ServeButton.Enabled = False
             Exit Sub
         End If
+        CurrentTicket = CurrentTicket + 1
+        Screen.CallOut(CurrentTicket)
+    End Sub
 
+    Private Sub StatusPing_Tick(sender As Object, e As EventArgs) Handles StatusPing.Tick
+        CurrentTicketLbl.Text = CurrentTicket
+        TotalTicketsLbl.Text = TotalTickets
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Form2.Show()
     End Sub
 End Class
