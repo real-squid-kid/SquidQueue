@@ -38,15 +38,19 @@ Partial Class Form1
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.ServeButton = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.ListenOnTxt = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.AutoCheck = New System.Windows.Forms.CheckBox()
         Me.RegisterButton = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CurrentTicketLbl = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TotalTicketsLbl = New System.Windows.Forms.Label()
         Me.ReEnableTimer = New System.Windows.Forms.Timer(Me.components)
         Me.StatusPing = New System.Windows.Forms.Timer(Me.components)
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ColorPickerBtn = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -70,6 +74,7 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.ColorPickerBtn)
         Me.TabPage1.Controls.Add(Me.CustomLabel)
         Me.TabPage1.Controls.Add(Me.CustomCheck)
         Me.TabPage1.Controls.Add(Me.ClockCheck)
@@ -143,6 +148,7 @@ Partial Class Form1
         '
         Me.GenericCheck.AutoSize = True
         Me.GenericCheck.Checked = True
+        Me.GenericCheck.Enabled = False
         Me.GenericCheck.Location = New System.Drawing.Point(6, 20)
         Me.GenericCheck.Name = "GenericCheck"
         Me.GenericCheck.Size = New System.Drawing.Size(62, 17)
@@ -216,6 +222,9 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.ListenOnTxt)
+        Me.TabPage3.Controls.Add(Me.Label3)
+        Me.TabPage3.Controls.Add(Me.AutoCheck)
         Me.TabPage3.Controls.Add(Me.RegisterButton)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
@@ -223,6 +232,34 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Register"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'ListenOnTxt
+        '
+        Me.ListenOnTxt.Enabled = False
+        Me.ListenOnTxt.Location = New System.Drawing.Point(64, 92)
+        Me.ListenOnTxt.Name = "ListenOnTxt"
+        Me.ListenOnTxt.Size = New System.Drawing.Size(100, 20)
+        Me.ListenOnTxt.TabIndex = 3
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(4, 92)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(53, 13)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "Listen on:"
+        '
+        'AutoCheck
+        '
+        Me.AutoCheck.AutoSize = True
+        Me.AutoCheck.Enabled = False
+        Me.AutoCheck.Location = New System.Drawing.Point(7, 68)
+        Me.AutoCheck.Name = "AutoCheck"
+        Me.AutoCheck.Size = New System.Drawing.Size(103, 17)
+        Me.AutoCheck.TabIndex = 1
+        Me.AutoCheck.Text = "Automatic Mode"
+        Me.AutoCheck.UseVisualStyleBackColor = True
         '
         'RegisterButton
         '
@@ -242,6 +279,15 @@ Partial Class Form1
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "System settings"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(3, 364)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(93, 23)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "About me..."
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Label1
         '
@@ -289,14 +335,14 @@ Partial Class Form1
         '
         Me.StatusPing.Enabled = True
         '
-        'Button1
+        'ColorPickerBtn
         '
-        Me.Button1.Location = New System.Drawing.Point(3, 364)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(93, 23)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "About me..."
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.ColorPickerBtn.Location = New System.Drawing.Point(212, 68)
+        Me.ColorPickerBtn.Name = "ColorPickerBtn"
+        Me.ColorPickerBtn.Size = New System.Drawing.Size(114, 23)
+        Me.ColorPickerBtn.TabIndex = 10
+        Me.ColorPickerBtn.Text = "Text Color..."
+        Me.ColorPickerBtn.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -319,6 +365,7 @@ Partial Class Form1
         Me.GroupBox1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
         Me.TabPage4.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -349,4 +396,8 @@ Partial Class Form1
     Friend WithEvents ReEnableTimer As Timer
     Friend WithEvents StatusPing As Timer
     Friend WithEvents Button1 As Button
+    Friend WithEvents ListenOnTxt As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents AutoCheck As CheckBox
+    Friend WithEvents ColorPickerBtn As Button
 End Class

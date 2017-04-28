@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Screen
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Screen
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.ClockLabel = New System.Windows.Forms.Label()
@@ -33,17 +33,22 @@ Partial Class Screen
         '
         'ClockLabel
         '
-        Me.ClockLabel.AutoSize = True
+        Me.ClockLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ClockLabel.BackColor = System.Drawing.Color.Maroon
         Me.ClockLabel.Font = New System.Drawing.Font("Arial Narrow", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.ClockLabel.Location = New System.Drawing.Point(1028, 9)
+        Me.ClockLabel.ForeColor = System.Drawing.Color.White
+        Me.ClockLabel.Location = New System.Drawing.Point(959, 9)
         Me.ClockLabel.Name = "ClockLabel"
-        Me.ClockLabel.Size = New System.Drawing.Size(240, 75)
+        Me.ClockLabel.Size = New System.Drawing.Size(309, 75)
         Me.ClockLabel.TabIndex = 0
         Me.ClockLabel.Text = "00:00:00"
+        Me.ClockLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'CustomLabel
         '
+        Me.CustomLabel.BackColor = System.Drawing.Color.Maroon
         Me.CustomLabel.Font = New System.Drawing.Font("Arial Narrow", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.CustomLabel.ForeColor = System.Drawing.Color.White
         Me.CustomLabel.Location = New System.Drawing.Point(12, 115)
         Me.CustomLabel.Name = "CustomLabel"
         Me.CustomLabel.Size = New System.Drawing.Size(1256, 75)
@@ -54,6 +59,7 @@ Partial Class Screen
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Maroon
         Me.Label1.Font = New System.Drawing.Font("Arial Rounded MT Bold", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
@@ -68,7 +74,9 @@ Partial Class Screen
         '
         'TicketLabel
         '
+        Me.TicketLabel.BackColor = System.Drawing.Color.Maroon
         Me.TicketLabel.Font = New System.Drawing.Font("Arial Rounded MT Bold", 249.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TicketLabel.ForeColor = System.Drawing.Color.White
         Me.TicketLabel.Location = New System.Drawing.Point(275, 221)
         Me.TicketLabel.Name = "TicketLabel"
         Me.TicketLabel.Size = New System.Drawing.Size(785, 390)
@@ -84,6 +92,7 @@ Partial Class Screen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.Maroon
         Me.ClientSize = New System.Drawing.Size(1280, 720)
         Me.Controls.Add(Me.TicketLabel)
         Me.Controls.Add(Me.Label1)
@@ -92,6 +101,7 @@ Partial Class Screen
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Screen"
         Me.Text = "Screen"
+        Me.TransparencyKey = System.Drawing.Color.Maroon
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

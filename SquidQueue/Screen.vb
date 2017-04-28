@@ -3,6 +3,22 @@
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
+    Public Sub Brand(e As Color)
+        ClockLabel.Font = New Font("Century Gothic", 48, FontStyle.Bold)
+        CustomLabel.Font = New Font("Century Gothic", 48, FontStyle.Bold)
+        TicketLabel.Font = New Font("Century Gothic", 250, FontStyle.Bold)
+        TicketLabel.ForeColor = e
+        ClockLabel.ForeColor = e
+        CustomLabel.ForeColor = e
+    End Sub
+
+    Public Sub Debrand()
+        ClockLabel.Font = New Font("Arial Narrow", 48, FontStyle.Bold)
+        CustomLabel.Font = New Font("Arial Narrow", 48, FontStyle.Bold)
+        TicketLabel.Font = New Font("Arial Rounded MT Bold", 250, FontStyle.Bold)
+        TicketLabel.ForeColor = Color.White
+    End Sub
+
     Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles _
     Label1.MouseDown ' Add more handles here (Example: PictureBox1.MouseDown)
 

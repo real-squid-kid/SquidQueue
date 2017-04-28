@@ -68,4 +68,21 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Form2.Show()
     End Sub
+
+    Private Sub BrandedCheck_Click(sender As Object, e As EventArgs) Handles BrandedCheck.Click
+        '        Screen.Brand()
+    End Sub
+
+    Private Sub GenericCheck_Click(sender As Object, e As EventArgs) Handles GenericCheck.Click
+        '        Screen.Debrand()
+    End Sub
+
+    Private Sub ColorPickerBtn_Click(sender As Object, e As EventArgs) Handles ColorPickerBtn.Click
+        Dim cDialog As New ColorDialog()
+        cDialog.Color = Color.White ' initial selection is current color.
+
+        If (cDialog.ShowDialog() = DialogResult.OK) Then
+            Screen.Brand(cDialog.Color) ' update with user selected color.
+        End If
+    End Sub
 End Class

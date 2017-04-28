@@ -135,5 +135,8 @@
   <ItemGroup>
     <None Include="Resources\train_station.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TYDYSH PRESENTATION.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
