@@ -25,12 +25,10 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.ColorPickerBtn = New System.Windows.Forms.Button()
         Me.CustomLabel = New System.Windows.Forms.TextBox()
         Me.CustomCheck = New System.Windows.Forms.CheckBox()
         Me.ClockCheck = New System.Windows.Forms.CheckBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.BrandedCheck = New System.Windows.Forms.RadioButton()
-        Me.GenericCheck = New System.Windows.Forms.RadioButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.FullHDCheck = New System.Windows.Forms.RadioButton()
         Me.HDCheck = New System.Windows.Forms.RadioButton()
@@ -38,11 +36,22 @@ Partial Class Form1
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.ServeButton = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.PrintExactBtn = New System.Windows.Forms.Button()
+        Me.TicketNumberLbl = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.ListenOnTxt = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.AutoCheck = New System.Windows.Forms.CheckBox()
         Me.RegisterButton = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.LogoPathTxt = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.PrintLogoChk = New System.Windows.Forms.CheckBox()
+        Me.CalibrationBtn = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.UsePrinterChk = New System.Windows.Forms.CheckBox()
+        Me.PrinterNameTxt = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CurrentTicketLbl = New System.Windows.Forms.Label()
@@ -50,10 +59,8 @@ Partial Class Form1
         Me.TotalTicketsLbl = New System.Windows.Forms.Label()
         Me.ReEnableTimer = New System.Windows.Forms.Timer(Me.components)
         Me.StatusPing = New System.Windows.Forms.Timer(Me.components)
-        Me.ColorPickerBtn = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -78,7 +85,6 @@ Partial Class Form1
         Me.TabPage1.Controls.Add(Me.CustomLabel)
         Me.TabPage1.Controls.Add(Me.CustomCheck)
         Me.TabPage1.Controls.Add(Me.ClockCheck)
-        Me.TabPage1.Controls.Add(Me.GroupBox2)
         Me.TabPage1.Controls.Add(Me.GroupBox1)
         Me.TabPage1.Controls.Add(Me.ShowScreenBtn)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
@@ -88,6 +94,15 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Screen"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'ColorPickerBtn
+        '
+        Me.ColorPickerBtn.Location = New System.Drawing.Point(96, 68)
+        Me.ColorPickerBtn.Name = "ColorPickerBtn"
+        Me.ColorPickerBtn.Size = New System.Drawing.Size(114, 23)
+        Me.ColorPickerBtn.TabIndex = 10
+        Me.ColorPickerBtn.Text = "Text Color..."
+        Me.ColorPickerBtn.UseVisualStyleBackColor = True
         '
         'CustomLabel
         '
@@ -121,41 +136,6 @@ Partial Class Form1
         Me.ClockCheck.TabIndex = 7
         Me.ClockCheck.Text = "Clock"
         Me.ClockCheck.UseVisualStyleBackColor = True
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.BrandedCheck)
-        Me.GroupBox2.Controls.Add(Me.GenericCheck)
-        Me.GroupBox2.Location = New System.Drawing.Point(96, 68)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(110, 77)
-        Me.GroupBox2.TabIndex = 6
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Type"
-        '
-        'BrandedCheck
-        '
-        Me.BrandedCheck.AutoSize = True
-        Me.BrandedCheck.Enabled = False
-        Me.BrandedCheck.Location = New System.Drawing.Point(6, 43)
-        Me.BrandedCheck.Name = "BrandedCheck"
-        Me.BrandedCheck.Size = New System.Drawing.Size(65, 17)
-        Me.BrandedCheck.TabIndex = 4
-        Me.BrandedCheck.Text = "Branded"
-        Me.BrandedCheck.UseVisualStyleBackColor = True
-        '
-        'GenericCheck
-        '
-        Me.GenericCheck.AutoSize = True
-        Me.GenericCheck.Checked = True
-        Me.GenericCheck.Enabled = False
-        Me.GenericCheck.Location = New System.Drawing.Point(6, 20)
-        Me.GenericCheck.Name = "GenericCheck"
-        Me.GenericCheck.Size = New System.Drawing.Size(62, 17)
-        Me.GenericCheck.TabIndex = 4
-        Me.GenericCheck.TabStop = True
-        Me.GenericCheck.Text = "Generic"
-        Me.GenericCheck.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -222,6 +202,9 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.PrintExactBtn)
+        Me.TabPage3.Controls.Add(Me.TicketNumberLbl)
+        Me.TabPage3.Controls.Add(Me.Label4)
         Me.TabPage3.Controls.Add(Me.ListenOnTxt)
         Me.TabPage3.Controls.Add(Me.Label3)
         Me.TabPage3.Controls.Add(Me.AutoCheck)
@@ -232,6 +215,31 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Register"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'PrintExactBtn
+        '
+        Me.PrintExactBtn.Location = New System.Drawing.Point(345, 68)
+        Me.PrintExactBtn.Name = "PrintExactBtn"
+        Me.PrintExactBtn.Size = New System.Drawing.Size(75, 23)
+        Me.PrintExactBtn.TabIndex = 16
+        Me.PrintExactBtn.Text = "Print"
+        Me.PrintExactBtn.UseVisualStyleBackColor = True
+        '
+        'TicketNumberLbl
+        '
+        Me.TicketNumberLbl.Location = New System.Drawing.Point(288, 70)
+        Me.TicketNumberLbl.Name = "TicketNumberLbl"
+        Me.TicketNumberLbl.Size = New System.Drawing.Size(51, 20)
+        Me.TicketNumberLbl.TabIndex = 15
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(187, 70)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(95, 13)
+        Me.Label4.TabIndex = 14
+        Me.Label4.Text = "Print ticket number"
         '
         'ListenOnTxt
         '
@@ -272,6 +280,14 @@ Partial Class Form1
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.LogoPathTxt)
+        Me.TabPage4.Controls.Add(Me.Label6)
+        Me.TabPage4.Controls.Add(Me.PrintLogoChk)
+        Me.TabPage4.Controls.Add(Me.CalibrationBtn)
+        Me.TabPage4.Controls.Add(Me.Button2)
+        Me.TabPage4.Controls.Add(Me.UsePrinterChk)
+        Me.TabPage4.Controls.Add(Me.PrinterNameTxt)
+        Me.TabPage4.Controls.Add(Me.Label5)
         Me.TabPage4.Controls.Add(Me.Button1)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
@@ -279,6 +295,80 @@ Partial Class Form1
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "System settings"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'LogoPathTxt
+        '
+        Me.LogoPathTxt.Location = New System.Drawing.Point(106, 98)
+        Me.LogoPathTxt.Name = "LogoPathTxt"
+        Me.LogoPathTxt.Size = New System.Drawing.Size(152, 20)
+        Me.LogoPathTxt.TabIndex = 9
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(3, 101)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(96, 13)
+        Me.Label6.TabIndex = 8
+        Me.Label6.Text = "Path to logo (.bmp)"
+        '
+        'PrintLogoChk
+        '
+        Me.PrintLogoChk.AutoSize = True
+        Me.PrintLogoChk.Checked = True
+        Me.PrintLogoChk.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.PrintLogoChk.Location = New System.Drawing.Point(6, 81)
+        Me.PrintLogoChk.Name = "PrintLogoChk"
+        Me.PrintLogoChk.Size = New System.Drawing.Size(70, 17)
+        Me.PrintLogoChk.TabIndex = 7
+        Me.PrintLogoChk.Text = "Print logo"
+        Me.PrintLogoChk.UseVisualStyleBackColor = True
+        '
+        'CalibrationBtn
+        '
+        Me.CalibrationBtn.Enabled = False
+        Me.CalibrationBtn.Location = New System.Drawing.Point(264, 41)
+        Me.CalibrationBtn.Name = "CalibrationBtn"
+        Me.CalibrationBtn.Size = New System.Drawing.Size(116, 23)
+        Me.CalibrationBtn.TabIndex = 6
+        Me.CalibrationBtn.Text = "Font calibration..."
+        Me.CalibrationBtn.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(183, 41)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 5
+        Me.Button2.Text = "Test font"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'UsePrinterChk
+        '
+        Me.UsePrinterChk.AutoSize = True
+        Me.UsePrinterChk.Location = New System.Drawing.Point(6, 13)
+        Me.UsePrinterChk.Name = "UsePrinterChk"
+        Me.UsePrinterChk.Size = New System.Drawing.Size(77, 17)
+        Me.UsePrinterChk.TabIndex = 3
+        Me.UsePrinterChk.Text = "Use printer"
+        Me.UsePrinterChk.UseVisualStyleBackColor = True
+        '
+        'PrinterNameTxt
+        '
+        Me.PrinterNameTxt.Location = New System.Drawing.Point(77, 43)
+        Me.PrinterNameTxt.Name = "PrinterNameTxt"
+        Me.PrinterNameTxt.Size = New System.Drawing.Size(100, 20)
+        Me.PrinterNameTxt.TabIndex = 2
+        Me.PrinterNameTxt.Text = "POS-58"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(3, 46)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(68, 13)
+        Me.Label5.TabIndex = 1
+        Me.Label5.Text = "Printer Name"
         '
         'Button1
         '
@@ -335,15 +425,6 @@ Partial Class Form1
         '
         Me.StatusPing.Enabled = True
         '
-        'ColorPickerBtn
-        '
-        Me.ColorPickerBtn.Location = New System.Drawing.Point(212, 68)
-        Me.ColorPickerBtn.Name = "ColorPickerBtn"
-        Me.ColorPickerBtn.Size = New System.Drawing.Size(114, 23)
-        Me.ColorPickerBtn.TabIndex = 10
-        Me.ColorPickerBtn.Text = "Text Color..."
-        Me.ColorPickerBtn.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -354,19 +435,19 @@ Partial Class Form1
         Me.Controls.Add(Me.CurrentTicketLbl)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TabControl1)
+        Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "Control Panel"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -379,9 +460,6 @@ Partial Class Form1
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents ClockCheck As CheckBox
-    Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents BrandedCheck As RadioButton
-    Friend WithEvents GenericCheck As RadioButton
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents FullHDCheck As RadioButton
     Friend WithEvents HDCheck As RadioButton
@@ -400,4 +478,15 @@ Partial Class Form1
     Friend WithEvents Label3 As Label
     Friend WithEvents AutoCheck As CheckBox
     Friend WithEvents ColorPickerBtn As Button
+    Friend WithEvents PrintExactBtn As Button
+    Friend WithEvents TicketNumberLbl As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents PrinterNameTxt As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents UsePrinterChk As CheckBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents CalibrationBtn As Button
+    Friend WithEvents LogoPathTxt As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents PrintLogoChk As CheckBox
 End Class

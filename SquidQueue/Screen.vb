@@ -1,4 +1,6 @@
-﻿Public Class Screen
+﻿Imports Microsoft.VisualBasic
+
+Public Class Screen
     Public BlinkCycle As Byte
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
@@ -10,13 +12,6 @@
         TicketLabel.ForeColor = e
         ClockLabel.ForeColor = e
         CustomLabel.ForeColor = e
-    End Sub
-
-    Public Sub Debrand()
-        ClockLabel.Font = New Font("Arial Narrow", 48, FontStyle.Bold)
-        CustomLabel.Font = New Font("Arial Narrow", 48, FontStyle.Bold)
-        TicketLabel.Font = New Font("Arial Rounded MT Bold", 250, FontStyle.Bold)
-        TicketLabel.ForeColor = Color.White
     End Sub
 
     Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles _
@@ -71,5 +66,9 @@
             BlinkTimer.Enabled = False
             TicketLabel.Visible = True
         End If
+    End Sub
+
+    Private Sub Screen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Brand(Color.White)
     End Sub
 End Class
