@@ -219,27 +219,34 @@ Public Class Form1
             .AlignLeft()
             .WriteLine(My.Settings.SlipFooter)
             .FeedPaper(1)
-            If My.Settings.PrintRaffle Then
-                'Raffle
-                .DrawLine()
-                .FeedPaper(1)
-                .DrawLine()
-                .FeedPaper(1)
-                .HugeFont()
-                .AlignCenter()
-                .PrintLogo()
-                .FeedPaper(1)
-                .Bold = True
-                .WriteLine(e)
-                .NormalFont()
-                .Bold = False
-                .AlignLeft()
-                .WriteLine(My.Settings.RaffleComment)
-            End If
-
-            .FeedPaper(1)
             .CutPaper()
             .EndDoc()
+        End With
+        With P
+            If My.Settings.PrintRaffle Then
+                Dim Result As Integer = MessageBox.Show("Press OK to print the raffle part.", "SquidQueue", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+                If Result = DialogResult.OK Then
+                    .RTL = False
+                    'Raffle
+                    .DrawLine()
+                    .FeedPaper(1)
+                    .DrawLine()
+                    .FeedPaper(1)
+                    .HugeFont()
+                    .AlignCenter()
+                    .PrintLogo()
+                    .FeedPaper(1)
+                    .Bold = True
+                    .WriteLine(e)
+                    .NormalFont()
+                    .Bold = False
+                    .AlignLeft()
+                    .WriteLine(My.Settings.RaffleComment)
+                    .FeedPaper(1)
+                    .CutPaper()
+                    .EndDoc()
+                End If
+            End If
         End With
     End Sub
 
