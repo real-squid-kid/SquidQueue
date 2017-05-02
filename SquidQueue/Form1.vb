@@ -87,6 +87,9 @@ Public Class Form1
             'CalibrationBtn.Enabled = False
             PrintLogoChk.Enabled = False
             LogoPathTxt.Enabled = False
+            PrinterFontBtn.Enabled = False
+            DebugPrintBtn.Enabled = False
+            DebugPrintTxt.Enabled = False
         Else
             PrintExactBtn.Enabled = True
             PrinterNameTxt.Enabled = True
@@ -95,6 +98,9 @@ Public Class Form1
             'CalibrationBtn.Enabled = True
             PrintLogoChk.Enabled = True
             LogoPathTxt.Enabled = True
+            PrinterFontBtn.Enabled = True
+            DebugPrintBtn.Enabled = True
+            DebugPrintTxt.Enabled = True
         End If
     End Sub
 
@@ -126,7 +132,7 @@ Public Class Form1
             'Printing Logo
             .RTL = False
             .PrintLogo()
-            .FontName = "Times New Roman"
+            .SetFont()
 
             'Printing Title
             .FeedPaper(4)
@@ -138,13 +144,13 @@ Public Class Form1
             'Printing Date
             .GotoSixth(1)
             .NormalFont()
-            .WriteChars("Время:")
-            .WriteLine(DateTime.Now.ToString)
+            .AlignLeft()
+            .WriteChars(DateTime.Now.ToString)
             .DrawLine()
             .FeedPaper(1)
 
             'Printing Header
-            .AlignLeft()
+
             .HugeFont()
             .WriteLine("В чащах леса жил бы цитрус? Да, но фальшивый экземпляръ!")
             .BigFont()
@@ -177,7 +183,7 @@ Public Class Form1
             'Printing Logo
             .RTL = False
             .PrintLogo()
-            .FontName = "Times New Roman"
+            .SetFont()
 
             'Printing Title
             .FeedPaper(4)
@@ -191,13 +197,12 @@ Public Class Form1
             .Bold = False
             .GotoSixth(1)
             .NormalFont()
-            .WriteChars("Время:")
+            .AlignLeft()
             .WriteLine(DateTime.Now.ToString)
             .DrawLine()
             .FeedPaper(1)
 
             'Number
-            .AlignLeft()
             .BigFont()
             .WriteLine("Ваш номер в очереди:")
             .Bold = True
@@ -244,7 +249,7 @@ Public Class Form1
             'Printing Logo
             .RTL = False
             .PrintLogo()
-            .FontName = "Times New Roman"
+            .SetFont()
 
             'Printing Title
             .FeedPaper(4)
@@ -316,6 +321,7 @@ Public Class Form1
         Else
             My.Settings.PrinterInUse = False
         End If
+
     End Sub
 
     Private Sub PrinterNameTxt_TextChanged(sender As Object, e As EventArgs) Handles PrinterNameTxt.TextChanged
@@ -323,12 +329,13 @@ Public Class Form1
     End Sub
 
     Public Sub CalibrationPage()
+        My.Settings.OmitCalibration = True
         Dim P As New PrinterClass(Application.StartupPath)
         With P
             'Printing Logo
             .RTL = False
             .PrintLogo()
-            .FontName = "Times New Roman"
+            .SetFont()
 
             'Printing Title
             .FeedPaper(4)
@@ -338,32 +345,33 @@ Public Class Form1
             .WriteLine("Калибровка")
 
             'Printing Date
+            .AlignLeft()
             .GotoSixth(1)
             .NormalFont()
-            .WriteChars("Время:")
+            .Bold = False
             .WriteLine(DateTime.Now.ToString)
             .DrawLine()
             .FeedPaper(1)
 
             'Printing Header
-            .AlignLeft()
-            .HugeFont()
-            .WriteLine("1234567890123456789012345678901234567890")
-            .BigFont()
-            .WriteLine("1234567890123456789012345678901234567890")
-            .NormalFont()
-            .WriteLine("1234567890123456789012345678901234567890")
-            .SmallFont()
-            .WriteLine("1234567890123456789012345678901234567890")
             .Bold = False
             .HugeFont()
-            .WriteLine("1234567890123456789012345678901234567890")
+            .WriteLine("@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&")
             .BigFont()
-            .WriteLine("1234567890123456789012345678901234567890")
+            .WriteLine("@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&")
             .NormalFont()
-            .WriteLine("1234567890123456789012345678901234567890")
+            .WriteLine("@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&")
             .SmallFont()
-            .WriteLine("1234567890123456789012345678901234567890")
+            .WriteLine("@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&")
+            .Bold = True
+            .HugeFont()
+            .WriteLine("@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&")
+            .BigFont()
+            .WriteLine("@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&")
+            .NormalFont()
+            .WriteLine("@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&")
+            .SmallFont()
+            .WriteLine("@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&@@@@&")
             '.FeedPaper(1)
 
 
@@ -372,10 +380,12 @@ Public Class Form1
             'Ending the session
             .EndDoc()
         End With
+        My.Settings.OmitCalibration = False
     End Sub
 
     Private Sub CalibrationBtn_Click(sender As Object, e As EventArgs) Handles CalibrationBtn.Click
         CalibrationPage()
+        CalibrationForm.Show()
     End Sub
 
     Private Sub LogoPathTxt_TextChanged(sender As Object, e As EventArgs) Handles LogoPathTxt.TextChanged
@@ -408,6 +418,45 @@ Public Class Form1
             .ScreenLabel = "SquidQueue"
             .PrinterInUse = False
             .PrinterFont = "Times New Roman"
+            .PrinterCalibrate(0) = 7
+            .PrinterCalibrate(1) = 18
+            .PrinterCalibrate(2) = 28
+            .PrinterCalibrate(3) = 40
+            .PrinterCalibrate(4) = 7
+            .PrinterCalibrate(5) = 18
+            .PrinterCalibrate(6) = 28
+            .PrinterCalibrate(7) = 40
+            .OmitCalibration = False
+        End With
+    End Sub
+
+    Private Sub PrinterFontBtn_Click(sender As Object, e As EventArgs) Handles PrinterFontBtn.Click
+        FontPciker.ShowDialog()
+        My.Settings.PrinterFont = FontPciker.Font.Name
+
+    End Sub
+
+    Private Sub DebugPrintBtn_Click(sender As Object, e As EventArgs) Handles DebugPrintBtn.Click
+        Dim P As New PrinterClass(Application.StartupPath)
+        With P
+            'Printing Logo
+            .RTL = False
+            .SetFont()
+
+            'Printing Title
+            .FeedPaper(4)
+
+            'Printing Header
+            .Bold = False
+            .NormalFont()
+            .WriteLine(DebugPrintTxt.Text)
+            '.FeedPaper(1)
+
+
+            .CutPaper() ' Can be used with real printer to cut the paper.
+
+            'Ending the session
+            .EndDoc()
         End With
     End Sub
 End Class

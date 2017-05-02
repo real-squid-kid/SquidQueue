@@ -96,6 +96,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalibrationForm.Designer.vb">
+      <DependentUpon>CalibrationForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CalibrationForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Class1.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
@@ -134,6 +140,9 @@
     <Compile Include="Settings.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CalibrationForm.resx">
+      <DependentUpon>CalibrationForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>

@@ -147,7 +147,7 @@ Optional ByVal BoldType As Boolean = False)
     End Property
     Public Sub FeedPaper(Optional ByVal nlines As Integer = 3)
         For i As Integer = 1 To nlines
-            Me.WriteLine("")
+            Me.WriteLine(" ")
         Next
     End Sub
 
@@ -184,14 +184,129 @@ Optional ByVal BoldType As Boolean = False)
             Case TextAlignment.Right
                 p.CurrentX = (p.Width - sTextWidth)
         End Select
-        p.Print(Text)
+        If My.Settings.OmitCalibration = True Then
+            p.Print(Text)
+            Exit Sub
+        Else
+            If Me.Bold = False Then
+                '       'huge
+                If Me.FontSize = 36.0F Then
+                    Dim t As List(Of String)
+                    t = WrapText(Text, My.Settings.PrinterCalibrate(0))
+                    For a = 0 To t.Count - 1
+                        p.Print(t(a))
+                    Next
+                    Exit Sub
+                End If
+                'big
+                If Me.FontSize = 15.0F Then
+                    Dim t As List(Of String)
+                    t = WrapText(Text, My.Settings.PrinterCalibrate(1))
+                    For a = 0 To t.Count - 1
+                        p.Print(t(a))
+                    Next
+                    Exit Sub
+                End If
+                'normal
+                If Me.FontSize = 9.5F Then
+                    Dim t As List(Of String)
+                    t = WrapText(Text, My.Settings.PrinterCalibrate(2))
+                    For a = 0 To t.Count - 1
+                        p.Print(t(a))
+                    Next
+                    Exit Sub
+                End If
+                'small
+                If Me.FontSize = 6.0F Then
+                    Dim t As List(Of String)
+                    t = WrapText(Text, My.Settings.PrinterCalibrate(3))
+                    For a = 0 To t.Count - 1
+                        p.Print(t(a))
+                    Next
+                    Exit Sub
+                End If
+            Else
+                '       'huge
+                If Me.FontSize = 36.0F Then
+                    Dim t As List(Of String)
+                    t = WrapText(Text, My.Settings.PrinterCalibrate(4))
+                    For a = 0 To t.Count - 1
+                        p.Print(t(a))
+                    Next
+                    Exit Sub
+                End If
+                'big
+                If Me.FontSize = 15.0F Then
+                    Dim t As List(Of String)
+                    t = WrapText(Text, My.Settings.PrinterCalibrate(5))
+                    For a = 0 To t.Count - 1
+                        p.Print(t(a))
+                    Next
+                    Exit Sub
+                End If
+                'normal
+                If Me.FontSize = 9.5F Then
+                    Dim t As List(Of String)
+                    t = WrapText(Text, My.Settings.PrinterCalibrate(6))
+                    For a = 0 To t.Count - 1
+                        p.Print(t(a))
+                    Next
+                    Exit Sub
+                End If
+                'small
+                If Me.FontSize = 6.0F Then
+                    Dim t As List(Of String)
+                    t = WrapText(Text, My.Settings.PrinterCalibrate(7))
+                    For a = 0 To t.Count - 1
+                        p.Print(t(a))
+                    Next
+                    Exit Sub
+                End If
+            End If
+        End If
     End Sub
+#End Region
+
     Public Sub WriteChars(ByVal Text As String)
         p.Write(Text)
     End Sub
     Public Sub CutPaper()
         p.NewPage()
     End Sub
+    Public Function WrapText(ByVal Text As String, ByVal LineLength As Integer) As List(Of String)
 
-#End Region
+        Dim ReturnValue As New List(Of String)
+        ' Remove leading and trailing spaces
+        'Text = Trim(Text)
+
+
+        Dim Words As String() = Text.Split(" ")
+        Dim CurrentLine As String = ""
+
+        For CurrentWord = 0 To Words.Length - 1
+            If CurrentLine.Length + Words(CurrentWord).Length < LineLength Then
+                If CurrentLine = "" Then
+                    CurrentLine += Words(CurrentWord)
+                Else
+                    CurrentLine += " "
+                    CurrentLine += Words(CurrentWord)
+                End If
+            Else
+                ReturnValue.Add(CurrentLine)
+                If Words(CurrentWord).Length <= LineLength Then
+                    CurrentLine = Words(CurrentWord)
+                Else
+                    CurrentLine = Words(CurrentWord).Substring(0, LineLength)
+                    ReturnValue.Add(CurrentLine)
+                    CurrentLine = Words(CurrentWord).Substring(LineLength - 1, Words(CurrentWord).Length - LineLength + 1)
+                End If
+            End If
+
+        Next
+        ReturnValue.Add(CurrentLine)
+
+        Return ReturnValue
+    End Function
+
+
 End Class

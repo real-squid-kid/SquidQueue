@@ -61,6 +61,9 @@ Partial Class Form1
         Me.StatusPing = New System.Windows.Forms.Timer(Me.components)
         Me.FontPciker = New System.Windows.Forms.FontDialog()
         Me.FontPickerBtn = New System.Windows.Forms.Button()
+        Me.PrinterFontBtn = New System.Windows.Forms.Button()
+        Me.DebugPrintTxt = New System.Windows.Forms.TextBox()
+        Me.DebugPrintBtn = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -282,6 +285,9 @@ Partial Class Form1
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.DebugPrintBtn)
+        Me.TabPage4.Controls.Add(Me.DebugPrintTxt)
+        Me.TabPage4.Controls.Add(Me.PrinterFontBtn)
         Me.TabPage4.Controls.Add(Me.LogoPathTxt)
         Me.TabPage4.Controls.Add(Me.Label6)
         Me.TabPage4.Controls.Add(Me.PrintLogoChk)
@@ -328,8 +334,7 @@ Partial Class Form1
         '
         'CalibrationBtn
         '
-        Me.CalibrationBtn.Enabled = False
-        Me.CalibrationBtn.Location = New System.Drawing.Point(264, 41)
+        Me.CalibrationBtn.Location = New System.Drawing.Point(345, 133)
         Me.CalibrationBtn.Name = "CalibrationBtn"
         Me.CalibrationBtn.Size = New System.Drawing.Size(116, 23)
         Me.CalibrationBtn.TabIndex = 6
@@ -338,7 +343,7 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(183, 41)
+        Me.Button2.Location = New System.Drawing.Point(89, 133)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 5
@@ -436,6 +441,33 @@ Partial Class Form1
         Me.FontPickerBtn.Text = "Font..."
         Me.FontPickerBtn.UseVisualStyleBackColor = True
         '
+        'PrinterFontBtn
+        '
+        Me.PrinterFontBtn.Location = New System.Drawing.Point(8, 133)
+        Me.PrinterFontBtn.Name = "PrinterFontBtn"
+        Me.PrinterFontBtn.Size = New System.Drawing.Size(75, 23)
+        Me.PrinterFontBtn.TabIndex = 10
+        Me.PrinterFontBtn.Text = "Font..."
+        Me.PrinterFontBtn.UseVisualStyleBackColor = True
+        '
+        'DebugPrintTxt
+        '
+        Me.DebugPrintTxt.Location = New System.Drawing.Point(8, 173)
+        Me.DebugPrintTxt.Multiline = True
+        Me.DebugPrintTxt.Name = "DebugPrintTxt"
+        Me.DebugPrintTxt.Size = New System.Drawing.Size(250, 94)
+        Me.DebugPrintTxt.TabIndex = 11
+        Me.DebugPrintTxt.Text = "Jackdaws love my big sphinx of quartz. 1234567890"
+        '
+        'DebugPrintBtn
+        '
+        Me.DebugPrintBtn.Location = New System.Drawing.Point(159, 273)
+        Me.DebugPrintBtn.Name = "DebugPrintBtn"
+        Me.DebugPrintBtn.Size = New System.Drawing.Size(99, 23)
+        Me.DebugPrintBtn.TabIndex = 12
+        Me.DebugPrintBtn.Text = "Debug Print This"
+        Me.DebugPrintBtn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -502,4 +534,7 @@ Partial Class Form1
     Friend WithEvents PrintLogoChk As CheckBox
     Friend WithEvents FontPickerBtn As Button
     Friend WithEvents FontPciker As FontDialog
+    Friend WithEvents PrinterFontBtn As Button
+    Friend WithEvents DebugPrintBtn As Button
+    Friend WithEvents DebugPrintTxt As TextBox
 End Class
