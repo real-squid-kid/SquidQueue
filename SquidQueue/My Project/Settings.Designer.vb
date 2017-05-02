@@ -165,6 +165,79 @@ Namespace My
                 Me("OmitCalibration") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("SquidQueue Очередь")>  _
+        Public Property SlipTitle() As String
+            Get
+                Return CType(Me("SlipTitle"),String)
+            End Get
+            Set
+                Me("SlipTitle") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property PrintDateAndTime() As Boolean
+            Get
+                Return CType(Me("PrintDateAndTime"),Boolean)
+            End Get
+            Set
+                Me("PrintDateAndTime") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property PrintEstimatedTime() As String
+            Get
+                Return CType(Me("PrintEstimatedTime"),String)
+            End Get
+            Set
+                Me("PrintEstimatedTime") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Сохраняйте купон до конца мероприятия! Он пригодится вам во время розыгрыша призо"& _ 
+            "в.")>  _
+        Public Property SlipFooter() As String
+            Get
+                Return CType(Me("SlipFooter"),String)
+            End Get
+            Set
+                Me("SlipFooter") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property PrintRaffle() As Boolean
+            Get
+                Return CType(Me("PrintRaffle"),Boolean)
+            End Get
+            Set
+                Me("PrintRaffle") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ОПУСТИ МЕНЯ В БАРАБАН")>  _
+        Public Property RaffleComment() As String
+            Get
+                Return CType(Me("RaffleComment"),String)
+            End Get
+            Set
+                Me("RaffleComment") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

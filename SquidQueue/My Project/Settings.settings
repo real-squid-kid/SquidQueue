@@ -39,5 +39,23 @@
     <Setting Name="OmitCalibration" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="SlipTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SquidQueue Очередь</Value>
+    </Setting>
+    <Setting Name="PrintDateAndTime" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PrintEstimatedTime" Type="System.String" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SlipFooter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Сохраняйте купон до конца мероприятия! Он пригодится вам во время розыгрыша призов.</Value>
+    </Setting>
+    <Setting Name="PrintRaffle" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="RaffleComment" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ОПУСТИ МЕНЯ В БАРАБАН</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -52,6 +52,11 @@ Public Class Form1
         Catch
             My.Settings.PrinterInUse = False
         End Try
+        SlipTitleTxt.Text = My.Settings.SlipTitle
+        SlipDateTimeChk.Checked = My.Settings.PrintDateAndTime
+        SlipFooterTxt.Text = My.Settings.SlipFooter
+        RafflieChk.Checked = My.Settings.PrintRaffle
+        SlipRaffleTxt.Text = My.Settings.RaffleComment
     End Sub
 
     Private Sub ReEnableTimer_Tick(sender As Object, e As EventArgs) Handles ReEnableTimer.Tick
@@ -84,36 +89,30 @@ Public Class Form1
             PrinterNameTxt.Enabled = False
             TicketNumberLbl.Enabled = False
             Button2.Enabled = False
-            'CalibrationBtn.Enabled = False
+            CalibrationBtn.Enabled = False
             PrintLogoChk.Enabled = False
             LogoPathTxt.Enabled = False
             PrinterFontBtn.Enabled = False
             DebugPrintBtn.Enabled = False
             DebugPrintTxt.Enabled = False
+            CheckTicketBtn.Enabled = False
         Else
             PrintExactBtn.Enabled = True
             PrinterNameTxt.Enabled = True
             TicketNumberLbl.Enabled = True
             Button2.Enabled = True
-            'CalibrationBtn.Enabled = True
+            CalibrationBtn.Enabled = True
             PrintLogoChk.Enabled = True
             LogoPathTxt.Enabled = True
             PrinterFontBtn.Enabled = True
             DebugPrintBtn.Enabled = True
             DebugPrintTxt.Enabled = True
+            CheckTicketBtn.Enabled = True
         End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Form2.Show()
-    End Sub
-
-    Private Sub BrandedCheck_Click(sender As Object, e As EventArgs)
-        '        Screen.Brand()
-    End Sub
-
-    Private Sub GenericCheck_Click(sender As Object, e As EventArgs)
-        '        Screen.Debrand()
     End Sub
 
     Private Sub ColorPickerBtn_Click(sender As Object, e As EventArgs) Handles ColorPickerBtn.Click
@@ -190,15 +189,14 @@ Public Class Form1
             .AlignCenter()
             .BigFont()
             .Bold = True
-            .WriteLine("SquidQueue")
-            .WriteLine("Очередь")
+            .WriteLine(My.Settings.SlipTitle)
 
             'Printing Date
             .Bold = False
             .GotoSixth(1)
             .NormalFont()
             .AlignLeft()
-            .WriteLine(DateTime.Now.ToString)
+            If My.Settings.PrintDateAndTime Then .WriteLine(DateTime.Now.ToString)
             .DrawLine()
             .FeedPaper(1)
 
@@ -211,32 +209,34 @@ Public Class Form1
             .WriteLine(e)
             'Estimated time
             .NormalFont()
-            .WriteLine("Примерное время ожидания:")
-            .BigFont()
-            .AlignCenter()
-            .WriteLine("N минут")
+            '.WriteLine("Примерное время ожидания:")
+            ' .BigFont()
+            '.AlignCenter()
+            '.WriteLine("N минут")
             .Bold = False
             'Additional
             .NormalFont()
             .AlignLeft()
-            .WriteLine("Сохраняйте купон до конца")
-            .WriteLine("мероприятия! Он вам пригодится")
-            .WriteLine("во время розыгрыша призов.")
+            .WriteLine(My.Settings.SlipFooter)
             .FeedPaper(1)
-            'Raffle
-            .DrawLine()
-            .FeedPaper(1)
-            .DrawLine()
-            .FeedPaper(1)
-            .HugeFont()
-            .AlignCenter()
-            .PrintLogo()
-            .FeedPaper(1)
-            .Bold = True
-            .WriteLine(e)
-            .NormalFont()
-            .Bold = False
-            .WriteLine("Опусти меня в барабан")
+            If My.Settings.PrintRaffle Then
+                'Raffle
+                .DrawLine()
+                .FeedPaper(1)
+                .DrawLine()
+                .FeedPaper(1)
+                .HugeFont()
+                .AlignCenter()
+                .PrintLogo()
+                .FeedPaper(1)
+                .Bold = True
+                .WriteLine(e)
+                .NormalFont()
+                .Bold = False
+                .AlignLeft()
+                .WriteLine(My.Settings.RaffleComment)
+            End If
+
             .FeedPaper(1)
             .CutPaper()
             .EndDoc()
@@ -317,7 +317,7 @@ Public Class Form1
     Private Sub UsePrinterChk_CheckedChanged(sender As Object, e As EventArgs) Handles UsePrinterChk.CheckedChanged
         If UsePrinterChk.Checked = True Then
             My.Settings.PrinterInUse = True
-            MessageBox.Show("Please be informed that this software was written with a one particular printer in mind, and other printers could produce undesirable result. You can change the code dedicated to printing solution to suit your needs. Check the 'About Me' section for the source code.", "SquidQueue", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Please be informed that this software was written with one particular printer in mind, and other printers could produce undesirable result. You can change the code dedicated to printing solution to suit your needs. Check the 'About Me' section for the source code.", "SquidQueue", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             My.Settings.PrinterInUse = False
         End If
@@ -388,7 +388,7 @@ Public Class Form1
         CalibrationForm.Show()
     End Sub
 
-    Private Sub LogoPathTxt_TextChanged(sender As Object, e As EventArgs) Handles LogoPathTxt.TextChanged
+    Private Sub LogoPathTxt_TextChanged(sender As Object, e As EventArgs)
         My.Settings.LogoPath = LogoPathTxt.Text
     End Sub
 
@@ -458,6 +458,44 @@ Public Class Form1
             'Ending the session
             .EndDoc()
         End With
+    End Sub
+
+    Private Sub JustCallOutBtn_Click(sender As Object, e As EventArgs) Handles JustCallOutBtn.Click
+        Screen.CallOut(CallOutTxt.Text)
+    End Sub
+
+    Private Sub ChgOrderButton_Click(sender As Object, e As EventArgs) Handles ChgOrderButton.Click
+        CurrentTicket = CallOutTxt.Text
+        Screen.CallOut(CallOutTxt.Text)
+    End Sub
+
+    Private Sub SlipTitleTxt_TextChanged(sender As Object, e As EventArgs) Handles SlipTitleTxt.TextChanged
+        My.Settings.SlipTitle = SlipTitleTxt.Text
+    End Sub
+
+    Private Sub SlipDateTimeChk_CheckedChanged(sender As Object, e As EventArgs) Handles SlipDateTimeChk.CheckedChanged
+        My.Settings.PrintDateAndTime = SlipDateTimeChk.Checked
+    End Sub
+
+    Private Sub SlipFooterTxt_TextChanged(sender As Object, e As EventArgs) Handles SlipFooterTxt.TextChanged
+        My.Settings.SlipFooter = SlipFooterTxt.Text
+    End Sub
+
+    Private Sub RafflieChk_CheckedChanged(sender As Object, e As EventArgs) Handles RafflieChk.CheckedChanged
+        My.Settings.PrintRaffle = RafflieChk.Checked
+        If RafflieChk.Checked Then
+            SlipRaffleTxt.Enabled = True
+        Else
+            SlipRaffleTxt.Enabled = False
+        End If
+    End Sub
+
+    Private Sub SlipRaffleTxt_TextChanged(sender As Object, e As EventArgs) Handles SlipRaffleTxt.TextChanged
+        My.Settings.RaffleComment = SlipRaffleTxt.Text
+    End Sub
+
+    Private Sub CheckTicketBtn_Click(sender As Object, e As EventArgs) Handles CheckTicketBtn.Click
+        PrintTicket(0)
     End Sub
 End Class
 
