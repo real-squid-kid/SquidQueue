@@ -59,6 +59,8 @@ Partial Class Form1
         Me.TotalTicketsLbl = New System.Windows.Forms.Label()
         Me.ReEnableTimer = New System.Windows.Forms.Timer(Me.components)
         Me.StatusPing = New System.Windows.Forms.Timer(Me.components)
+        Me.FontPciker = New System.Windows.Forms.FontDialog()
+        Me.FontPickerBtn = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -81,6 +83,7 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.FontPickerBtn)
         Me.TabPage1.Controls.Add(Me.ColorPickerBtn)
         Me.TabPage1.Controls.Add(Me.CustomLabel)
         Me.TabPage1.Controls.Add(Me.CustomCheck)
@@ -97,7 +100,7 @@ Partial Class Form1
         '
         'ColorPickerBtn
         '
-        Me.ColorPickerBtn.Location = New System.Drawing.Point(96, 68)
+        Me.ColorPickerBtn.Location = New System.Drawing.Point(116, 68)
         Me.ColorPickerBtn.Name = "ColorPickerBtn"
         Me.ColorPickerBtn.Size = New System.Drawing.Size(114, 23)
         Me.ColorPickerBtn.TabIndex = 10
@@ -111,7 +114,7 @@ Partial Class Form1
         Me.CustomLabel.Name = "CustomLabel"
         Me.CustomLabel.Size = New System.Drawing.Size(160, 20)
         Me.CustomLabel.TabIndex = 9
-        Me.CustomLabel.Text = "Custom Label"
+        Me.CustomLabel.Text = "SquidQueue"
         '
         'CustomCheck
         '
@@ -143,7 +146,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.HDCheck)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 68)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(84, 77)
+        Me.GroupBox1.Size = New System.Drawing.Size(104, 77)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Dimensions"
@@ -151,12 +154,11 @@ Partial Class Form1
         'FullHDCheck
         '
         Me.FullHDCheck.AutoSize = True
-        Me.FullHDCheck.Enabled = False
         Me.FullHDCheck.Location = New System.Drawing.Point(15, 46)
         Me.FullHDCheck.Name = "FullHDCheck"
-        Me.FullHDCheck.Size = New System.Drawing.Size(55, 17)
+        Me.FullHDCheck.Size = New System.Drawing.Size(74, 17)
         Me.FullHDCheck.TabIndex = 2
-        Me.FullHDCheck.Text = "1080p"
+        Me.FullHDCheck.Text = "Maximized"
         Me.FullHDCheck.UseVisualStyleBackColor = True
         '
         'HDCheck
@@ -197,7 +199,7 @@ Partial Class Form1
         Me.ServeButton.Name = "ServeButton"
         Me.ServeButton.Size = New System.Drawing.Size(130, 62)
         Me.ServeButton.TabIndex = 0
-        Me.ServeButton.Text = "Serve"
+        Me.ServeButton.Text = "Serve next"
         Me.ServeButton.UseVisualStyleBackColor = True
         '
         'TabPage3
@@ -425,6 +427,15 @@ Partial Class Form1
         '
         Me.StatusPing.Enabled = True
         '
+        'FontPickerBtn
+        '
+        Me.FontPickerBtn.Location = New System.Drawing.Point(116, 97)
+        Me.FontPickerBtn.Name = "FontPickerBtn"
+        Me.FontPickerBtn.Size = New System.Drawing.Size(114, 23)
+        Me.FontPickerBtn.TabIndex = 11
+        Me.FontPickerBtn.Text = "Font..."
+        Me.FontPickerBtn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -489,4 +500,6 @@ Partial Class Form1
     Friend WithEvents LogoPathTxt As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents PrintLogoChk As CheckBox
+    Friend WithEvents FontPickerBtn As Button
+    Friend WithEvents FontPciker As FontDialog
 End Class

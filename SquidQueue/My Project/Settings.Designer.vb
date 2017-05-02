@@ -77,6 +77,66 @@ Namespace My
                 Me("LogoPath") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Century Gothic")>  _
+        Public Property ScreenFont() As String
+            Get
+                Return CType(Me("ScreenFont"),String)
+            End Get
+            Set
+                Me("ScreenFont") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("White")>  _
+        Public Property ScreenFontColor() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("ScreenFontColor"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("ScreenFontColor") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("SquidQueue")>  _
+        Public Property ScreenLabel() As String
+            Get
+                Return CType(Me("ScreenLabel"),String)
+            End Get
+            Set
+                Me("ScreenLabel") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property PrinterInUse() As Boolean
+            Get
+                Return CType(Me("PrinterInUse"),Boolean)
+            End Get
+            Set
+                Me("PrinterInUse") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Times New Roman")>  _
+        Public Property PrinterFont() As String
+            Get
+                Return CType(Me("PrinterFont"),String)
+            End Get
+            Set
+                Me("PrinterFont") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

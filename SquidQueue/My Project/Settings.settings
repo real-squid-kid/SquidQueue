@@ -8,5 +8,20 @@
     <Setting Name="LogoPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\vasilymakrov\Desktop\MSILOGO.bmp</Value>
     </Setting>
+    <Setting Name="ScreenFont" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Century Gothic</Value>
+    </Setting>
+    <Setting Name="ScreenFontColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="ScreenLabel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SquidQueue</Value>
+    </Setting>
+    <Setting Name="PrinterInUse" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PrinterFont" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Times New Roman</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

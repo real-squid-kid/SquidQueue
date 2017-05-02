@@ -5,13 +5,19 @@ Public Class Screen
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
 
-    Public Sub Brand(e As Color)
-        ClockLabel.Font = New Font("Century Gothic", 48, FontStyle.Bold)
-        CustomLabel.Font = New Font("Century Gothic", 48, FontStyle.Bold)
-        TicketLabel.Font = New Font("Century Gothic", 250, FontStyle.Bold)
-        TicketLabel.ForeColor = e
-        ClockLabel.ForeColor = e
-        CustomLabel.ForeColor = e
+    Public Sub Brand()
+        Try
+            ClockLabel.Font = New Font(My.Settings.ScreenFont, 48, FontStyle.Bold)
+            CustomLabel.Font = New Font(My.Settings.ScreenFont, 48, FontStyle.Bold)
+            TicketLabel.Font = New Font(My.Settings.ScreenFont, 250, FontStyle.Bold)
+            TicketLabel.ForeColor = My.Settings.ScreenFontColor
+            ClockLabel.ForeColor = My.Settings.ScreenFontColor
+            CustomLabel.ForeColor = My.Settings.ScreenFontColor
+        Catch
+            My.Settings.ScreenFont = "Century Gothic"
+            My.Settings.ScreenFontColor = Color.White
+            Brand()
+        End Try
     End Sub
 
     Public Sub MoveForm_MouseDown(sender As Object, e As MouseEventArgs) Handles _
@@ -69,6 +75,20 @@ Public Class Screen
     End Sub
 
     Private Sub Screen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Brand(Color.White)
+        Brand()
+    End Sub
+
+    Private Sub SyncPing_Tick(sender As Object, e As EventArgs) Handles SyncPing.Tick
+        ClockLabel.Left = Me.Width - Me.Width / 20 - ClockLabel.Width
+        CustomLabel.Left = Me.Width - Me.Width / 2 - CustomLabel.Width / 2
+        CustomLabel.Top = Me.Height / 5
+        TicketLabel.Left = Me.Width - Me.Width / 2 - TicketLabel.Width / 2
+        TicketLabel.Top = Me.Height / 3
+    End Sub
+
+    Private Sub Screen_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.Escape Then
+            Me.Close()
+        End If
     End Sub
 End Class

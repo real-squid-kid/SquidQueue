@@ -29,6 +29,7 @@ Partial Class Screen
         Me.ClockTimer = New System.Windows.Forms.Timer(Me.components)
         Me.TicketLabel = New System.Windows.Forms.Label()
         Me.BlinkTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.SyncPing = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'ClockLabel
@@ -53,7 +54,7 @@ Partial Class Screen
         Me.CustomLabel.Name = "CustomLabel"
         Me.CustomLabel.Size = New System.Drawing.Size(1256, 75)
         Me.CustomLabel.TabIndex = 0
-        Me.CustomLabel.Text = "Custom Label"
+        Me.CustomLabel.Text = "SquidQueue"
         Me.CustomLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label1
@@ -74,19 +75,24 @@ Partial Class Screen
         '
         'TicketLabel
         '
+        Me.TicketLabel.AutoSize = True
         Me.TicketLabel.BackColor = System.Drawing.Color.Silver
         Me.TicketLabel.Font = New System.Drawing.Font("Arial Rounded MT Bold", 249.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TicketLabel.ForeColor = System.Drawing.Color.White
-        Me.TicketLabel.Location = New System.Drawing.Point(275, 221)
+        Me.TicketLabel.Location = New System.Drawing.Point(463, 224)
         Me.TicketLabel.Name = "TicketLabel"
-        Me.TicketLabel.Size = New System.Drawing.Size(785, 390)
+        Me.TicketLabel.Size = New System.Drawing.Size(360, 385)
         Me.TicketLabel.TabIndex = 2
         Me.TicketLabel.Text = "0"
-        Me.TicketLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.TicketLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'BlinkTimer
         '
         Me.BlinkTimer.Interval = 500
+        '
+        'SyncPing
+        '
+        Me.SyncPing.Enabled = True
         '
         'Screen
         '
@@ -113,4 +119,5 @@ Partial Class Screen
     Friend WithEvents ClockTimer As Timer
     Friend WithEvents TicketLabel As Label
     Friend WithEvents BlinkTimer As Timer
+    Friend WithEvents SyncPing As Timer
 End Class

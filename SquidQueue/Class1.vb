@@ -27,7 +27,7 @@ Public Class PrinterClass
                 Exit For
             End If
         Next
-        p.DocumentName = "ERP System"
+        p.DocumentName = "SquidQueue Slip"
         '   Me.Path = AppPath
         If bIsDebug Then
             p.PrintAction = Printing.PrintAction.PrintToPreview
@@ -97,10 +97,10 @@ Public Class PrinterClass
     End Sub
 
     Public Sub SetFont(Optional ByVal FontSize As Single = 9.5F,
-Optional ByVal FontName As String = "Times New Roman",
+Optional ByVal FontName As String = Nothing,
 Optional ByVal BoldType As Boolean = False)
         Me.FontSize = FontSize
-        Me.FontName = FontName
+        Me.FontName = My.Settings.PrinterFont
         Me.Bold = BoldType
     End Sub
 #End Region

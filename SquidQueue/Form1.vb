@@ -30,7 +30,8 @@ Public Class Form1
     End Sub
 
     Private Sub CustomLabel_TextChanged(sender As Object, e As EventArgs) Handles CustomLabel.TextChanged
-        Screen.CustomLabel.Text = CustomLabel.Text
+        My.Settings.ScreenLabel = CustomLabel.Text
+        Screen.CustomLabel.Text = My.Settings.ScreenLabel
     End Sub
 
     Private Sub RegisterButton_Click(sender As Object, e As EventArgs) Handles RegisterButton.Click
@@ -41,8 +42,16 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If My.Settings.PrinterInUse = Nothing Then LoadDefaults()
         TotalTickets = 0
         CurrentTicket = 0
+        CustomLabel.Text = My.Settings.ScreenLabel
+        LogoPathTxt.Text = My.Settings.LogoPath
+        Try
+            UsePrinterChk.Checked = My.Settings.PrinterInUse
+        Catch
+            My.Settings.PrinterInUse = False
+        End Try
     End Sub
 
     Private Sub ReEnableTimer_Tick(sender As Object, e As EventArgs) Handles ReEnableTimer.Tick
@@ -75,7 +84,7 @@ Public Class Form1
             PrinterNameTxt.Enabled = False
             TicketNumberLbl.Enabled = False
             Button2.Enabled = False
-            CalibrationBtn.Enabled = False
+            'CalibrationBtn.Enabled = False
             PrintLogoChk.Enabled = False
             LogoPathTxt.Enabled = False
         Else
@@ -83,7 +92,7 @@ Public Class Form1
             PrinterNameTxt.Enabled = True
             TicketNumberLbl.Enabled = True
             Button2.Enabled = True
-            CalibrationBtn.Enabled = True
+            'CalibrationBtn.Enabled = True
             PrintLogoChk.Enabled = True
             LogoPathTxt.Enabled = True
         End If
@@ -93,11 +102,11 @@ Public Class Form1
         Form2.Show()
     End Sub
 
-    Private Sub BrandedCheck_Click(sender As Object, e As EventArgs) 
+    Private Sub BrandedCheck_Click(sender As Object, e As EventArgs)
         '        Screen.Brand()
     End Sub
 
-    Private Sub GenericCheck_Click(sender As Object, e As EventArgs) 
+    Private Sub GenericCheck_Click(sender As Object, e As EventArgs)
         '        Screen.Debrand()
     End Sub
 
@@ -106,7 +115,8 @@ Public Class Form1
             .Color = Color.White ' initial selection is current color.
             }
         If (cDialog.ShowDialog() = DialogResult.OK) Then
-            Screen.Brand(cDialog.Color) ' update with user selected color.
+            My.Settings.ScreenFontColor = cDialog.Color
+            Screen.Brand() ' update with user selected color.
         End If
     End Sub
 
@@ -301,7 +311,10 @@ Public Class Form1
 
     Private Sub UsePrinterChk_CheckedChanged(sender As Object, e As EventArgs) Handles UsePrinterChk.CheckedChanged
         If UsePrinterChk.Checked = True Then
+            My.Settings.PrinterInUse = True
             MessageBox.Show("Please be informed that this software was written with a one particular printer in mind, and other printers could produce undesirable result. You can change the code dedicated to printing solution to suit your needs. Check the 'About Me' section for the source code.", "SquidQueue", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            My.Settings.PrinterInUse = False
         End If
     End Sub
 
@@ -369,5 +382,33 @@ Public Class Form1
         My.Settings.LogoPath = LogoPathTxt.Text
     End Sub
 
+    Private Sub FullHDCheck_CheckedChanged(sender As Object, e As EventArgs) Handles FullHDCheck.CheckedChanged
+        If FullHDCheck.Checked = True Then
+            Screen.WindowState = FormWindowState.Maximized
+        End If
+    End Sub
+
+    Private Sub HDCheck_CheckedChanged(sender As Object, e As EventArgs) Handles HDCheck.CheckedChanged
+        If HDCheck.Checked = True Then
+            Screen.WindowState = FormWindowState.Normal
+        End If
+    End Sub
+
+    Private Sub FontPickerBtn_Click(sender As Object, e As EventArgs) Handles FontPickerBtn.Click
+        FontPciker.ShowDialog()
+        My.Settings.ScreenFont = FontPciker.Font.Name
+        Screen.Brand()
+    End Sub
+    Public Sub LoadDefaults()
+        With My.Settings
+            .PrinterName = "POS-58"
+            .LogoPath = Nothing
+            .ScreenFont = "Century Gothic"
+            .ScreenFontColor = Color.White
+            .ScreenLabel = "SquidQueue"
+            .PrinterInUse = False
+            .PrinterFont = "Times New Roman"
+        End With
+    End Sub
 End Class
 
