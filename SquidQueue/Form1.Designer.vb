@@ -62,6 +62,7 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.ServeButton = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.ScreenEstimatedChk = New System.Windows.Forms.CheckBox()
         Me.QueueCountChk = New System.Windows.Forms.CheckBox()
         Me.BackPickerBtn = New System.Windows.Forms.Button()
         Me.FontPickerBtn = New System.Windows.Forms.Button()
@@ -95,6 +96,9 @@ Partial Class Form1
         Me.SecsCount = New System.Windows.Forms.Timer(Me.components)
         Me.Label13 = New System.Windows.Forms.Label()
         Me.EstimateResultLbl = New System.Windows.Forms.Label()
+        Me.OverrideChk = New System.Windows.Forms.CheckBox()
+        Me.OverrideLbl = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.TabPage4.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -453,10 +457,14 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.OverrideLbl)
+        Me.TabPage1.Controls.Add(Me.OverrideChk)
+        Me.TabPage1.Controls.Add(Me.ScreenEstimatedChk)
         Me.TabPage1.Controls.Add(Me.QueueCountChk)
         Me.TabPage1.Controls.Add(Me.BackPickerBtn)
         Me.TabPage1.Controls.Add(Me.FontPickerBtn)
         Me.TabPage1.Controls.Add(Me.ColorPickerBtn)
+        Me.TabPage1.Controls.Add(Me.Label16)
         Me.TabPage1.Controls.Add(Me.CustomLabel)
         Me.TabPage1.Controls.Add(Me.CustomCheck)
         Me.TabPage1.Controls.Add(Me.ClockCheck)
@@ -469,6 +477,18 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Screen"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'ScreenEstimatedChk
+        '
+        Me.ScreenEstimatedChk.AutoSize = True
+        Me.ScreenEstimatedChk.Checked = True
+        Me.ScreenEstimatedChk.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ScreenEstimatedChk.Location = New System.Drawing.Point(6, 221)
+        Me.ScreenEstimatedChk.Name = "ScreenEstimatedChk"
+        Me.ScreenEstimatedChk.Size = New System.Drawing.Size(94, 17)
+        Me.ScreenEstimatedChk.TabIndex = 13
+        Me.ScreenEstimatedChk.Text = "Estimated time"
+        Me.ScreenEstimatedChk.UseVisualStyleBackColor = True
         '
         'QueueCountChk
         '
@@ -516,7 +536,6 @@ Partial Class Form1
         Me.CustomLabel.Name = "CustomLabel"
         Me.CustomLabel.Size = New System.Drawing.Size(160, 20)
         Me.CustomLabel.TabIndex = 9
-        Me.CustomLabel.Text = "SquidQueue"
         '
         'CustomCheck
         '
@@ -776,7 +795,6 @@ Partial Class Form1
         '
         'SecsCount
         '
-        Me.SecsCount.Enabled = True
         Me.SecsCount.Interval = 1000
         '
         'Label13
@@ -797,6 +815,32 @@ Partial Class Form1
         Me.EstimateResultLbl.Size = New System.Drawing.Size(51, 55)
         Me.EstimateResultLbl.TabIndex = 1
         Me.EstimateResultLbl.Text = "0"
+        '
+        'OverrideChk
+        '
+        Me.OverrideChk.AutoSize = True
+        Me.OverrideChk.Location = New System.Drawing.Point(116, 221)
+        Me.OverrideChk.Name = "OverrideChk"
+        Me.OverrideChk.Size = New System.Drawing.Size(66, 17)
+        Me.OverrideChk.TabIndex = 14
+        Me.OverrideChk.Text = "Override"
+        Me.OverrideChk.UseVisualStyleBackColor = True
+        '
+        'OverrideLbl
+        '
+        Me.OverrideLbl.Location = New System.Drawing.Point(182, 219)
+        Me.OverrideLbl.Name = "OverrideLbl"
+        Me.OverrideLbl.Size = New System.Drawing.Size(48, 20)
+        Me.OverrideLbl.TabIndex = 15
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(236, 221)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(43, 13)
+        Me.Label16.TabIndex = 1
+        Me.Label16.Text = "minutes"
         '
         'Form1
         '
@@ -909,4 +953,8 @@ Partial Class Form1
     Friend WithEvents AutoEstimateRdo As RadioButton
     Friend WithEvents Label15 As Label
     Friend WithEvents BackPickerBtn As Button
+    Friend WithEvents ScreenEstimatedChk As CheckBox
+    Friend WithEvents OverrideLbl As TextBox
+    Friend WithEvents OverrideChk As CheckBox
+    Friend WithEvents Label16 As Label
 End Class

@@ -49,6 +49,7 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ScreenEstimatedChk.Checked = My.Settings.ShowEstimatedTime
         EstimateResult = 0
         ElapsedTime = 0
         If My.Settings.PrinterInUse = Nothing Then LoadDefaults()
@@ -80,6 +81,7 @@ Public Class Form1
     End Sub
 
     Private Sub ServeButton_Click(sender As Object, e As EventArgs) Handles ServeButton.Click
+        SecsCount.Enabled = True
         If TotalTickets = CurrentTicket Then
             ServeButton.Text = "Can't serve, no more free tickets"
             ReEnableTimer.Enabled = True
@@ -138,6 +140,7 @@ Public Class Form1
             ManualEstimateRdo.Enabled = True
             ManualEstimateTxt.Enabled = True
         End If
+        OverrideChk.Enabled = ScreenEstimatedChk.Checked
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -583,6 +586,10 @@ Public Class Form1
             My.Settings.BackColor = cDialog.Color
             Screen.Brand() ' update with user selected color.
         End If
+    End Sub
+
+    Private Sub ScreenEstimatedChk_CheckedChanged(sender As Object, e As EventArgs) Handles ScreenEstimatedChk.CheckedChanged
+        My.Settings.ShowEstimatedTime = ScreenEstimatedChk.Checked
     End Sub
 End Class
 

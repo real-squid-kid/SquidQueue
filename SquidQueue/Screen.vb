@@ -102,7 +102,12 @@ Public Class Screen
         EstimateResultLbl.Left = Me.Width / 2
         QueueCountLbl.Text = "Людей в очереди - " & Form1.QueueCount
         QueueCountLbl.Visible = Form1.QueueCountChk.Checked
-        EstimateResultLbl.Text = "Время между людьми - " & Form1.ToMins(Form1.EstimateResult) & " мин."
+        EstimateResultLbl.Visible = Form1.ScreenEstimatedChk.Checked
+        If Form1.OverrideChk.Checked Then
+            EstimateResultLbl.Text = "Время между людьми - " & Form1.OverrideLbl.Text & " мин."
+        Else
+            EstimateResultLbl.Text = "Время между людьми - " & Form1.ToMins(Form1.EstimateResult) & " мин."
+        End If
     End Sub
 
     Private Sub Screen_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles Me.KeyDown
