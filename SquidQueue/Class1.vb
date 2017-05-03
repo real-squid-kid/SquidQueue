@@ -90,7 +90,7 @@ Public Class PrinterClass
         Me.FontSize = 15.0F
     End Sub
     Public Sub HugeFont()
-        Me.FontSize = 36.0F
+        Me.FontSize = 48.0F
     End Sub
     Public Sub SmallFont()
         Me.FontSize = 6.0F
@@ -129,7 +129,8 @@ Optional ByVal BoldType As Boolean = False)
         pic = pic.FromFile(FileName)
 
         p.PaintPicture(pic, p.CurrentX, p.CurrentY)
-        p.CurrentY = p.CurrentY + pic.Height
+        p.CurrentY = p.CurrentY + pic.Height * 12
+
     End Sub
 #End Region
 #Region "Control"
@@ -190,7 +191,7 @@ Optional ByVal BoldType As Boolean = False)
         Else
             If Me.Bold = False Then
                 '       'huge
-                If Me.FontSize = 36.0F Then
+                If Me.FontSize = 48.0F Then
                     Dim t As List(Of String)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(0))
                     For a = 0 To t.Count - 1
@@ -227,7 +228,7 @@ Optional ByVal BoldType As Boolean = False)
                 End If
             Else
                 '       'huge
-                If Me.FontSize = 36.0F Then
+                If Me.FontSize = 48.0F Then
                     Dim t As List(Of String)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(4))
                     For a = 0 To t.Count - 1
