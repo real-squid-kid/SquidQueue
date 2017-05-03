@@ -7,6 +7,10 @@ Public Class Form1
 
     Public CurrentTicket As Long
     Public TotalTickets As Long
+    Public QueueCount As Long
+    Public ElapsedTime As Long
+    Public EstimateTime As New List(Of Long)
+    Public EstimateResult As Long
 
     Private Sub ShowScreenBtn_Click(sender As Object, e As EventArgs) Handles ShowScreenBtn.Click
         Screen.Show()
@@ -36,12 +40,17 @@ Public Class Form1
 
     Private Sub RegisterButton_Click(sender As Object, e As EventArgs) Handles RegisterButton.Click
         TotalTickets = TotalTickets + 1
-        PrintTicket(TotalTickets)
+        Dim est As Byte = 0
+        If AutoEstimateRdo.Checked Then est = 2
+        If ManualEstimateRdo.Checked Then est = 1
+        If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
         RegisterButton.Enabled = True
         ReEnableTimer.Enabled = True
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        EstimateResult = 0
+        ElapsedTime = 0
         If My.Settings.PrinterInUse = Nothing Then LoadDefaults()
         TotalTickets = 0
         CurrentTicket = 0
@@ -77,11 +86,22 @@ Public Class Form1
             ServeButton.Enabled = False
             Exit Sub
         End If
+        EstimateTime.Add(ElapsedTime)
+        ElapsedTime = 0
         CurrentTicket = CurrentTicket + 1
         Screen.CallOut(CurrentTicket)
+        'count estimate time
+        EstimateResult = 0
+        For Each n In EstimateTime
+            EstimateResult += n
+        Next
+        EstimateResult = Math.Round(EstimateResult / (EstimateTime.Count))
+        EstimateResultLbl.Text = ToTime(EstimateResult)
     End Sub
 
     Private Sub StatusPing_Tick(sender As Object, e As EventArgs) Handles StatusPing.Tick
+        QueueCount = TotalTickets - CurrentTicket
+        QueueCountLbl.Text = QueueCount
         CurrentTicketLbl.Text = CurrentTicket
         TotalTicketsLbl.Text = TotalTickets
         If UsePrinterChk.Checked = False Then
@@ -96,6 +116,11 @@ Public Class Form1
             DebugPrintBtn.Enabled = False
             DebugPrintTxt.Enabled = False
             CheckTicketBtn.Enabled = False
+            NoEstimateRdo.Checked = True
+            NoEstimateRdo.Enabled = False
+            AutoEstimateRdo.Enabled = False
+            ManualEstimateRdo.Enabled = False
+            ManualEstimateTxt.Enabled = False
         Else
             PrintExactBtn.Enabled = True
             PrinterNameTxt.Enabled = True
@@ -108,6 +133,10 @@ Public Class Form1
             DebugPrintBtn.Enabled = True
             DebugPrintTxt.Enabled = True
             CheckTicketBtn.Enabled = True
+            NoEstimateRdo.Enabled = True
+            AutoEstimateRdo.Enabled = True
+            ManualEstimateRdo.Enabled = True
+            ManualEstimateTxt.Enabled = True
         End If
     End Sub
 
@@ -176,7 +205,7 @@ Public Class Form1
             .EndDoc()
         End With
     End Sub
-    Private Sub PrintTicket(e As Long)
+    Private Sub PrintTicket(e As Long, est As Byte)
         Dim P As New PrinterClass(Application.StartupPath)
         With P
             'Printing Logo
@@ -186,7 +215,7 @@ Public Class Form1
 
             'Printing Title
             .FeedPaper(4)
-            .AlignCenter()
+            .AlignLeft()
             .BigFont()
             .Bold = True
             .WriteLine(My.Settings.SlipTitle)
@@ -208,11 +237,22 @@ Public Class Form1
             .AlignCenter()
             .WriteLine(e)
             'Estimated time
-            .NormalFont()
-            '.WriteLine("Примерное время ожидания:")
-            ' .BigFont()
-            '.AlignCenter()
-            '.WriteLine("N минут")
+            If est = 2 Then
+                .NormalFont()
+                .WriteLine("Примерное время ожидания:")
+                .BigFont()
+                .AlignCenter()
+                .WriteLine(EstimateResult * QueueCount & " минут")
+                .Bold = False
+            End If
+            If est = 1 Then
+                .NormalFont()
+                .WriteLine("Примерное время ожидания:")
+                .BigFont()
+                .AlignCenter()
+                .WriteLine(ManualEstimateTxt.Text & " минут")
+                .Bold = False
+            End If
             .Bold = False
             'Additional
             .NormalFont()
@@ -318,7 +358,10 @@ Public Class Form1
     End Sub
 
     Private Sub PrintExactBtn_Click(sender As Object, e As EventArgs) Handles PrintExactBtn.Click
-        PrintTicket(TicketNumberLbl.Text)
+        Dim est As Byte = 0
+        If AutoEstimateRdo.Checked Then est = 2
+        If ManualEstimateRdo.Checked Then est = 1
+        PrintTicket(TicketNumberLbl.Text, est)
     End Sub
 
     Private Sub UsePrinterChk_CheckedChanged(sender As Object, e As EventArgs) Handles UsePrinterChk.CheckedChanged
@@ -395,7 +438,7 @@ Public Class Form1
         CalibrationForm.Show()
     End Sub
 
-    Private Sub LogoPathTxt_TextChanged(sender As Object, e As EventArgs)
+    Private Sub LogoPathTxt_TextChanged(sender As Object, e As EventArgs) Handles LogoPathTxt.TextChanged
         My.Settings.LogoPath = LogoPathTxt.Text
     End Sub
 
@@ -434,6 +477,7 @@ Public Class Form1
             .PrinterCalibrate(6) = 28
             .PrinterCalibrate(7) = 40
             .OmitCalibration = False
+
         End With
     End Sub
 
@@ -502,7 +546,43 @@ Public Class Form1
     End Sub
 
     Private Sub CheckTicketBtn_Click(sender As Object, e As EventArgs) Handles CheckTicketBtn.Click
-        PrintTicket(0)
+        Dim est As Byte = 0
+        If AutoEstimateRdo.Checked Then est = 2
+        If ManualEstimateRdo.Checked Then est = 1
+        PrintTicket(0, 0)
+    End Sub
+    Public Function ToTime(e As Long)
+        Dim Ret As String
+        Dim Hrs, Mins, Secs As String
+        Hrs = Math.Truncate(e / 3600)
+        Mins = Math.Truncate(e / 60) - Hrs * 60
+        If Mins < 10 Then Mins = "0" & Mins
+        Secs = e - Hrs * 3600 - Mins * 60
+        If Secs < 10 Then Secs = "0" & Secs
+        Ret = Hrs & ":" & Mins & ":" & Secs
+        Return Ret
+    End Function
+
+    Public Function ToMins(e As Long)
+        Dim Mins As String
+        Mins = Math.Truncate(e / 60)
+        If Mins < 10 Then Mins = "0" & Mins
+        Return Mins
+    End Function
+
+    Private Sub SecsCount_Tick(sender As Object, e As EventArgs) Handles SecsCount.Tick
+        ElapsedTime += 1
+        ElapsedTimeLbl.Text = ToTime(ElapsedTime)
+    End Sub
+
+    Private Sub BackPickerBtn_Click(sender As Object, e As EventArgs) Handles BackPickerBtn.Click
+        Dim cDialog As New ColorDialog() With {
+    .Color = Color.White ' initial selection is current color.
+    }
+        If (cDialog.ShowDialog() = DialogResult.OK) Then
+            My.Settings.BackColor = cDialog.Color
+            Screen.Brand() ' update with user selected color.
+        End If
     End Sub
 End Class
 

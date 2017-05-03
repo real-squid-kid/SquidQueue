@@ -30,6 +30,8 @@ Partial Class Screen
         Me.TicketLabel = New System.Windows.Forms.Label()
         Me.BlinkTimer = New System.Windows.Forms.Timer(Me.components)
         Me.SyncPing = New System.Windows.Forms.Timer(Me.components)
+        Me.QueueCountLbl = New System.Windows.Forms.Label()
+        Me.EstimateResultLbl = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ClockLabel
@@ -94,6 +96,30 @@ Partial Class Screen
         '
         Me.SyncPing.Enabled = True
         '
+        'QueueCountLbl
+        '
+        Me.QueueCountLbl.BackColor = System.Drawing.Color.Silver
+        Me.QueueCountLbl.Font = New System.Drawing.Font("Arial Narrow", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.QueueCountLbl.ForeColor = System.Drawing.Color.White
+        Me.QueueCountLbl.Location = New System.Drawing.Point(12, 609)
+        Me.QueueCountLbl.Name = "QueueCountLbl"
+        Me.QueueCountLbl.Size = New System.Drawing.Size(615, 75)
+        Me.QueueCountLbl.TabIndex = 0
+        Me.QueueCountLbl.Text = "SquidQueue"
+        Me.QueueCountLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'EstimateResultLbl
+        '
+        Me.EstimateResultLbl.BackColor = System.Drawing.Color.Silver
+        Me.EstimateResultLbl.Font = New System.Drawing.Font("Arial Narrow", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.EstimateResultLbl.ForeColor = System.Drawing.Color.White
+        Me.EstimateResultLbl.Location = New System.Drawing.Point(653, 609)
+        Me.EstimateResultLbl.Name = "EstimateResultLbl"
+        Me.EstimateResultLbl.Size = New System.Drawing.Size(615, 75)
+        Me.EstimateResultLbl.TabIndex = 0
+        Me.EstimateResultLbl.Text = "SquidQueue"
+        Me.EstimateResultLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'Screen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -102,6 +128,8 @@ Partial Class Screen
         Me.ClientSize = New System.Drawing.Size(1280, 720)
         Me.Controls.Add(Me.TicketLabel)
         Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.EstimateResultLbl)
+        Me.Controls.Add(Me.QueueCountLbl)
         Me.Controls.Add(Me.CustomLabel)
         Me.Controls.Add(Me.ClockLabel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -120,4 +148,6 @@ Partial Class Screen
     Friend WithEvents TicketLabel As Label
     Friend WithEvents BlinkTimer As Timer
     Friend WithEvents SyncPing As Timer
+    Friend WithEvents QueueCountLbl As Label
+    Friend WithEvents EstimateResultLbl As Label
 End Class

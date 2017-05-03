@@ -9,11 +9,16 @@ Public Class Screen
         Try
             ClockLabel.Font = New Font(My.Settings.ScreenFont, 48, FontStyle.Bold)
             CustomLabel.Font = New Font(My.Settings.ScreenFont, 48, FontStyle.Bold)
+            QueueCountLbl.Font = New Font(My.Settings.ScreenFont, 24, FontStyle.Bold)
             TicketLabel.Font = New Font(My.Settings.ScreenFont, 250, FontStyle.Bold)
+            EstimateResultLbl.Font = New Font(My.Settings.ScreenFont, 24, FontStyle.Bold)
             TicketLabel.ForeColor = My.Settings.ScreenFontColor
             ClockLabel.ForeColor = My.Settings.ScreenFontColor
             CustomLabel.ForeColor = My.Settings.ScreenFontColor
+            QueueCountLbl.ForeColor = My.Settings.ScreenFontColor
+            EstimateResultLbl.ForeColor = My.Settings.ScreenFontColor
         Catch
+
             My.Settings.ScreenFont = "Century Gothic"
             My.Settings.ScreenFontColor = Color.White
             Brand()
@@ -79,11 +84,25 @@ Public Class Screen
     End Sub
 
     Private Sub SyncPing_Tick(sender As Object, e As EventArgs) Handles SyncPing.Tick
+        Me.BackColor = My.Settings.BackColor
+        Label1.BackColor = My.Settings.BackColor
+        ClockLabel.BackColor = My.Settings.BackColor
+        CustomLabel.BackColor = My.Settings.BackColor
+        TicketLabel.BackColor = My.Settings.BackColor
+        QueueCountLbl.BackColor = My.Settings.BackColor
+        EstimateResultLbl.BackColor = My.Settings.BackColor
         ClockLabel.Left = Me.Width - Me.Width / 20 - ClockLabel.Width
         CustomLabel.Left = Me.Width - Me.Width / 2 - CustomLabel.Width / 2
         CustomLabel.Top = Me.Height / 5
         TicketLabel.Left = Me.Width - Me.Width / 2 - TicketLabel.Width / 2
         TicketLabel.Top = Me.Height / 3
+        QueueCountLbl.Left = Me.Width / 20
+        QueueCountLbl.Top = Me.Height - Me.Height / 10
+        EstimateResultLbl.Top = Me.Height - Me.Height / 10
+        EstimateResultLbl.Left = Me.Width / 2
+        QueueCountLbl.Text = "Людей в очереди - " & Form1.QueueCount
+        QueueCountLbl.Visible = Form1.QueueCountChk.Checked
+        EstimateResultLbl.Text = "Время между людьми - " & Form1.ToMins(Form1.EstimateResult) & " мин."
     End Sub
 
     Private Sub Screen_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles Me.KeyDown

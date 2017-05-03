@@ -192,18 +192,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property PrintEstimatedTime() As String
-            Get
-                Return CType(Me("PrintEstimatedTime"),String)
-            End Get
-            Set
-                Me("PrintEstimatedTime") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("Сохраняйте купон до конца мероприятия! Он пригодится вам во время розыгрыша призо"& _ 
             "в.")>  _
         Public Property SlipFooter() As String
@@ -236,6 +224,18 @@ Namespace My
             End Get
             Set
                 Me("RaffleComment") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("DarkGray")>  _
+        Public Property BackColor() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("BackColor"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("BackColor") = value
             End Set
         End Property
     End Class

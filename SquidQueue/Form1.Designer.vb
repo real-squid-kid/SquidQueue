@@ -42,6 +42,12 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.ManualEstimateTxt = New System.Windows.Forms.TextBox()
+        Me.NoEstimateRdo = New System.Windows.Forms.RadioButton()
+        Me.ManualEstimateRdo = New System.Windows.Forms.RadioButton()
+        Me.AutoEstimateRdo = New System.Windows.Forms.RadioButton()
         Me.PrintExactBtn = New System.Windows.Forms.Button()
         Me.TicketNumberLbl = New System.Windows.Forms.TextBox()
         Me.ListenOnTxt = New System.Windows.Forms.TextBox()
@@ -56,6 +62,8 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.ServeButton = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.QueueCountChk = New System.Windows.Forms.CheckBox()
+        Me.BackPickerBtn = New System.Windows.Forms.Button()
         Me.FontPickerBtn = New System.Windows.Forms.Button()
         Me.ColorPickerBtn = New System.Windows.Forms.Button()
         Me.CustomLabel = New System.Windows.Forms.TextBox()
@@ -67,9 +75,10 @@ Partial Class Form1
         Me.ShowScreenBtn = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.CheckTicketBtn = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.RafflieChk = New System.Windows.Forms.CheckBox()
-        Me.EstimatedTimeChk = New System.Windows.Forms.CheckBox()
         Me.SlipDateTimeChk = New System.Windows.Forms.CheckBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -79,9 +88,16 @@ Partial Class Form1
         Me.SlipTitleTxt = New System.Windows.Forms.TextBox()
         Me.LogoPathTxt = New System.Windows.Forms.TextBox()
         Me.PrintLogoChk = New System.Windows.Forms.CheckBox()
-        Me.CheckTicketBtn = New System.Windows.Forms.Button()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.QueueCountLbl = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.ElapsedTimeLbl = New System.Windows.Forms.Label()
+        Me.SecsCount = New System.Windows.Forms.Timer(Me.components)
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.EstimateResultLbl = New System.Windows.Forms.Label()
         Me.TabPage4.SuspendLayout()
         Me.TabPage3.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -236,6 +252,7 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.GroupBox2)
         Me.TabPage3.Controls.Add(Me.PrintExactBtn)
         Me.TabPage3.Controls.Add(Me.TicketNumberLbl)
         Me.TabPage3.Controls.Add(Me.ListenOnTxt)
@@ -249,6 +266,70 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Register"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.Label14)
+        Me.GroupBox2.Controls.Add(Me.ManualEstimateTxt)
+        Me.GroupBox2.Controls.Add(Me.NoEstimateRdo)
+        Me.GroupBox2.Controls.Add(Me.ManualEstimateRdo)
+        Me.GroupBox2.Controls.Add(Me.AutoEstimateRdo)
+        Me.GroupBox2.Location = New System.Drawing.Point(7, 118)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(200, 100)
+        Me.GroupBox2.TabIndex = 17
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Estimated time printing"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(128, 48)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(43, 13)
+        Me.Label14.TabIndex = 4
+        Me.Label14.Text = "minutes"
+        '
+        'ManualEstimateTxt
+        '
+        Me.ManualEstimateTxt.Location = New System.Drawing.Point(73, 43)
+        Me.ManualEstimateTxt.Name = "ManualEstimateTxt"
+        Me.ManualEstimateTxt.Size = New System.Drawing.Size(49, 20)
+        Me.ManualEstimateTxt.TabIndex = 3
+        '
+        'NoEstimateRdo
+        '
+        Me.NoEstimateRdo.AutoSize = True
+        Me.NoEstimateRdo.Location = New System.Drawing.Point(7, 68)
+        Me.NoEstimateRdo.Name = "NoEstimateRdo"
+        Me.NoEstimateRdo.Size = New System.Drawing.Size(39, 17)
+        Me.NoEstimateRdo.TabIndex = 2
+        Me.NoEstimateRdo.TabStop = True
+        Me.NoEstimateRdo.Text = "Off"
+        Me.NoEstimateRdo.UseVisualStyleBackColor = True
+        '
+        'ManualEstimateRdo
+        '
+        Me.ManualEstimateRdo.AutoSize = True
+        Me.ManualEstimateRdo.Location = New System.Drawing.Point(7, 44)
+        Me.ManualEstimateRdo.Name = "ManualEstimateRdo"
+        Me.ManualEstimateRdo.Size = New System.Drawing.Size(60, 17)
+        Me.ManualEstimateRdo.TabIndex = 1
+        Me.ManualEstimateRdo.TabStop = True
+        Me.ManualEstimateRdo.Text = "Manual"
+        Me.ManualEstimateRdo.UseVisualStyleBackColor = True
+        '
+        'AutoEstimateRdo
+        '
+        Me.AutoEstimateRdo.AutoSize = True
+        Me.AutoEstimateRdo.Checked = True
+        Me.AutoEstimateRdo.Location = New System.Drawing.Point(7, 20)
+        Me.AutoEstimateRdo.Name = "AutoEstimateRdo"
+        Me.AutoEstimateRdo.Size = New System.Drawing.Size(76, 17)
+        Me.AutoEstimateRdo.TabIndex = 0
+        Me.AutoEstimateRdo.TabStop = True
+        Me.AutoEstimateRdo.Text = "Automated"
+        Me.AutoEstimateRdo.UseVisualStyleBackColor = True
         '
         'PrintExactBtn
         '
@@ -372,6 +453,8 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.QueueCountChk)
+        Me.TabPage1.Controls.Add(Me.BackPickerBtn)
         Me.TabPage1.Controls.Add(Me.FontPickerBtn)
         Me.TabPage1.Controls.Add(Me.ColorPickerBtn)
         Me.TabPage1.Controls.Add(Me.CustomLabel)
@@ -386,6 +469,27 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Screen"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'QueueCountChk
+        '
+        Me.QueueCountChk.AutoSize = True
+        Me.QueueCountChk.Checked = True
+        Me.QueueCountChk.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.QueueCountChk.Location = New System.Drawing.Point(6, 198)
+        Me.QueueCountChk.Name = "QueueCountChk"
+        Me.QueueCountChk.Size = New System.Drawing.Size(97, 17)
+        Me.QueueCountChk.TabIndex = 12
+        Me.QueueCountChk.Text = "Queue counter"
+        Me.QueueCountChk.UseVisualStyleBackColor = True
+        '
+        'BackPickerBtn
+        '
+        Me.BackPickerBtn.Location = New System.Drawing.Point(116, 126)
+        Me.BackPickerBtn.Name = "BackPickerBtn"
+        Me.BackPickerBtn.Size = New System.Drawing.Size(114, 23)
+        Me.BackPickerBtn.TabIndex = 11
+        Me.BackPickerBtn.Text = "Background..."
+        Me.BackPickerBtn.UseVisualStyleBackColor = True
         '
         'FontPickerBtn
         '
@@ -495,10 +599,10 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Label15)
         Me.TabPage5.Controls.Add(Me.CheckTicketBtn)
         Me.TabPage5.Controls.Add(Me.Label8)
         Me.TabPage5.Controls.Add(Me.RafflieChk)
-        Me.TabPage5.Controls.Add(Me.EstimatedTimeChk)
         Me.TabPage5.Controls.Add(Me.SlipDateTimeChk)
         Me.TabPage5.Controls.Add(Me.Label9)
         Me.TabPage5.Controls.Add(Me.Label10)
@@ -515,6 +619,24 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "Ticket Editor"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(179, 114)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(120, 13)
+        Me.Label15.TabIndex = 18
+        Me.Label15.Text = "Estimated time (if in use)"
+        '
+        'CheckTicketBtn
+        '
+        Me.CheckTicketBtn.Location = New System.Drawing.Point(182, 288)
+        Me.CheckTicketBtn.Name = "CheckTicketBtn"
+        Me.CheckTicketBtn.Size = New System.Drawing.Size(94, 23)
+        Me.CheckTicketBtn.TabIndex = 17
+        Me.CheckTicketBtn.Text = "Check ticket"
+        Me.CheckTicketBtn.UseVisualStyleBackColor = True
         '
         'Label8
         '
@@ -535,17 +657,6 @@ Partial Class Form1
         Me.RafflieChk.TabIndex = 15
         Me.RafflieChk.Text = "Print raffle part"
         Me.RafflieChk.UseVisualStyleBackColor = True
-        '
-        'EstimatedTimeChk
-        '
-        Me.EstimatedTimeChk.AutoSize = True
-        Me.EstimatedTimeChk.Enabled = False
-        Me.EstimatedTimeChk.Location = New System.Drawing.Point(182, 113)
-        Me.EstimatedTimeChk.Name = "EstimatedTimeChk"
-        Me.EstimatedTimeChk.Size = New System.Drawing.Size(117, 17)
-        Me.EstimatedTimeChk.TabIndex = 15
-        Me.EstimatedTimeChk.Text = "Print estimated time"
-        Me.EstimatedTimeChk.UseVisualStyleBackColor = True
         '
         'SlipDateTimeChk
         '
@@ -625,14 +736,67 @@ Partial Class Form1
         Me.PrintLogoChk.Text = "Print logo"
         Me.PrintLogoChk.UseVisualStyleBackColor = True
         '
-        'CheckTicketBtn
+        'Label11
         '
-        Me.CheckTicketBtn.Location = New System.Drawing.Point(182, 288)
-        Me.CheckTicketBtn.Name = "CheckTicketBtn"
-        Me.CheckTicketBtn.Size = New System.Drawing.Size(94, 23)
-        Me.CheckTicketBtn.TabIndex = 17
-        Me.CheckTicketBtn.Text = "Check ticket"
-        Me.CheckTicketBtn.UseVisualStyleBackColor = True
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(583, 35)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(52, 13)
+        Me.Label11.TabIndex = 1
+        Me.Label11.Text = "In queue:"
+        '
+        'QueueCountLbl
+        '
+        Me.QueueCountLbl.AutoSize = True
+        Me.QueueCountLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.QueueCountLbl.Location = New System.Drawing.Point(576, 48)
+        Me.QueueCountLbl.Name = "QueueCountLbl"
+        Me.QueueCountLbl.Size = New System.Drawing.Size(51, 55)
+        Me.QueueCountLbl.TabIndex = 1
+        Me.QueueCountLbl.Text = "0"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(488, 220)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(109, 13)
+        Me.Label12.TabIndex = 1
+        Me.Label12.Text = "Time since last serve:"
+        '
+        'ElapsedTimeLbl
+        '
+        Me.ElapsedTimeLbl.AutoSize = True
+        Me.ElapsedTimeLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.ElapsedTimeLbl.Location = New System.Drawing.Point(487, 233)
+        Me.ElapsedTimeLbl.Name = "ElapsedTimeLbl"
+        Me.ElapsedTimeLbl.Size = New System.Drawing.Size(51, 55)
+        Me.ElapsedTimeLbl.TabIndex = 1
+        Me.ElapsedTimeLbl.Text = "0"
+        '
+        'SecsCount
+        '
+        Me.SecsCount.Enabled = True
+        Me.SecsCount.Interval = 1000
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(488, 311)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(128, 13)
+        Me.Label13.TabIndex = 1
+        Me.Label13.Text = "Estimate between serves:"
+        '
+        'EstimateResultLbl
+        '
+        Me.EstimateResultLbl.AutoSize = True
+        Me.EstimateResultLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.EstimateResultLbl.Location = New System.Drawing.Point(491, 324)
+        Me.EstimateResultLbl.Name = "EstimateResultLbl"
+        Me.EstimateResultLbl.Size = New System.Drawing.Size(51, 55)
+        Me.EstimateResultLbl.TabIndex = 1
+        Me.EstimateResultLbl.Text = "0"
         '
         'Form1
         '
@@ -641,9 +805,16 @@ Partial Class Form1
         Me.ClientSize = New System.Drawing.Size(704, 441)
         Me.Controls.Add(Me.TotalTicketsLbl)
         Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.QueueCountLbl)
+        Me.Controls.Add(Me.EstimateResultLbl)
+        Me.Controls.Add(Me.ElapsedTimeLbl)
+        Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.CurrentTicketLbl)
+        Me.Controls.Add(Me.Label12)
+        Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TabControl1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Form1"
@@ -652,6 +823,8 @@ Partial Class Form1
         Me.TabPage4.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.TabPage1.ResumeLayout(False)
@@ -712,7 +885,6 @@ Partial Class Form1
     Friend WithEvents PrintLogoChk As CheckBox
     Friend WithEvents Label8 As Label
     Friend WithEvents RafflieChk As CheckBox
-    Friend WithEvents EstimatedTimeChk As CheckBox
     Friend WithEvents SlipDateTimeChk As CheckBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
@@ -721,4 +893,20 @@ Partial Class Form1
     Friend WithEvents SlipRaffleTxt As TextBox
     Friend WithEvents SlipTitleTxt As TextBox
     Friend WithEvents CheckTicketBtn As Button
+    Friend WithEvents Label11 As Label
+    Friend WithEvents QueueCountLbl As Label
+    Friend WithEvents QueueCountChk As CheckBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents ElapsedTimeLbl As Label
+    Friend WithEvents SecsCount As Timer
+    Friend WithEvents Label13 As Label
+    Friend WithEvents EstimateResultLbl As Label
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents ManualEstimateTxt As TextBox
+    Friend WithEvents NoEstimateRdo As RadioButton
+    Friend WithEvents ManualEstimateRdo As RadioButton
+    Friend WithEvents AutoEstimateRdo As RadioButton
+    Friend WithEvents Label15 As Label
+    Friend WithEvents BackPickerBtn As Button
 End Class
