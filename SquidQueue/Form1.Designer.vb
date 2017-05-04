@@ -62,11 +62,14 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.ServeButton = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.OverrideLbl = New System.Windows.Forms.TextBox()
+        Me.OverrideChk = New System.Windows.Forms.CheckBox()
         Me.ScreenEstimatedChk = New System.Windows.Forms.CheckBox()
         Me.QueueCountChk = New System.Windows.Forms.CheckBox()
         Me.BackPickerBtn = New System.Windows.Forms.Button()
         Me.FontPickerBtn = New System.Windows.Forms.Button()
         Me.ColorPickerBtn = New System.Windows.Forms.Button()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.CustomLabel = New System.Windows.Forms.TextBox()
         Me.CustomCheck = New System.Windows.Forms.CheckBox()
         Me.ClockCheck = New System.Windows.Forms.CheckBox()
@@ -96,9 +99,8 @@ Partial Class Form1
         Me.SecsCount = New System.Windows.Forms.Timer(Me.components)
         Me.Label13 = New System.Windows.Forms.Label()
         Me.EstimateResultLbl = New System.Windows.Forms.Label()
-        Me.OverrideChk = New System.Windows.Forms.CheckBox()
-        Me.OverrideLbl = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
+        Me.SoundList = New System.Windows.Forms.ListBox()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.TabPage4.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -157,6 +159,8 @@ Partial Class Form1
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.Label17)
+        Me.TabPage4.Controls.Add(Me.SoundList)
         Me.TabPage4.Controls.Add(Me.DebugPrintBtn)
         Me.TabPage4.Controls.Add(Me.DebugPrintTxt)
         Me.TabPage4.Controls.Add(Me.PrinterNameTxt)
@@ -175,7 +179,7 @@ Partial Class Form1
         '
         'DebugPrintBtn
         '
-        Me.DebugPrintBtn.Location = New System.Drawing.Point(159, 273)
+        Me.DebugPrintBtn.Location = New System.Drawing.Point(351, 359)
         Me.DebugPrintBtn.Name = "DebugPrintBtn"
         Me.DebugPrintBtn.Size = New System.Drawing.Size(99, 23)
         Me.DebugPrintBtn.TabIndex = 12
@@ -184,7 +188,7 @@ Partial Class Form1
         '
         'DebugPrintTxt
         '
-        Me.DebugPrintTxt.Location = New System.Drawing.Point(8, 173)
+        Me.DebugPrintTxt.Location = New System.Drawing.Point(200, 259)
         Me.DebugPrintTxt.Multiline = True
         Me.DebugPrintTxt.Name = "DebugPrintTxt"
         Me.DebugPrintTxt.Size = New System.Drawing.Size(250, 94)
@@ -201,7 +205,7 @@ Partial Class Form1
         '
         'PrinterFontBtn
         '
-        Me.PrinterFontBtn.Location = New System.Drawing.Point(8, 133)
+        Me.PrinterFontBtn.Location = New System.Drawing.Point(6, 69)
         Me.PrinterFontBtn.Name = "PrinterFontBtn"
         Me.PrinterFontBtn.Size = New System.Drawing.Size(75, 23)
         Me.PrinterFontBtn.TabIndex = 10
@@ -210,7 +214,7 @@ Partial Class Form1
         '
         'CalibrationBtn
         '
-        Me.CalibrationBtn.Location = New System.Drawing.Point(345, 133)
+        Me.CalibrationBtn.Location = New System.Drawing.Point(168, 69)
         Me.CalibrationBtn.Name = "CalibrationBtn"
         Me.CalibrationBtn.Size = New System.Drawing.Size(116, 23)
         Me.CalibrationBtn.TabIndex = 6
@@ -219,7 +223,7 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(89, 133)
+        Me.Button2.Location = New System.Drawing.Point(87, 69)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 5
@@ -478,6 +482,23 @@ Partial Class Form1
         Me.TabPage1.Text = "Screen"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'OverrideLbl
+        '
+        Me.OverrideLbl.Location = New System.Drawing.Point(182, 219)
+        Me.OverrideLbl.Name = "OverrideLbl"
+        Me.OverrideLbl.Size = New System.Drawing.Size(48, 20)
+        Me.OverrideLbl.TabIndex = 15
+        '
+        'OverrideChk
+        '
+        Me.OverrideChk.AutoSize = True
+        Me.OverrideChk.Location = New System.Drawing.Point(116, 221)
+        Me.OverrideChk.Name = "OverrideChk"
+        Me.OverrideChk.Size = New System.Drawing.Size(66, 17)
+        Me.OverrideChk.TabIndex = 14
+        Me.OverrideChk.Text = "Override"
+        Me.OverrideChk.UseVisualStyleBackColor = True
+        '
         'ScreenEstimatedChk
         '
         Me.ScreenEstimatedChk.AutoSize = True
@@ -528,6 +549,15 @@ Partial Class Form1
         Me.ColorPickerBtn.TabIndex = 10
         Me.ColorPickerBtn.Text = "Text Color..."
         Me.ColorPickerBtn.UseVisualStyleBackColor = True
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(236, 221)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(43, 13)
+        Me.Label16.TabIndex = 1
+        Me.Label16.Text = "minutes"
         '
         'CustomLabel
         '
@@ -816,31 +846,22 @@ Partial Class Form1
         Me.EstimateResultLbl.TabIndex = 1
         Me.EstimateResultLbl.Text = "0"
         '
-        'OverrideChk
+        'SoundList
         '
-        Me.OverrideChk.AutoSize = True
-        Me.OverrideChk.Location = New System.Drawing.Point(116, 221)
-        Me.OverrideChk.Name = "OverrideChk"
-        Me.OverrideChk.Size = New System.Drawing.Size(66, 17)
-        Me.OverrideChk.TabIndex = 14
-        Me.OverrideChk.Text = "Override"
-        Me.OverrideChk.UseVisualStyleBackColor = True
+        Me.SoundList.FormattingEnabled = True
+        Me.SoundList.Location = New System.Drawing.Point(50, 98)
+        Me.SoundList.Name = "SoundList"
+        Me.SoundList.Size = New System.Drawing.Size(234, 95)
+        Me.SoundList.TabIndex = 13
         '
-        'OverrideLbl
+        'Label17
         '
-        Me.OverrideLbl.Location = New System.Drawing.Point(182, 219)
-        Me.OverrideLbl.Name = "OverrideLbl"
-        Me.OverrideLbl.Size = New System.Drawing.Size(48, 20)
-        Me.OverrideLbl.TabIndex = 15
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(236, 221)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(43, 13)
-        Me.Label16.TabIndex = 1
-        Me.Label16.Text = "minutes"
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(3, 98)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(41, 13)
+        Me.Label17.TabIndex = 14
+        Me.Label17.Text = "Sound:"
         '
         'Form1
         '
@@ -957,4 +978,6 @@ Partial Class Form1
     Friend WithEvents OverrideLbl As TextBox
     Friend WithEvents OverrideChk As CheckBox
     Friend WithEvents Label16 As Label
+    Friend WithEvents SoundList As ListBox
+    Friend WithEvents Label17 As Label
 End Class

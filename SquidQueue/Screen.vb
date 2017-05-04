@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic
+Imports System.IO
 
 Public Class Screen
     Public BlinkCycle As Byte
@@ -60,7 +61,19 @@ Public Class Screen
     End Sub
 
     Public Sub CallOut(e As Long)
-        My.Computer.Audio.Play(My.Resources.train_station, AudioPlayMode.Background)
+        Dim playme As String
+        playme = Directory.GetCurrentDirectory & "\sounds\" & Form1.SoundList.SelectedItem
+        If My.Settings.Sound <> Nothing Then
+            If My.Settings.Sound = "Default" Then
+                My.Computer.Audio.Play(My.Resources.train_station, AudioPlayMode.Background)
+            Else
+                Try
+                    My.Computer.Audio.Play(playme, AudioPlayMode.Background)
+                Catch
+                    MessageBox.Show("Missing or not a valid .wav file. Please use PCM 16bit files.", "SquidQueue", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+                End Try
+            End If
+        End If
         TicketLabel.Text = e
         BlinkCycle = 0
         BlinkTimer.Enabled = True

@@ -47,7 +47,7 @@ Partial Class Form2
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(251, 25)
         Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Version 0.29.2, master branch"
+        Me.Label2.Text = "Version 0.29.3, master branch"
         '
         'Label3
         '

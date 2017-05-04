@@ -190,6 +190,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Custom-Icon-Design-Pretty-Office-2-My-tickets.ico" />
+    <None Include="Resources\bells.wav" />
+    <None Include="Resources\airport.wav" />
+    <None Include="Resources\aeroexpress.wav" />
+    <None Include="Resources\windows_xp_off.wav" />
+    <None Include="Resources\windows_xp.wav" />
+    <None Include="Resources\windows_vista_beta_off.wav" />
+    <None Include="Resources\windows_vista_beta.wav" />
+    <None Include="Resources\windows_vista.wav" />
+    <None Include="Resources\windows_nt.wav" />
+    <None Include="Resources\windows_me_off.wav" />
+    <None Include="Resources\windows_me.wav" />
+    <None Include="Resources\windows_longhorn.wav" />
+    <None Include="Resources\windows_beta.wav" />
+    <None Include="Resources\windows_2000.wav" />
+    <None Include="Resources\windows_98_off.wav" />
+    <None Include="Resources\windows_98.wav" />
+    <None Include="Resources\windows_95.wav" />
+    <None Include="Resources\train_station_2.wav" />
+    <None Include="Resources\notifiction.wav" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

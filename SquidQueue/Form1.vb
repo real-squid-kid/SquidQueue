@@ -1,6 +1,7 @@
 ﻿'Imports Microsoft.PointOfService
 Imports System.Drawing
 Imports Microsoft.VisualBasic.PowerPacks.Printing.Compatibility.VB6
+Imports System.IO
 
 Public Class Form1
 
@@ -11,6 +12,7 @@ Public Class Form1
     Public ElapsedTime As Long
     Public EstimateTime As New List(Of Long)
     Public EstimateResult As Long
+    Dim AllSounds As String()
 
     Private Sub ShowScreenBtn_Click(sender As Object, e As EventArgs) Handles ShowScreenBtn.Click
         Screen.Show()
@@ -67,7 +69,23 @@ Public Class Form1
         SlipFooterTxt.Text = My.Settings.SlipFooter
         RafflieChk.Checked = My.Settings.PrintRaffle
         SlipRaffleTxt.Text = My.Settings.RaffleComment
+        SoundList.Items.Add("None")
+        SoundList.Items.Add("Default")
+        Dim path As String = Directory.GetCurrentDirectory
+        path &= "\sounds\"
+        AllSounds = Directory.GetFiles(path)
+        For Each a In AllSounds
+            Dim m As String() = a.Split("\")
+            SoundList.Items.Add(m(m.GetUpperBound(0)))
+        Next
     End Sub
+
+    Public Function SoundCrop(e As String)
+        Dim ret As String
+        Dim a As String() = e.Split("\")
+        ret = a(a.GetUpperBound(0))
+        Return ret
+    End Function
 
     Private Sub ReEnableTimer_Tick(sender As Object, e As EventArgs) Handles ReEnableTimer.Tick
 
@@ -590,6 +608,19 @@ Public Class Form1
 
     Private Sub ScreenEstimatedChk_CheckedChanged(sender As Object, e As EventArgs) Handles ScreenEstimatedChk.CheckedChanged
         My.Settings.ShowEstimatedTime = ScreenEstimatedChk.Checked
+    End Sub
+
+    Private Sub SoundList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SoundList.SelectedIndexChanged
+        If SoundList.SelectedItem = "None" Then
+            My.Settings.Sound = Nothing
+        Else
+            If SoundList.SelectedItem = "Default" Then
+                My.Settings.Sound = "Default"
+            Else
+
+                My.Settings.Sound = SoundList.SelectedItem
+            End If
+        End If
     End Sub
 End Class
 
