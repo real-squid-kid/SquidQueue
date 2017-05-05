@@ -77,6 +77,15 @@ Public Class Screen
         TicketLabel.Text = e
         BlinkCycle = 0
         BlinkTimer.Enabled = True
+        If My.Settings.ScreenFlash Then
+            Me.BackColor = Color.FromArgb(255 - My.Settings.BackColor.R, 255 - My.Settings.BackColor.G, 255 - My.Settings.BackColor.B)
+            Label1.BackColor = Color.FromArgb(255 - My.Settings.BackColor.R, 255 - My.Settings.BackColor.G, 255 - My.Settings.BackColor.B)
+            ClockLabel.BackColor = Color.FromArgb(255 - My.Settings.BackColor.R, 255 - My.Settings.BackColor.G, 255 - My.Settings.BackColor.B)
+            CustomLabel.BackColor = Color.FromArgb(255 - My.Settings.BackColor.R, 255 - My.Settings.BackColor.G, 255 - My.Settings.BackColor.B)
+            TicketLabel.BackColor = Color.FromArgb(255 - My.Settings.BackColor.R, 255 - My.Settings.BackColor.G, 255 - My.Settings.BackColor.B)
+            QueueCountLbl.BackColor = Color.FromArgb(255 - My.Settings.BackColor.R, 255 - My.Settings.BackColor.G, 255 - My.Settings.BackColor.B)
+            EstimateResultLbl.BackColor = Color.FromArgb(255 - My.Settings.BackColor.R, 255 - My.Settings.BackColor.G, 255 - My.Settings.BackColor.B)
+        End If
     End Sub
 
     Private Sub BlinkTimer_Tick(sender As Object, e As EventArgs) Handles BlinkTimer.Tick

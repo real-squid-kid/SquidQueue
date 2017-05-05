@@ -95,6 +95,7 @@ Partial Class Screen
         'SyncPing
         '
         Me.SyncPing.Enabled = True
+        Me.SyncPing.Interval = 1000
         '
         'QueueCountLbl
         '

@@ -101,6 +101,7 @@ Partial Class Form1
         Me.EstimateResultLbl = New System.Windows.Forms.Label()
         Me.SoundList = New System.Windows.Forms.ListBox()
         Me.Label17 = New System.Windows.Forms.Label()
+        Me.FlashScreenChk = New System.Windows.Forms.CheckBox()
         Me.TabPage4.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -461,6 +462,7 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.FlashScreenChk)
         Me.TabPage1.Controls.Add(Me.OverrideLbl)
         Me.TabPage1.Controls.Add(Me.OverrideChk)
         Me.TabPage1.Controls.Add(Me.ScreenEstimatedChk)
@@ -840,7 +842,7 @@ Partial Class Form1
         '
         Me.EstimateResultLbl.AutoSize = True
         Me.EstimateResultLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.EstimateResultLbl.Location = New System.Drawing.Point(491, 324)
+        Me.EstimateResultLbl.Location = New System.Drawing.Point(487, 324)
         Me.EstimateResultLbl.Name = "EstimateResultLbl"
         Me.EstimateResultLbl.Size = New System.Drawing.Size(51, 55)
         Me.EstimateResultLbl.TabIndex = 1
@@ -862,6 +864,18 @@ Partial Class Form1
         Me.Label17.Size = New System.Drawing.Size(41, 13)
         Me.Label17.TabIndex = 14
         Me.Label17.Text = "Sound:"
+        '
+        'FlashScreenChk
+        '
+        Me.FlashScreenChk.AutoSize = True
+        Me.FlashScreenChk.Checked = True
+        Me.FlashScreenChk.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.FlashScreenChk.Location = New System.Drawing.Point(6, 244)
+        Me.FlashScreenChk.Name = "FlashScreenChk"
+        Me.FlashScreenChk.Size = New System.Drawing.Size(86, 17)
+        Me.FlashScreenChk.TabIndex = 16
+        Me.FlashScreenChk.Text = "Flash screen"
+        Me.FlashScreenChk.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -980,4 +994,5 @@ Partial Class Form1
     Friend WithEvents Label16 As Label
     Friend WithEvents SoundList As ListBox
     Friend WithEvents Label17 As Label
+    Friend WithEvents FlashScreenChk As CheckBox
 End Class

@@ -1,10 +1,8 @@
-﻿'Imports Microsoft.PointOfService
-Imports System.Drawing
+﻿Imports System.Drawing
 Imports Microsoft.VisualBasic.PowerPacks.Printing.Compatibility.VB6
 Imports System.IO
 
 Public Class Form1
-
 
     Public CurrentTicket As Long
     Public TotalTickets As Long
@@ -16,7 +14,6 @@ Public Class Form1
 
     Private Sub ShowScreenBtn_Click(sender As Object, e As EventArgs) Handles ShowScreenBtn.Click
         Screen.Show()
-
     End Sub
 
     Private Sub ClockCheck_CheckedChanged(sender As Object, e As EventArgs) Handles ClockCheck.CheckedChanged
@@ -51,6 +48,7 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        FlashScreenChk.Checked = My.Settings.ScreenFlash
         ScreenEstimatedChk.Checked = My.Settings.ShowEstimatedTime
         EstimateResult = 0
         ElapsedTime = 0
@@ -621,6 +619,10 @@ Public Class Form1
                 My.Settings.Sound = SoundList.SelectedItem
             End If
         End If
+    End Sub
+
+    Private Sub FlashScreenChk_CheckedChanged(sender As Object, e As EventArgs) Handles FlashScreenChk.CheckedChanged
+        My.Settings.ScreenFlash = FlashScreenChk.Checked
     End Sub
 End Class
 
