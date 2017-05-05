@@ -79,7 +79,7 @@ Public Class PrinterClass
         End Set
     End Property
     Public Sub DrawLine()
-        p.DrawWidth = 2
+        p.DrawWidth = 5
         p.Line(p.Width, p.CurrentY)
         p.CurrentY += 20 ' to move under the drawn line
     End Sub

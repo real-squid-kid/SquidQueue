@@ -113,7 +113,7 @@ Public Class Form1
         For Each n In EstimateTime
             EstimateResult += n
         Next
-        EstimateResult = Math.Round(EstimateResult / (EstimateTime.Count))
+        EstimateResult = Math.Round(EstimateResult / (EstimateTime.Count) / 60)
         EstimateResultLbl.Text = ToTime(EstimateResult)
     End Sub
 
