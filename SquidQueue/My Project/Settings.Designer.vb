@@ -68,7 +68,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\vasilymakrov\Desktop\MSILOGO.bmp")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\vasilymakrov\Desktop\msiLogo_2017.bmp")>  _
         Public Property LogoPath() As String
             Get
                 Return CType(Me("LogoPath"),String)

@@ -95,7 +95,7 @@ Public Class Screen
         Else
             TicketLabel.Visible = True
         End If
-        If BlinkCycle = 10 Then
+        If BlinkCycle = 20 Then
             BlinkTimer.Enabled = False
             TicketLabel.Visible = True
         End If

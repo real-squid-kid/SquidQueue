@@ -90,7 +90,7 @@ Partial Class Screen
         '
         'BlinkTimer
         '
-        Me.BlinkTimer.Interval = 500
+        Me.BlinkTimer.Interval = 250
         '
         'SyncPing
         '

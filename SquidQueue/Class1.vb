@@ -95,6 +95,10 @@ Public Class PrinterClass
     Public Sub SmallFont()
         Me.FontSize = 6.0F
     End Sub
+    Public Sub TinyFont()
+        'Unreadable, debug only!
+        Me.FontSize = 4.0F
+    End Sub
 
     Public Sub SetFont(Optional ByVal FontSize As Single = 9.5F,
 Optional ByVal FontName As String = Nothing,
@@ -221,6 +225,14 @@ Optional ByVal BoldType As Boolean = False)
                 If Me.FontSize = 6.0F Then
                     Dim t As List(Of String)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(3))
+                    For a = 0 To t.Count - 1
+                        p.Print(t(a))
+                    Next
+                    Exit Sub
+                End If
+                If Me.FontSize = 4.0F Then
+                    Dim t As List(Of String)
+                    t = WrapText(Text, 50)
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
                     Next

@@ -518,7 +518,21 @@ Public Class Form1
 
             'Printing Header
             .Bold = False
-            .NormalFont()
+            Select Case FontSizeBar.Value
+                Case 0
+                    .TinyFont()
+                    MessageBox.Show("For debug purposes only! Text could be unreadable and word-wrapped wrong.")
+                Case 1
+                    .SmallFont()
+                Case 2
+                    .NormalFont()
+                Case 3
+                    .BigFont()
+                Case 4
+                    .HugeFont()
+
+            End Select
+
             .WriteLine(DebugPrintTxt.Text)
             '.FeedPaper(1)
 
@@ -565,9 +579,6 @@ Public Class Form1
     End Sub
 
     Private Sub CheckTicketBtn_Click(sender As Object, e As EventArgs) Handles CheckTicketBtn.Click
-        Dim est As Byte = 0
-        If AutoEstimateRdo.Checked Then est = 2
-        If ManualEstimateRdo.Checked Then est = 1
         PrintTicket(0, 0)
     End Sub
     Public Function ToTime(e As Long)

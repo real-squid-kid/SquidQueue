@@ -135,6 +135,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RunForm.Designer.vb">
+      <DependentUpon>RunForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RunForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Screen.Designer.vb">
       <DependentUpon>Screen.vb</DependentUpon>
     </Compile>
@@ -158,6 +164,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RunForm.resx">
+      <DependentUpon>RunForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screen.resx">
       <DependentUpon>Screen.vb</DependentUpon>
@@ -195,6 +204,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Custom-Icon-Design-Pretty-Office-2-My-tickets.ico" />
+    <None Include="Resources\run.wav" />
+    <None Include="Resources\run.jpg" />
     <None Include="Resources\bells.wav" />
     <None Include="Resources\airport.wav" />
     <None Include="Resources\aeroexpress.wav" />

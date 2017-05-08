@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
@@ -32,6 +32,8 @@ Partial Class Form1
         Me.StatusPing = New System.Windows.Forms.Timer(Me.components)
         Me.FontPciker = New System.Windows.Forms.FontDialog()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.SoundList = New System.Windows.Forms.ListBox()
         Me.DebugPrintBtn = New System.Windows.Forms.Button()
         Me.DebugPrintTxt = New System.Windows.Forms.TextBox()
         Me.PrinterNameTxt = New System.Windows.Forms.TextBox()
@@ -62,6 +64,7 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.ServeButton = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.FlashScreenChk = New System.Windows.Forms.CheckBox()
         Me.OverrideLbl = New System.Windows.Forms.TextBox()
         Me.OverrideChk = New System.Windows.Forms.CheckBox()
         Me.ScreenEstimatedChk = New System.Windows.Forms.CheckBox()
@@ -99,9 +102,8 @@ Partial Class Form1
         Me.SecsCount = New System.Windows.Forms.Timer(Me.components)
         Me.Label13 = New System.Windows.Forms.Label()
         Me.EstimateResultLbl = New System.Windows.Forms.Label()
-        Me.SoundList = New System.Windows.Forms.ListBox()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.FlashScreenChk = New System.Windows.Forms.CheckBox()
+        Me.FontSizeBar = New System.Windows.Forms.TrackBar()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.TabPage4.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -110,6 +112,7 @@ Partial Class Form1
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage5.SuspendLayout()
+        CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -160,6 +163,8 @@ Partial Class Form1
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.FontSizeBar)
+        Me.TabPage4.Controls.Add(Me.Label18)
         Me.TabPage4.Controls.Add(Me.Label17)
         Me.TabPage4.Controls.Add(Me.SoundList)
         Me.TabPage4.Controls.Add(Me.DebugPrintBtn)
@@ -178,6 +183,23 @@ Partial Class Form1
         Me.TabPage4.Text = "System settings"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(3, 98)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(41, 13)
+        Me.Label17.TabIndex = 14
+        Me.Label17.Text = "Sound:"
+        '
+        'SoundList
+        '
+        Me.SoundList.FormattingEnabled = True
+        Me.SoundList.Location = New System.Drawing.Point(50, 98)
+        Me.SoundList.Name = "SoundList"
+        Me.SoundList.Size = New System.Drawing.Size(234, 95)
+        Me.SoundList.TabIndex = 13
+        '
         'DebugPrintBtn
         '
         Me.DebugPrintBtn.Location = New System.Drawing.Point(351, 359)
@@ -189,10 +211,10 @@ Partial Class Form1
         '
         'DebugPrintTxt
         '
-        Me.DebugPrintTxt.Location = New System.Drawing.Point(200, 259)
+        Me.DebugPrintTxt.Location = New System.Drawing.Point(186, 259)
         Me.DebugPrintTxt.Multiline = True
         Me.DebugPrintTxt.Name = "DebugPrintTxt"
-        Me.DebugPrintTxt.Size = New System.Drawing.Size(250, 94)
+        Me.DebugPrintTxt.Size = New System.Drawing.Size(264, 94)
         Me.DebugPrintTxt.TabIndex = 11
         Me.DebugPrintTxt.Text = "Jackdaws love my big sphinx of quartz. 1234567890"
         '
@@ -483,6 +505,18 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Screen"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'FlashScreenChk
+        '
+        Me.FlashScreenChk.AutoSize = True
+        Me.FlashScreenChk.Checked = True
+        Me.FlashScreenChk.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.FlashScreenChk.Location = New System.Drawing.Point(6, 244)
+        Me.FlashScreenChk.Name = "FlashScreenChk"
+        Me.FlashScreenChk.Size = New System.Drawing.Size(86, 17)
+        Me.FlashScreenChk.TabIndex = 16
+        Me.FlashScreenChk.Text = "Flash screen"
+        Me.FlashScreenChk.UseVisualStyleBackColor = True
         '
         'OverrideLbl
         '
@@ -848,34 +882,24 @@ Partial Class Form1
         Me.EstimateResultLbl.TabIndex = 1
         Me.EstimateResultLbl.Text = "0"
         '
-        'SoundList
+        'FontSizeBar
         '
-        Me.SoundList.FormattingEnabled = True
-        Me.SoundList.Location = New System.Drawing.Point(50, 98)
-        Me.SoundList.Name = "SoundList"
-        Me.SoundList.Size = New System.Drawing.Size(234, 95)
-        Me.SoundList.TabIndex = 13
+        Me.FontSizeBar.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.FontSizeBar.Location = New System.Drawing.Point(241, 359)
+        Me.FontSizeBar.Maximum = 4
+        Me.FontSizeBar.Name = "FontSizeBar"
+        Me.FontSizeBar.Size = New System.Drawing.Size(104, 45)
+        Me.FontSizeBar.TabIndex = 15
+        Me.FontSizeBar.Value = 2
         '
-        'Label17
+        'Label18
         '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(3, 98)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(41, 13)
-        Me.Label17.TabIndex = 14
-        Me.Label17.Text = "Sound:"
-        '
-        'FlashScreenChk
-        '
-        Me.FlashScreenChk.AutoSize = True
-        Me.FlashScreenChk.Checked = True
-        Me.FlashScreenChk.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.FlashScreenChk.Location = New System.Drawing.Point(6, 244)
-        Me.FlashScreenChk.Name = "FlashScreenChk"
-        Me.FlashScreenChk.Size = New System.Drawing.Size(86, 17)
-        Me.FlashScreenChk.TabIndex = 16
-        Me.FlashScreenChk.Text = "Flash screen"
-        Me.FlashScreenChk.UseVisualStyleBackColor = True
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(183, 364)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(52, 13)
+        Me.Label18.TabIndex = 14
+        Me.Label18.Text = "Font size:"
         '
         'Form1
         '
@@ -913,6 +937,7 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
+        CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -995,4 +1020,6 @@ Partial Class Form1
     Friend WithEvents SoundList As ListBox
     Friend WithEvents Label17 As Label
     Friend WithEvents FlashScreenChk As CheckBox
+    Friend WithEvents FontSizeBar As TrackBar
+    Friend WithEvents Label18 As Label
 End Class
