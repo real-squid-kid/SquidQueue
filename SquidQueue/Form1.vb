@@ -11,6 +11,7 @@ Public Class Form1
     Public EstimateTime As New List(Of Long)
     Public EstimateResult As Long
     Dim AllSounds As String()
+    Dim PreviousResult As String
 
     Private Sub ShowScreenBtn_Click(sender As Object, e As EventArgs) Handles ShowScreenBtn.Click
         Screen.Show()
@@ -283,8 +284,7 @@ Public Class Form1
         End With
         With P
             If My.Settings.PrintRaffle Then
-                Dim Result As Integer = MessageBox.Show("Press OK to print the raffle part.", "SquidQueue", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
-                If Result = DialogResult.OK Then
+                If AutoCheck.Checked Then
                     .RTL = False
                     'Raffle
                     .DrawLine()
@@ -304,6 +304,29 @@ Public Class Form1
                     .FeedPaper(1)
                     .CutPaper()
                     .EndDoc()
+                Else
+                    Dim Result As Integer = MessageBox.Show("Press OK to print the raffle part.", "SquidQueue", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+                    If Result = DialogResult.OK Then
+                        .RTL = False
+                        'Raffle
+                        .DrawLine()
+                        .FeedPaper(1)
+                        .DrawLine()
+                        .FeedPaper(1)
+                        .HugeFont()
+                        .AlignCenter()
+                        .PrintLogo()
+                        .FeedPaper(1)
+                        .Bold = True
+                        .WriteLine(e)
+                        .NormalFont()
+                        .Bold = False
+                        .AlignLeft()
+                        .WriteLine(My.Settings.RaffleComment)
+                        .FeedPaper(1)
+                        .CutPaper()
+                        .EndDoc()
+                    End If
                 End If
             End If
         End With
@@ -634,6 +657,45 @@ Public Class Form1
 
     Private Sub FlashScreenChk_CheckedChanged(sender As Object, e As EventArgs) Handles FlashScreenChk.CheckedChanged
         My.Settings.ScreenFlash = FlashScreenChk.Checked
+    End Sub
+
+    Private Sub AutoCheck_CheckedChanged(sender As Object, e As EventArgs) Handles AutoCheck.CheckedChanged
+        AutoModePinger.Enabled = AutoCheck.Checked
+        RegisterButton.Enabled = Not AutoCheck.Checked
+        If Not AutoCheck.Checked Then
+            AutoModeStatusLbl.Text = "Auto check is off."
+            PreviousResult = Nothing
+        End If
+    End Sub
+
+    Private Sub AutoModePinger_Tick(sender As Object, e As EventArgs) Handles AutoModePinger.Tick
+        Try
+            Dim webClient As New System.Net.WebClient
+            Dim result As String = webClient.DownloadString(ListenOnTxt.Text)
+            If PreviousResult = Nothing Then
+                PreviousResult = result
+                AutoModeStatusLbl.Text = "Now listening on " & ListenOnTxt.Text & " ... " & DateTime.Now.ToString
+                Exit Sub
+            End If
+            If PreviousResult = result Then
+                PreviousResult = result
+                AutoModeStatusLbl.Text = "No changes, still listening on " & ListenOnTxt.Text & " ... " & DateTime.Now.ToString
+            Else
+                PreviousResult = result
+                AutoModeStatusLbl.Text = "Found a change, printing... " & DateTime.Now.ToString
+                'printing function
+                TotalTickets = TotalTickets + 1
+                Dim est As Byte = 0
+                If AutoEstimateRdo.Checked Then est = 2
+                If ManualEstimateRdo.Checked Then est = 1
+                If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
+                RegisterButton.Enabled = True
+                ReEnableTimer.Enabled = True
+                'end printing function
+            End If
+        Catch ex As Exception
+            AutoModeStatusLbl.Text = "Problem accessing listen page, trying again... " & DateTime.Now.ToString
+        End Try
     End Sub
 End Class
 

@@ -32,6 +32,8 @@ Partial Class Form1
         Me.StatusPing = New System.Windows.Forms.Timer(Me.components)
         Me.FontPciker = New System.Windows.Forms.FontDialog()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.FontSizeBar = New System.Windows.Forms.TrackBar()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.SoundList = New System.Windows.Forms.ListBox()
         Me.DebugPrintBtn = New System.Windows.Forms.Button()
@@ -102,9 +104,10 @@ Partial Class Form1
         Me.SecsCount = New System.Windows.Forms.Timer(Me.components)
         Me.Label13 = New System.Windows.Forms.Label()
         Me.EstimateResultLbl = New System.Windows.Forms.Label()
-        Me.FontSizeBar = New System.Windows.Forms.TrackBar()
-        Me.Label18 = New System.Windows.Forms.Label()
+        Me.AutoModePinger = New System.Windows.Forms.Timer(Me.components)
+        Me.AutoModeStatusLbl = New System.Windows.Forms.Label()
         Me.TabPage4.SuspendLayout()
+        CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -112,7 +115,6 @@ Partial Class Form1
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage5.SuspendLayout()
-        CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -182,6 +184,25 @@ Partial Class Form1
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "System settings"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'FontSizeBar
+        '
+        Me.FontSizeBar.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.FontSizeBar.Location = New System.Drawing.Point(241, 359)
+        Me.FontSizeBar.Maximum = 4
+        Me.FontSizeBar.Name = "FontSizeBar"
+        Me.FontSizeBar.Size = New System.Drawing.Size(104, 45)
+        Me.FontSizeBar.TabIndex = 15
+        Me.FontSizeBar.Value = 2
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(183, 364)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(52, 13)
+        Me.Label18.TabIndex = 14
+        Me.Label18.Text = "Font size:"
         '
         'Label17
         '
@@ -283,6 +304,7 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.AutoModeStatusLbl)
         Me.TabPage3.Controls.Add(Me.GroupBox2)
         Me.TabPage3.Controls.Add(Me.PrintExactBtn)
         Me.TabPage3.Controls.Add(Me.TicketNumberLbl)
@@ -380,7 +402,6 @@ Partial Class Form1
         '
         'ListenOnTxt
         '
-        Me.ListenOnTxt.Enabled = False
         Me.ListenOnTxt.Location = New System.Drawing.Point(64, 92)
         Me.ListenOnTxt.Name = "ListenOnTxt"
         Me.ListenOnTxt.Size = New System.Drawing.Size(100, 20)
@@ -407,7 +428,6 @@ Partial Class Form1
         'AutoCheck
         '
         Me.AutoCheck.AutoSize = True
-        Me.AutoCheck.Enabled = False
         Me.AutoCheck.Location = New System.Drawing.Point(7, 68)
         Me.AutoCheck.Name = "AutoCheck"
         Me.AutoCheck.Size = New System.Drawing.Size(103, 17)
@@ -882,24 +902,18 @@ Partial Class Form1
         Me.EstimateResultLbl.TabIndex = 1
         Me.EstimateResultLbl.Text = "0"
         '
-        'FontSizeBar
+        'AutoModePinger
         '
-        Me.FontSizeBar.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.FontSizeBar.Location = New System.Drawing.Point(241, 359)
-        Me.FontSizeBar.Maximum = 4
-        Me.FontSizeBar.Name = "FontSizeBar"
-        Me.FontSizeBar.Size = New System.Drawing.Size(104, 45)
-        Me.FontSizeBar.TabIndex = 15
-        Me.FontSizeBar.Value = 2
+        Me.AutoModePinger.Interval = 5000
         '
-        'Label18
+        'AutoModeStatusLbl
         '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(183, 364)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(52, 13)
-        Me.Label18.TabIndex = 14
-        Me.Label18.Text = "Font size:"
+        Me.AutoModeStatusLbl.AutoSize = True
+        Me.AutoModeStatusLbl.Location = New System.Drawing.Point(14, 362)
+        Me.AutoModeStatusLbl.Name = "AutoModeStatusLbl"
+        Me.AutoModeStatusLbl.Size = New System.Drawing.Size(90, 13)
+        Me.AutoModeStatusLbl.TabIndex = 18
+        Me.AutoModeStatusLbl.Text = "Auto check is off."
         '
         'Form1
         '
@@ -924,6 +938,7 @@ Partial Class Form1
         Me.Text = "Control Panel"
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
+        CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -937,7 +952,6 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
-        CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1022,4 +1036,6 @@ Partial Class Form1
     Friend WithEvents FlashScreenChk As CheckBox
     Friend WithEvents FontSizeBar As TrackBar
     Friend WithEvents Label18 As Label
+    Friend WithEvents AutoModeStatusLbl As Label
+    Friend WithEvents AutoModePinger As Timer
 End Class
