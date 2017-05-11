@@ -204,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Custom-Icon-Design-Pretty-Office-2-My-tickets.ico" />
+    <None Include="Resources\background.jpg" />
     <None Include="Resources\run.wav" />
     <None Include="Resources\run.jpg" />
     <None Include="Resources\bells.wav" />

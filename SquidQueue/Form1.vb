@@ -49,7 +49,9 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        UseImageTxt.Text = My.Settings.UseImagePath
         FlashScreenChk.Checked = My.Settings.ScreenFlash
+        UseImageLbl.Checked = My.Settings.UseImage
         ScreenEstimatedChk.Checked = My.Settings.ShowEstimatedTime
         EstimateResult = 0
         ElapsedTime = 0
@@ -696,6 +698,42 @@ Public Class Form1
         Catch ex As Exception
             AutoModeStatusLbl.Text = "Problem accessing listen page, trying again... " & DateTime.Now.ToString
         End Try
+    End Sub
+
+    Private Sub UseImageLbl_CheckedChanged(sender As Object, e As EventArgs) Handles UseImageLbl.CheckedChanged
+        My.Settings.UseImage = UseImageLbl.Checked
+        ChangeBack()
+
+    End Sub
+
+    Private Sub UseImageTxt_TextChanged(sender As Object, e As EventArgs) Handles UseImageTxt.TextChanged
+        My.Settings.UseImagePath = UseImageTxt.Text
+    End Sub
+
+    Public Sub ChangeBack()
+        If My.Settings.UseImage Then
+            Try
+                Screen.BackgroundImage = Image.FromFile(My.Settings.UseImagePath)
+            Catch ex As Exception
+                MessageBox.Show("Missing or not a valid background file. Please use .jpg files.", "SquidQueue", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+                My.Settings.UseImage = False
+            End Try
+            Screen.Label1.BackColor = Color.Transparent
+            Screen.ClockLabel.BackColor = Color.Transparent
+            Screen.CustomLabel.BackColor = Color.Transparent
+            Screen.TicketLabel.BackColor = Color.Transparent
+            Screen.QueueCountLbl.BackColor = Color.Transparent
+            Screen.EstimateResultLbl.BackColor = Color.Transparent
+        Else
+            Screen.BackgroundImage = Nothing
+            Screen.BackColor = My.Settings.BackColor
+            Screen.Label1.BackColor = My.Settings.BackColor
+            Screen.ClockLabel.BackColor = My.Settings.BackColor
+            Screen.CustomLabel.BackColor = My.Settings.BackColor
+            Screen.TicketLabel.BackColor = My.Settings.BackColor
+            Screen.QueueCountLbl.BackColor = My.Settings.BackColor
+            Screen.EstimateResultLbl.BackColor = My.Settings.BackColor
+        End If
     End Sub
 End Class
 

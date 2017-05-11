@@ -46,6 +46,7 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.AutoModeStatusLbl = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.ManualEstimateTxt = New System.Windows.Forms.TextBox()
@@ -105,7 +106,8 @@ Partial Class Form1
         Me.Label13 = New System.Windows.Forms.Label()
         Me.EstimateResultLbl = New System.Windows.Forms.Label()
         Me.AutoModePinger = New System.Windows.Forms.Timer(Me.components)
-        Me.AutoModeStatusLbl = New System.Windows.Forms.Label()
+        Me.UseImageLbl = New System.Windows.Forms.CheckBox()
+        Me.UseImageTxt = New System.Windows.Forms.TextBox()
         Me.TabPage4.SuspendLayout()
         CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
@@ -320,6 +322,15 @@ Partial Class Form1
         Me.TabPage3.Text = "Register"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'AutoModeStatusLbl
+        '
+        Me.AutoModeStatusLbl.AutoSize = True
+        Me.AutoModeStatusLbl.Location = New System.Drawing.Point(14, 362)
+        Me.AutoModeStatusLbl.Name = "AutoModeStatusLbl"
+        Me.AutoModeStatusLbl.Size = New System.Drawing.Size(90, 13)
+        Me.AutoModeStatusLbl.TabIndex = 18
+        Me.AutoModeStatusLbl.Text = "Auto check is off."
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Label14)
@@ -504,6 +515,8 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.UseImageTxt)
+        Me.TabPage1.Controls.Add(Me.UseImageLbl)
         Me.TabPage1.Controls.Add(Me.FlashScreenChk)
         Me.TabPage1.Controls.Add(Me.OverrideLbl)
         Me.TabPage1.Controls.Add(Me.OverrideChk)
@@ -906,14 +919,22 @@ Partial Class Form1
         '
         Me.AutoModePinger.Interval = 5000
         '
-        'AutoModeStatusLbl
+        'UseImageLbl
         '
-        Me.AutoModeStatusLbl.AutoSize = True
-        Me.AutoModeStatusLbl.Location = New System.Drawing.Point(14, 362)
-        Me.AutoModeStatusLbl.Name = "AutoModeStatusLbl"
-        Me.AutoModeStatusLbl.Size = New System.Drawing.Size(90, 13)
-        Me.AutoModeStatusLbl.TabIndex = 18
-        Me.AutoModeStatusLbl.Text = "Auto check is off."
+        Me.UseImageLbl.AutoSize = True
+        Me.UseImageLbl.Location = New System.Drawing.Point(6, 267)
+        Me.UseImageLbl.Name = "UseImageLbl"
+        Me.UseImageLbl.Size = New System.Drawing.Size(76, 17)
+        Me.UseImageLbl.TabIndex = 17
+        Me.UseImageLbl.Text = "Use image"
+        Me.UseImageLbl.UseVisualStyleBackColor = True
+        '
+        'UseImageTxt
+        '
+        Me.UseImageTxt.Location = New System.Drawing.Point(102, 264)
+        Me.UseImageTxt.Name = "UseImageTxt"
+        Me.UseImageTxt.Size = New System.Drawing.Size(160, 20)
+        Me.UseImageTxt.TabIndex = 18
         '
         'Form1
         '
@@ -1038,4 +1059,6 @@ Partial Class Form1
     Friend WithEvents Label18 As Label
     Friend WithEvents AutoModeStatusLbl As Label
     Friend WithEvents AutoModePinger As Timer
+    Friend WithEvents UseImageTxt As TextBox
+    Friend WithEvents UseImageLbl As CheckBox
 End Class

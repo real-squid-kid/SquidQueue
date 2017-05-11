@@ -66,5 +66,11 @@
     <Setting Name="ScreenFlash" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="UseImage" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UseImagePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\vasilymakrov\Desktop\background.jpg</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

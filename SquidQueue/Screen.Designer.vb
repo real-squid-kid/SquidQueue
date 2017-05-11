@@ -37,7 +37,7 @@ Partial Class Screen
         'ClockLabel
         '
         Me.ClockLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ClockLabel.BackColor = System.Drawing.Color.Silver
+        Me.ClockLabel.BackColor = System.Drawing.Color.Transparent
         Me.ClockLabel.Font = New System.Drawing.Font("Arial Narrow", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.ClockLabel.ForeColor = System.Drawing.Color.White
         Me.ClockLabel.Location = New System.Drawing.Point(959, 9)
@@ -49,7 +49,7 @@ Partial Class Screen
         '
         'CustomLabel
         '
-        Me.CustomLabel.BackColor = System.Drawing.Color.Silver
+        Me.CustomLabel.BackColor = System.Drawing.Color.Transparent
         Me.CustomLabel.Font = New System.Drawing.Font("Arial Narrow", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.CustomLabel.ForeColor = System.Drawing.Color.White
         Me.CustomLabel.Location = New System.Drawing.Point(12, 115)
@@ -78,7 +78,7 @@ Partial Class Screen
         'TicketLabel
         '
         Me.TicketLabel.AutoSize = True
-        Me.TicketLabel.BackColor = System.Drawing.Color.Silver
+        Me.TicketLabel.BackColor = System.Drawing.Color.Transparent
         Me.TicketLabel.Font = New System.Drawing.Font("Arial Rounded MT Bold", 249.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TicketLabel.ForeColor = System.Drawing.Color.White
         Me.TicketLabel.Location = New System.Drawing.Point(463, 224)
@@ -99,7 +99,7 @@ Partial Class Screen
         '
         'QueueCountLbl
         '
-        Me.QueueCountLbl.BackColor = System.Drawing.Color.Silver
+        Me.QueueCountLbl.BackColor = System.Drawing.Color.Transparent
         Me.QueueCountLbl.Font = New System.Drawing.Font("Arial Narrow", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.QueueCountLbl.ForeColor = System.Drawing.Color.White
         Me.QueueCountLbl.Location = New System.Drawing.Point(12, 609)
@@ -111,7 +111,7 @@ Partial Class Screen
         '
         'EstimateResultLbl
         '
-        Me.EstimateResultLbl.BackColor = System.Drawing.Color.Silver
+        Me.EstimateResultLbl.BackColor = System.Drawing.Color.Transparent
         Me.EstimateResultLbl.Font = New System.Drawing.Font("Arial Narrow", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.EstimateResultLbl.ForeColor = System.Drawing.Color.White
         Me.EstimateResultLbl.Location = New System.Drawing.Point(653, 609)
@@ -126,6 +126,7 @@ Partial Class Screen
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Silver
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1280, 720)
         Me.Controls.Add(Me.TicketLabel)
         Me.Controls.Add(Me.Label1)
@@ -136,7 +137,7 @@ Partial Class Screen
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Screen"
         Me.Text = "Screen"
-        Me.TransparencyKey = System.Drawing.Color.Orange
+        Me.TransparencyKey = System.Drawing.Color.Snow
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

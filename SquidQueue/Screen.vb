@@ -5,6 +5,7 @@ Public Class Screen
     Public BlinkCycle As Byte
     Public MoveForm As Boolean
     Public MoveForm_MousePosition As Point
+    Public ScreenFlashed As Boolean
 
     Public Sub Brand()
         Try
@@ -78,6 +79,8 @@ Public Class Screen
         BlinkCycle = 0
         BlinkTimer.Enabled = True
         If My.Settings.ScreenFlash Then
+            ScreenFlashed = True
+            Me.BackgroundImage = Nothing
             Me.BackColor = Color.FromArgb(255 - My.Settings.BackColor.R, 255 - My.Settings.BackColor.G, 255 - My.Settings.BackColor.B)
             Label1.BackColor = Color.FromArgb(255 - My.Settings.BackColor.R, 255 - My.Settings.BackColor.G, 255 - My.Settings.BackColor.B)
             ClockLabel.BackColor = Color.FromArgb(255 - My.Settings.BackColor.R, 255 - My.Settings.BackColor.G, 255 - My.Settings.BackColor.B)
@@ -106,13 +109,10 @@ Public Class Screen
     End Sub
 
     Private Sub SyncPing_Tick(sender As Object, e As EventArgs) Handles SyncPing.Tick
-        Me.BackColor = My.Settings.BackColor
-        Label1.BackColor = My.Settings.BackColor
-        ClockLabel.BackColor = My.Settings.BackColor
-        CustomLabel.BackColor = My.Settings.BackColor
-        TicketLabel.BackColor = My.Settings.BackColor
-        QueueCountLbl.BackColor = My.Settings.BackColor
-        EstimateResultLbl.BackColor = My.Settings.BackColor
+        If ScreenFlashed Then
+            Form1.ChangeBack()
+            ScreenFlashed = False
+        End If
         ClockLabel.Left = Me.Width - Me.Width / 20 - ClockLabel.Width
         CustomLabel.Left = Me.Width - Me.Width / 2 - CustomLabel.Width / 2
         CustomLabel.Top = Me.Height / 5

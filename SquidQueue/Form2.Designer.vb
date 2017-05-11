@@ -46,9 +46,9 @@ Partial Class Form2
         Me.Label2.Font = New System.Drawing.Font("Arial Narrow", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.Label2.Location = New System.Drawing.Point(14, 53)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(226, 25)
+        Me.Label2.Size = New System.Drawing.Size(241, 25)
         Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Version 0.3, master branch"
+        Me.Label2.Text = "Version 0.3.1, master branch"
         '
         'Label3
         '
