@@ -100,13 +100,13 @@ Public Class Form1
     End Sub
 
     Private Sub ServeButton_Click(sender As Object, e As EventArgs) Handles ServeButton.Click
-        SecsCount.Enabled = True
         If TotalTickets = CurrentTicket Then
             ServeButton.Text = "Can't serve, no more free tickets"
             ReEnableTimer.Enabled = True
             ServeButton.Enabled = False
             Exit Sub
         End If
+        SecsCount.Start()
         EstimateTime.Add(ElapsedTime)
         ElapsedTime = 0
         CurrentTicket = CurrentTicket + 1
@@ -570,10 +570,17 @@ Public Class Form1
     End Sub
 
     Private Sub JustCallOutBtn_Click(sender As Object, e As EventArgs) Handles JustCallOutBtn.Click
+        SecsCount.Start()
+        EstimateTime.Add(ElapsedTime)
+        ElapsedTime = 0
         Screen.CallOut(CallOutTxt.Text)
     End Sub
 
     Private Sub ChgOrderButton_Click(sender As Object, e As EventArgs) Handles ChgOrderButton.Click
+        SecsCount.Start()
+        EstimateTime.Add(ElapsedTime)
+        ElapsedTime = 0
+        If CallOutTxt.Text > TotalTickets Then TotalTickets = CallOutTxt.Text
         CurrentTicket = CallOutTxt.Text
         Screen.CallOut(CallOutTxt.Text)
     End Sub
@@ -676,21 +683,28 @@ Public Class Form1
             Dim result As String = webClient.DownloadString(ListenOnTxt.Text)
             If PreviousResult = Nothing Then
                 PreviousResult = result
-                AutoModeStatusLbl.Text = "Now listening on " & ListenOnTxt.Text & " ... " & DateTime.Now.ToString
+                AutoModeStatusLbl.Text = result & ", now listening on " & ListenOnTxt.Text & " ... " & DateTime.Now.ToString
                 Exit Sub
             End If
             If PreviousResult = result Then
                 PreviousResult = result
-                AutoModeStatusLbl.Text = "No changes, still listening on " & ListenOnTxt.Text & " ... " & DateTime.Now.ToString
+                AutoModeStatusLbl.Text = result & ", no changes, still listening..." & DateTime.Now.ToString
             Else
                 PreviousResult = result
                 AutoModeStatusLbl.Text = "Found a change, printing... " & DateTime.Now.ToString
                 'printing function
-                TotalTickets = TotalTickets + 1
+
                 Dim est As Byte = 0
                 If AutoEstimateRdo.Checked Then est = 2
                 If ManualEstimateRdo.Checked Then est = 1
-                If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
+                If SyncListenChk.Checked Then
+                    TotalTickets = result
+                    If My.Settings.PrinterInUse Then PrintTicket(result, est)
+                Else
+                    TotalTickets += 1
+                    If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
+                End If
+
                 RegisterButton.Enabled = True
                 ReEnableTimer.Enabled = True
                 'end printing function

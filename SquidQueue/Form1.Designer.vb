@@ -67,6 +67,8 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.ServeButton = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.UseImageTxt = New System.Windows.Forms.TextBox()
+        Me.UseImageLbl = New System.Windows.Forms.CheckBox()
         Me.FlashScreenChk = New System.Windows.Forms.CheckBox()
         Me.OverrideLbl = New System.Windows.Forms.TextBox()
         Me.OverrideChk = New System.Windows.Forms.CheckBox()
@@ -106,8 +108,7 @@ Partial Class Form1
         Me.Label13 = New System.Windows.Forms.Label()
         Me.EstimateResultLbl = New System.Windows.Forms.Label()
         Me.AutoModePinger = New System.Windows.Forms.Timer(Me.components)
-        Me.UseImageLbl = New System.Windows.Forms.CheckBox()
-        Me.UseImageTxt = New System.Windows.Forms.TextBox()
+        Me.SyncListenChk = New System.Windows.Forms.CheckBox()
         Me.TabPage4.SuspendLayout()
         CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
@@ -306,6 +307,7 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.SyncListenChk)
         Me.TabPage3.Controls.Add(Me.AutoModeStatusLbl)
         Me.TabPage3.Controls.Add(Me.GroupBox2)
         Me.TabPage3.Controls.Add(Me.PrintExactBtn)
@@ -338,7 +340,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.NoEstimateRdo)
         Me.GroupBox2.Controls.Add(Me.ManualEstimateRdo)
         Me.GroupBox2.Controls.Add(Me.AutoEstimateRdo)
-        Me.GroupBox2.Location = New System.Drawing.Point(7, 118)
+        Me.GroupBox2.Location = New System.Drawing.Point(7, 143)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(200, 100)
         Me.GroupBox2.TabIndex = 17
@@ -538,6 +540,23 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Screen"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'UseImageTxt
+        '
+        Me.UseImageTxt.Location = New System.Drawing.Point(102, 264)
+        Me.UseImageTxt.Name = "UseImageTxt"
+        Me.UseImageTxt.Size = New System.Drawing.Size(160, 20)
+        Me.UseImageTxt.TabIndex = 18
+        '
+        'UseImageLbl
+        '
+        Me.UseImageLbl.AutoSize = True
+        Me.UseImageLbl.Location = New System.Drawing.Point(6, 267)
+        Me.UseImageLbl.Name = "UseImageLbl"
+        Me.UseImageLbl.Size = New System.Drawing.Size(76, 17)
+        Me.UseImageLbl.TabIndex = 17
+        Me.UseImageLbl.Text = "Use image"
+        Me.UseImageLbl.UseVisualStyleBackColor = True
         '
         'FlashScreenChk
         '
@@ -917,24 +936,17 @@ Partial Class Form1
         '
         'AutoModePinger
         '
-        Me.AutoModePinger.Interval = 5000
+        Me.AutoModePinger.Interval = 2000
         '
-        'UseImageLbl
+        'SyncListenChk
         '
-        Me.UseImageLbl.AutoSize = True
-        Me.UseImageLbl.Location = New System.Drawing.Point(6, 267)
-        Me.UseImageLbl.Name = "UseImageLbl"
-        Me.UseImageLbl.Size = New System.Drawing.Size(76, 17)
-        Me.UseImageLbl.TabIndex = 17
-        Me.UseImageLbl.Text = "Use image"
-        Me.UseImageLbl.UseVisualStyleBackColor = True
-        '
-        'UseImageTxt
-        '
-        Me.UseImageTxt.Location = New System.Drawing.Point(102, 264)
-        Me.UseImageTxt.Name = "UseImageTxt"
-        Me.UseImageTxt.Size = New System.Drawing.Size(160, 20)
-        Me.UseImageTxt.TabIndex = 18
+        Me.SyncListenChk.AutoSize = True
+        Me.SyncListenChk.Location = New System.Drawing.Point(7, 118)
+        Me.SyncListenChk.Name = "SyncListenChk"
+        Me.SyncListenChk.Size = New System.Drawing.Size(215, 17)
+        Me.SyncListenChk.TabIndex = 19
+        Me.SyncListenChk.Text = "Sync printing number with listening page"
+        Me.SyncListenChk.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -1061,4 +1073,5 @@ Partial Class Form1
     Friend WithEvents AutoModePinger As Timer
     Friend WithEvents UseImageTxt As TextBox
     Friend WithEvents UseImageLbl As CheckBox
+    Friend WithEvents SyncListenChk As CheckBox
 End Class
