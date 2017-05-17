@@ -36,9 +36,9 @@ Partial Class Form2
         Me.Label1.Font = New System.Drawing.Font("Arial Narrow", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(13, 13)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(146, 31)
+        Me.Label1.Size = New System.Drawing.Size(134, 31)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "SquidQueue"
+        Me.Label1.Text = "RaffleRaffle"
         '
         'Label2
         '
@@ -46,9 +46,9 @@ Partial Class Form2
         Me.Label2.Font = New System.Drawing.Font("Arial Narrow", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.Label2.Location = New System.Drawing.Point(14, 53)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(241, 25)
+        Me.Label2.Size = New System.Drawing.Size(343, 25)
         Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Version 0.3.1, master branch"
+        Me.Label2.Text = "SquidQueue version 0.3.1.1, raffle branch"
         '
         'Label3
         '
@@ -86,7 +86,7 @@ Partial Class Form2
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(295, 284)
+        Me.Label6.Location = New System.Drawing.Point(321, 284)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(36, 13)
         Me.Label6.TabIndex = 2
@@ -96,7 +96,7 @@ Partial Class Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(343, 306)
+        Me.ClientSize = New System.Drawing.Size(370, 306)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)

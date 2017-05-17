@@ -80,42 +80,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Century Gothic")>  _
-        Public Property ScreenFont() As String
-            Get
-                Return CType(Me("ScreenFont"),String)
-            End Get
-            Set
-                Me("ScreenFont") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("White")>  _
-        Public Property ScreenFontColor() As Global.System.Drawing.Color
-            Get
-                Return CType(Me("ScreenFontColor"),Global.System.Drawing.Color)
-            End Get
-            Set
-                Me("ScreenFontColor") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("SquidQueue")>  _
-        Public Property ScreenLabel() As String
-            Get
-                Return CType(Me("ScreenLabel"),String)
-            End Get
-            Set
-                Me("ScreenLabel") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public Property PrinterInUse() As Boolean
             Get
@@ -168,7 +132,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("SquidQueue Очередь")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("RaffleRaffle")>  _
         Public Property SlipTitle() As String
             Get
                 Return CType(Me("SlipTitle"),String)
@@ -224,78 +188,6 @@ Namespace My
             End Get
             Set
                 Me("RaffleComment") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("DarkGray")>  _
-        Public Property BackColor() As Global.System.Drawing.Color
-            Get
-                Return CType(Me("BackColor"),Global.System.Drawing.Color)
-            End Get
-            Set
-                Me("BackColor") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public Property ShowEstimatedTime() As Boolean
-            Get
-                Return CType(Me("ShowEstimatedTime"),Boolean)
-            End Get
-            Set
-                Me("ShowEstimatedTime") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Default")>  _
-        Public Property Sound() As String
-            Get
-                Return CType(Me("Sound"),String)
-            End Get
-            Set
-                Me("Sound") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public Property ScreenFlash() As Boolean
-            Get
-                Return CType(Me("ScreenFlash"),Boolean)
-            End Get
-            Set
-                Me("ScreenFlash") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property UseImage() As Boolean
-            Get
-                Return CType(Me("UseImage"),Boolean)
-            End Get
-            Set
-                Me("UseImage") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\vasilymakrov\Desktop\background.jpg")>  _
-        Public Property UseImagePath() As String
-            Get
-                Return CType(Me("UseImagePath"),String)
-            End Get
-            Set
-                Me("UseImagePath") = value
             End Set
         End Property
     End Class
