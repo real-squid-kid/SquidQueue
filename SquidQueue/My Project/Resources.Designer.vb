@@ -73,6 +73,26 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property bottom() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("bottom", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property calibration() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("calibration", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property run() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("run", resourceCulture)
@@ -86,6 +106,16 @@ Namespace My.Resources
         Friend ReadOnly Property run1() As System.IO.UnmanagedMemoryStream
             Get
                 Return ResourceManager.GetStream("run1", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property top() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("top", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
         

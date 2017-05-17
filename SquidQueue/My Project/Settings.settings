@@ -45,5 +45,8 @@
     <Setting Name="RaffleComment" Type="System.String" Scope="User">
       <Value Profile="(Default)">ОПУСТИ МЕНЯ В БАРАБАН</Value>
     </Setting>
+    <Setting Name="PrinterWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">180</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

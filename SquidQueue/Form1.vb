@@ -516,5 +516,9 @@ Public Class Form1
             AutoModeStatusLbl.Text = "Problem accessing listen page, trying again... " & DateTime.Now.ToString
         End Try
     End Sub
+
+    Private Sub CameraOpenBtn_Click(sender As Object, e As EventArgs) Handles CameraOpenBtn.Click
+        CameraForm.Show()
+    End Sub
 End Class
 

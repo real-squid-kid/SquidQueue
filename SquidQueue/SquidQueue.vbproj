@@ -120,6 +120,12 @@
     <Compile Include="CalibrationForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CameraForm.Designer.vb">
+      <DependentUpon>CameraForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CameraForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Class1.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
@@ -160,6 +166,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CalibrationForm.resx">
       <DependentUpon>CalibrationForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CameraForm.resx">
+      <DependentUpon>CameraForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
@@ -210,6 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Custom-Icon-Design-Pretty-Office-2-My-tickets.ico" />
+    <None Include="Resources\top.bmp" />
+    <None Include="Resources\bottom.bmp" />
+    <None Include="Resources\calibration.bmp" />
     <None Include="Resources\background.jpg" />
     <None Include="Resources\run.wav" />
     <None Include="Resources\run.jpg" />

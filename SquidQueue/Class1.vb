@@ -127,13 +127,19 @@ Optional ByVal BoldType As Boolean = False)
         End If
 
     End Sub
-    Private Sub PrintImage(ByVal FileName As String)
+    Public Sub PrintImage(ByVal FileName As String)
         Dim pic As Image
 
         pic = pic.FromFile(FileName)
 
         p.PaintPicture(pic, p.CurrentX, p.CurrentY)
         p.CurrentY = p.CurrentY + pic.Height * 12
+
+    End Sub
+
+    Public Sub PrintImageDirect(ByVal DirectImage As Bitmap)
+        p.PaintPicture(DirectImage, p.CurrentX, p.CurrentY)
+        p.CurrentY = p.CurrentY + DirectImage.Height * 12
 
     End Sub
 #End Region

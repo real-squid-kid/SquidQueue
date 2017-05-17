@@ -65,6 +65,7 @@ Partial Class Form1
         Me.LogoPathTxt = New System.Windows.Forms.TextBox()
         Me.PrintLogoChk = New System.Windows.Forms.CheckBox()
         Me.AutoModePinger = New System.Windows.Forms.Timer(Me.components)
+        Me.CameraOpenBtn = New System.Windows.Forms.Button()
         Me.TabPage4.SuspendLayout()
         CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
@@ -217,6 +218,7 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.CameraOpenBtn)
         Me.TabPage3.Controls.Add(Me.SyncListenChk)
         Me.TabPage3.Controls.Add(Me.AutoModeStatusLbl)
         Me.TabPage3.Controls.Add(Me.PrintExactBtn)
@@ -456,6 +458,15 @@ Partial Class Form1
         '
         Me.AutoModePinger.Interval = 2000
         '
+        'CameraOpenBtn
+        '
+        Me.CameraOpenBtn.Location = New System.Drawing.Point(288, 313)
+        Me.CameraOpenBtn.Name = "CameraOpenBtn"
+        Me.CameraOpenBtn.Size = New System.Drawing.Size(117, 23)
+        Me.CameraOpenBtn.TabIndex = 20
+        Me.CameraOpenBtn.Text = "Pocket Camera..."
+        Me.CameraOpenBtn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -522,4 +533,5 @@ Partial Class Form1
     Friend WithEvents AutoModeStatusLbl As Label
     Friend WithEvents AutoModePinger As Timer
     Friend WithEvents SyncListenChk As CheckBox
+    Friend WithEvents CameraOpenBtn As Button
 End Class
