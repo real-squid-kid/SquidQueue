@@ -99,7 +99,7 @@ Public Class Form1
             'Printing Header
 
             .HugeFont()
-            .WriteLine("В чащах леса жил бы цитрус? Да, но фальшивый экземпляръ!")
+            .WriteLine("1234567890")
             .BigFont()
             .WriteLine("В чащах леса жил бы цитрус? Да, но фальшивый экземпляръ!")
             .NormalFont()
@@ -108,7 +108,7 @@ Public Class Form1
             .WriteLine("В чащах леса жил бы цитрус? Да, но фальшивый экземпляръ!")
             .Bold = False
             .HugeFont()
-            .WriteLine("В чащах леса жил бы цитрус? Да, но фальшивый экземпляръ!")
+            .WriteLine("1234567890")
             .BigFont()
             .WriteLine("В чащах леса жил бы цитрус? Да, но фальшивый экземпляръ!")
             .NormalFont()

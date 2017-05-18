@@ -219,9 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Custom-Icon-Design-Pretty-Office-2-My-tickets.ico" />
+    <None Include="Resources\calibration.bmp" />
     <None Include="Resources\top.bmp" />
     <None Include="Resources\bottom.bmp" />
-    <None Include="Resources\calibration.bmp" />
     <None Include="Resources\background.jpg" />
     <None Include="Resources\run.wav" />
     <None Include="Resources\run.jpg" />

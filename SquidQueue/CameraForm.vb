@@ -2,6 +2,7 @@
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Public Class CameraForm
+    Dim Brightness As Single = 0
     Private Sub CalibrationPageBtn_Click(sender As Object, e As EventArgs) Handles CalibrationPageBtn.Click
         Dim P As New PrinterClass(Application.StartupPath)
         With P
@@ -23,7 +24,7 @@ Public Class CameraForm
     Private Sub BrowseFileBtn_Click(sender As Object, e As EventArgs) Handles BrowseFileBtn.Click
         ' Try
         Using dialog As New OpenFileDialog
-                If dialog.ShowDialog() <> DialogResult.OK Then Return
+            If dialog.ShowDialog() <> DialogResult.OK Then Return
             '  PictureBox1.ImageLocation = dialog.FileName
             Dim img As New Bitmap(dialog.FileName)
             Dim printHeight As Integer = Math.Round(My.Settings.PrinterWidth / (img.Width / img.Height))
@@ -31,9 +32,11 @@ Public Class CameraForm
             Dim print As Image = ResizeImage(img, New Size(My.Settings.PrinterWidth, printHeight))
             PictureBox1.Image = ToBlackAndWhite(print)
             ImagePathTxt.Text = dialog.FileName
-            End Using
-            'Catch ex As Exception
-        '    MessageBox.Show("Not a valid image file. Should be .png, .jpg or .bmp.", "RaffleRaffle", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            CameraPrintBtn.Enabled = True
+            BrightnessBar.Enabled = True
+        End Using
+        'Catch ex As Exception
+        '    MessageBox.Show("Not a valid image file. Should be .png, .jpg or .bmp.", "RaffleRaffle", xd            MessageBoxButtons.OK, MessageBoxIcon.Stop)
         ' End Try
 
     End Sub
@@ -51,8 +54,7 @@ Public Class CameraForm
     Private Sub CameraPrintBtn_Click(sender As Object, e As EventArgs) Handles CameraPrintBtn.Click
         Dim P As New PrinterClass(Application.StartupPath)
         Dim printHeight As Integer = Math.Round(My.Settings.PrinterWidth / (PictureBox1.Image.Width / PictureBox1.Image.Height))
-        'Dim print As Image = New Bitmap(My.Settings.PrinterWidth, printHeight)
-        Dim print As Image = ResizeImage(PictureBox1.Image, New Size(My.Settings.PrinterWidth / 4, printHeight / 4))
+        Dim print As Image = ResizeImage(PictureBox1.Image, New Size(My.Settings.PrinterWidth, printHeight))
         Dim borderheight As Integer = Math.Round(My.Settings.PrinterWidth / (64 / 5))
         Dim top As Image = ResizeImage(My.Resources.top, New Size(My.Settings.PrinterWidth, printHeight))
         Dim bottom As Image = ResizeImage(My.Resources.bottom, New Size(My.Settings.PrinterWidth, printHeight))
@@ -87,7 +89,8 @@ Public Class CameraForm
         End If
         Dim newImage As Image = New Bitmap(newWidth, newHeight)
         Using graphicsHandle As Graphics = Graphics.FromImage(newImage)
-            graphicsHandle.InterpolationMode = InterpolationMode.HighQualityBicubic
+            graphicsHandle.InterpolationMode = InterpolationMode.NearestNeighbor
+
             graphicsHandle.DrawImage(image, 0, 0, newWidth, newHeight)
         End Using
         Return newImage
@@ -106,16 +109,16 @@ Public Class CameraForm
                 aver = (CInt(col.R) + CInt(col.G) + CInt(col.B)) / 3
                 Dim bwcol As Byte
                 Select Case aver
-                    Case Is > 212
+                    Case Is > 212 + Brightness
                         bwcol = 255
-                    Case Is > 170
-                        bwcol = 200
-                    Case Is > 127
-                        bwcol = 150
-                    Case Is > 85
-                        bwcol = 100
-                    Case Is > 42
-                        bwcol = 50
+                    Case Is > 170 + Brightness
+                        bwcol = 225
+                    Case Is > 127 + Brightness
+                        bwcol = 175
+                    Case Is > 85 + Brightness
+                        bwcol = 125
+                    Case Is > 42 + Brightness
+                        bwcol = 75
                     Case Else
                         bwcol = 0
                 End Select
@@ -131,4 +134,13 @@ Public Class CameraForm
 
         Return bmp
     End Function
+
+    Private Sub BrightnessBar_Scroll(sender As Object, e As EventArgs) Handles BrightnessBar.Scroll
+        Brightness = BrightnessBar.Value - 40
+        Dim img As New Bitmap(ImagePathTxt.Text)
+        Dim printHeight As Integer = Math.Round(My.Settings.PrinterWidth / (img.Width / img.Height))
+        'Dim print As Image = New Bitmap(My.Settings.PrinterWidth, printHeight)
+        Dim print As Image = ResizeImage(img, New Size(My.Settings.PrinterWidth, printHeight))
+        PictureBox1.Image = ToBlackAndWhite(print)
+    End Sub
 End Class
