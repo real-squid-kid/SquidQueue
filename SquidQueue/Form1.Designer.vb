@@ -41,6 +41,7 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.CameraOpenBtn = New System.Windows.Forms.Button()
         Me.SyncListenChk = New System.Windows.Forms.CheckBox()
         Me.AutoModeStatusLbl = New System.Windows.Forms.Label()
         Me.PrintExactBtn = New System.Windows.Forms.Button()
@@ -65,7 +66,6 @@ Partial Class Form1
         Me.LogoPathTxt = New System.Windows.Forms.TextBox()
         Me.PrintLogoChk = New System.Windows.Forms.CheckBox()
         Me.AutoModePinger = New System.Windows.Forms.Timer(Me.components)
-        Me.CameraOpenBtn = New System.Windows.Forms.Button()
         Me.TabPage4.SuspendLayout()
         CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
@@ -234,6 +234,15 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Register"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'CameraOpenBtn
+        '
+        Me.CameraOpenBtn.Location = New System.Drawing.Point(288, 313)
+        Me.CameraOpenBtn.Name = "CameraOpenBtn"
+        Me.CameraOpenBtn.Size = New System.Drawing.Size(117, 23)
+        Me.CameraOpenBtn.TabIndex = 20
+        Me.CameraOpenBtn.Text = "Pocket Camera..."
+        Me.CameraOpenBtn.UseVisualStyleBackColor = True
         '
         'SyncListenChk
         '
@@ -457,15 +466,6 @@ Partial Class Form1
         'AutoModePinger
         '
         Me.AutoModePinger.Interval = 2000
-        '
-        'CameraOpenBtn
-        '
-        Me.CameraOpenBtn.Location = New System.Drawing.Point(288, 313)
-        Me.CameraOpenBtn.Name = "CameraOpenBtn"
-        Me.CameraOpenBtn.Size = New System.Drawing.Size(117, 23)
-        Me.CameraOpenBtn.TabIndex = 20
-        Me.CameraOpenBtn.Text = "Pocket Camera..."
-        Me.CameraOpenBtn.UseVisualStyleBackColor = True
         '
         'Form1
         '

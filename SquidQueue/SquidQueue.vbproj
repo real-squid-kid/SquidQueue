@@ -99,6 +99,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WebCam_Capture">
+      <HintPath>..\..\WebCam_Capture.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.PointOfService" />
@@ -162,6 +165,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Settings.vb" />
+    <Compile Include="WebCamClass.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CalibrationForm.resx">

@@ -1,7 +1,8 @@
 ﻿Imports System.Drawing
 Imports Microsoft.VisualBasic.PowerPacks.Printing.Compatibility.VB6
 Imports System.IO
-
+Imports System.Net.Sockets
+Imports System.Text
 Public Class Form1
 
     Public CurrentTicket As Long
@@ -37,6 +38,7 @@ Public Class Form1
         SlipFooterTxt.Text = My.Settings.SlipFooter
         RafflieChk.Checked = My.Settings.PrintRaffle
         SlipRaffleTxt.Text = My.Settings.RaffleComment
+
     End Sub
 
     Private Sub StatusPing_Tick(sender As Object, e As EventArgs) Handles StatusPing.Tick

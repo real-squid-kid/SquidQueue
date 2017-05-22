@@ -48,7 +48,7 @@ Partial Class Form2
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(343, 25)
         Me.Label2.TabIndex = 0
-        Me.Label2.Text = "SquidQueue version 0.3.1.1, raffle branch"
+        Me.Label2.Text = "SquidQueue version 0.3.1.2, raffle branch"
         '
         'Label3
         '

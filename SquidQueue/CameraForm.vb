@@ -1,8 +1,11 @@
 ﻿Imports Microsoft.VisualBasic
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
+Imports WebCam_Capture
 Public Class CameraForm
     Dim Brightness As Single = 0
+    Dim CameraCaptured As Boolean
+    Dim webcam As WebCamClass
     Private Sub CalibrationPageBtn_Click(sender As Object, e As EventArgs) Handles CalibrationPageBtn.Click
         Dim P As New PrinterClass(Application.StartupPath)
         With P
@@ -26,7 +29,8 @@ Public Class CameraForm
         Using dialog As New OpenFileDialog
             If dialog.ShowDialog() <> DialogResult.OK Then Return
             '  PictureBox1.ImageLocation = dialog.FileName
-            Dim img As New Bitmap(dialog.FileName)
+            TempBox.ImageLocation = dialog.FileName
+            Dim img As New Bitmap(TempBox.ImageLocation)
             Dim printHeight As Integer = Math.Round(My.Settings.PrinterWidth / (img.Width / img.Height))
             'Dim print As Image = New Bitmap(My.Settings.PrinterWidth, printHeight)
             Dim print As Image = ResizeImage(img, New Size(My.Settings.PrinterWidth, printHeight))
@@ -34,6 +38,7 @@ Public Class CameraForm
             ImagePathTxt.Text = dialog.FileName
             CameraPrintBtn.Enabled = True
             BrightnessBar.Enabled = True
+            CameraCaptured = False
         End Using
         'Catch ex As Exception
         '    MessageBox.Show("Not a valid image file. Should be .png, .jpg or .bmp.", "RaffleRaffle", xd            MessageBoxButtons.OK, MessageBoxIcon.Stop)
@@ -48,7 +53,8 @@ Public Class CameraForm
             My.Settings.PrinterWidth = 180
             PictureBox1.Width = My.Settings.PrinterWidth
         End If
-
+        webcam = New WebCamClass()
+        webcam.InitializeWebCam(PictureBox1)
     End Sub
 
     Private Sub CameraPrintBtn_Click(sender As Object, e As EventArgs) Handles CameraPrintBtn.Click
@@ -137,10 +143,39 @@ Public Class CameraForm
 
     Private Sub BrightnessBar_Scroll(sender As Object, e As EventArgs) Handles BrightnessBar.Scroll
         Brightness = BrightnessBar.Value - 40
-        Dim img As New Bitmap(ImagePathTxt.Text)
+        Dim img As New Bitmap(TempBox.Image)
+        'Dim img As New Bitmap(ImagePathTxt.Text)
         Dim printHeight As Integer = Math.Round(My.Settings.PrinterWidth / (img.Width / img.Height))
         'Dim print As Image = New Bitmap(My.Settings.PrinterWidth, printHeight)
         Dim print As Image = ResizeImage(img, New Size(My.Settings.PrinterWidth, printHeight))
         PictureBox1.Image = ToBlackAndWhite(print)
+    End Sub
+
+    Private Sub WebCamRestartBtn_Click(sender As Object, e As EventArgs) Handles WebCamRestartBtn.Click
+        webcam.Continue()
+    End Sub
+
+    Private Sub WebCamCaptureBtn_Click(sender As Object, e As EventArgs) Handles WebCamCaptureBtn.Click
+        webcam.Stop()
+        TempBox.Image = PictureBox1.Image
+        Dim img As New Bitmap(TempBox.Image)
+        Dim printHeight As Integer = Math.Round(My.Settings.PrinterWidth / (img.Width / img.Height))
+        'Dim print As Image = New Bitmap(My.Settings.PrinterWidth, printHeight)
+        Dim print As Image = ResizeImage(img, New Size(My.Settings.PrinterWidth, printHeight))
+        PictureBox1.Image = ToBlackAndWhite(print)
+        ImagePathTxt.Text = "Camera image"
+        CameraPrintBtn.Enabled = True
+        BrightnessBar.Enabled = True
+        CameraCaptured = True
+    End Sub
+
+    Private Sub WebCamSettingsBtn_Click(sender As Object, e As EventArgs) Handles WebCamSettingsBtn.Click
+        webcam.ResolutionSetting()
+        webcam.AdvanceSetting()
+    End Sub
+
+    Private Sub Monitor_Tick(sender As Object, e As EventArgs) Handles Monitor.Tick
+        Dim x As Process = Process.GetCurrentProcess()
+        DebugLabel.Text = Math.Round(x.WorkingSet64 / 1024 / 1024) & "M"
     End Sub
 End Class
