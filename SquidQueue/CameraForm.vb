@@ -31,6 +31,7 @@ Public Class CameraForm
             '  PictureBox1.ImageLocation = dialog.FileName
             TempBox.ImageLocation = dialog.FileName
             Dim img As New Bitmap(TempBox.ImageLocation)
+            TempBox.Image = img
             Dim printHeight As Integer = Math.Round(My.Settings.PrinterWidth / (img.Width / img.Height))
             'Dim print As Image = New Bitmap(My.Settings.PrinterWidth, printHeight)
             Dim print As Image = ResizeImage(img, New Size(My.Settings.PrinterWidth, printHeight))
