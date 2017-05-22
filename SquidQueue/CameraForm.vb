@@ -153,6 +153,7 @@ Public Class CameraForm
 
     Private Sub WebCamRestartBtn_Click(sender As Object, e As EventArgs) Handles WebCamRestartBtn.Click
         webcam.Continue()
+        webcam.Start()
     End Sub
 
     Private Sub WebCamCaptureBtn_Click(sender As Object, e As EventArgs) Handles WebCamCaptureBtn.Click
