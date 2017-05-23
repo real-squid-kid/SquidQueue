@@ -49,9 +49,9 @@ Public Class CameraForm
 
     Private Sub CameraForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If My.Settings.PrinterWidth <> Nothing Then
-            PictureBox1.Width = My.Settings.PrinterWidth
+            '     PictureBox1.Width = My.Settings.PrinterWidth
         Else
-            My.Settings.PrinterWidth = 180
+            '      My.Settings.PrinterWidth = 180
             PictureBox1.Width = My.Settings.PrinterWidth
         End If
         webcam = New WebCamClass()
