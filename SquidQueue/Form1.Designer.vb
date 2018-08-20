@@ -41,7 +41,6 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.CameraOpenBtn = New System.Windows.Forms.Button()
         Me.SyncListenChk = New System.Windows.Forms.CheckBox()
         Me.AutoModeStatusLbl = New System.Windows.Forms.Label()
         Me.PrintExactBtn = New System.Windows.Forms.Button()
@@ -65,12 +64,31 @@ Partial Class Form1
         Me.SlipTitleTxt = New System.Windows.Forms.TextBox()
         Me.LogoPathTxt = New System.Windows.Forms.TextBox()
         Me.PrintLogoChk = New System.Windows.Forms.CheckBox()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.PrintLabelBtn = New System.Windows.Forms.Button()
+        Me.OccupationTxt = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.MediaTxt = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.NameTxt = New System.Windows.Forms.TextBox()
+        Me.OccuLenLbl = New System.Windows.Forms.Label()
+        Me.MediaLenLbl = New System.Windows.Forms.Label()
+        Me.NameLenLbl = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.CameraOpenBtn = New System.Windows.Forms.Button()
         Me.AutoModePinger = New System.Windows.Forms.Timer(Me.components)
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.TicketsResetBtn = New System.Windows.Forms.Button()
         Me.TabPage4.SuspendLayout()
         CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage5.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -218,7 +236,6 @@ Partial Class Form1
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.CameraOpenBtn)
         Me.TabPage3.Controls.Add(Me.SyncListenChk)
         Me.TabPage3.Controls.Add(Me.AutoModeStatusLbl)
         Me.TabPage3.Controls.Add(Me.PrintExactBtn)
@@ -234,15 +251,6 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Register"
         Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'CameraOpenBtn
-        '
-        Me.CameraOpenBtn.Location = New System.Drawing.Point(288, 313)
-        Me.CameraOpenBtn.Name = "CameraOpenBtn"
-        Me.CameraOpenBtn.Size = New System.Drawing.Size(117, 23)
-        Me.CameraOpenBtn.TabIndex = 20
-        Me.CameraOpenBtn.Text = "Pocket Camera..."
-        Me.CameraOpenBtn.UseVisualStyleBackColor = True
         '
         'SyncListenChk
         '
@@ -328,6 +336,8 @@ Partial Class Form1
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Location = New System.Drawing.Point(13, 13)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -463,15 +473,168 @@ Partial Class Form1
         Me.PrintLogoChk.Text = "Print logo"
         Me.PrintLogoChk.UseVisualStyleBackColor = True
         '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.PrintLabelBtn)
+        Me.TabPage1.Controls.Add(Me.OccupationTxt)
+        Me.TabPage1.Controls.Add(Me.Label11)
+        Me.TabPage1.Controls.Add(Me.MediaTxt)
+        Me.TabPage1.Controls.Add(Me.Label7)
+        Me.TabPage1.Controls.Add(Me.NameTxt)
+        Me.TabPage1.Controls.Add(Me.OccuLenLbl)
+        Me.TabPage1.Controls.Add(Me.MediaLenLbl)
+        Me.TabPage1.Controls.Add(Me.NameLenLbl)
+        Me.TabPage1.Controls.Add(Me.Label1)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(464, 390)
+        Me.TabPage1.TabIndex = 5
+        Me.TabPage1.Text = "Label Printer"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'PrintLabelBtn
+        '
+        Me.PrintLabelBtn.Location = New System.Drawing.Point(200, 152)
+        Me.PrintLabelBtn.Name = "PrintLabelBtn"
+        Me.PrintLabelBtn.Size = New System.Drawing.Size(75, 23)
+        Me.PrintLabelBtn.TabIndex = 4
+        Me.PrintLabelBtn.Text = "Print"
+        Me.PrintLabelBtn.UseVisualStyleBackColor = True
+        '
+        'OccupationTxt
+        '
+        Me.OccupationTxt.Location = New System.Drawing.Point(114, 109)
+        Me.OccupationTxt.Name = "OccupationTxt"
+        Me.OccupationTxt.Size = New System.Drawing.Size(255, 20)
+        Me.OccupationTxt.TabIndex = 3
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(42, 112)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(62, 13)
+        Me.Label11.TabIndex = 0
+        Me.Label11.Text = "Occupation"
+        '
+        'MediaTxt
+        '
+        Me.MediaTxt.Location = New System.Drawing.Point(114, 70)
+        Me.MediaTxt.Name = "MediaTxt"
+        Me.MediaTxt.Size = New System.Drawing.Size(255, 20)
+        Me.MediaTxt.TabIndex = 2
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(69, 73)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(36, 13)
+        Me.Label7.TabIndex = 0
+        Me.Label7.Text = "Media"
+        '
+        'NameTxt
+        '
+        Me.NameTxt.Location = New System.Drawing.Point(114, 32)
+        Me.NameTxt.Name = "NameTxt"
+        Me.NameTxt.Size = New System.Drawing.Size(255, 20)
+        Me.NameTxt.TabIndex = 1
+        '
+        'OccuLenLbl
+        '
+        Me.OccuLenLbl.AutoSize = True
+        Me.OccuLenLbl.Location = New System.Drawing.Point(375, 112)
+        Me.OccuLenLbl.Name = "OccuLenLbl"
+        Me.OccuLenLbl.Size = New System.Drawing.Size(35, 13)
+        Me.OccuLenLbl.TabIndex = 0
+        Me.OccuLenLbl.Text = "Name"
+        '
+        'MediaLenLbl
+        '
+        Me.MediaLenLbl.AutoSize = True
+        Me.MediaLenLbl.Location = New System.Drawing.Point(375, 73)
+        Me.MediaLenLbl.Name = "MediaLenLbl"
+        Me.MediaLenLbl.Size = New System.Drawing.Size(35, 13)
+        Me.MediaLenLbl.TabIndex = 0
+        Me.MediaLenLbl.Text = "Name"
+        '
+        'NameLenLbl
+        '
+        Me.NameLenLbl.AutoSize = True
+        Me.NameLenLbl.Location = New System.Drawing.Point(375, 35)
+        Me.NameLenLbl.Name = "NameLenLbl"
+        Me.NameLenLbl.Size = New System.Drawing.Size(35, 13)
+        Me.NameLenLbl.TabIndex = 0
+        Me.NameLenLbl.Text = "Name"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(69, 35)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(35, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Name"
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.Label12)
+        Me.TabPage2.Controls.Add(Me.CameraOpenBtn)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(464, 390)
+        Me.TabPage2.TabIndex = 6
+        Me.TabPage2.Text = "Extras"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(129, 11)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(151, 13)
+        Me.Label12.TabIndex = 22
+        Me.Label12.Text = "< very buggy, use with caution"
+        '
+        'CameraOpenBtn
+        '
+        Me.CameraOpenBtn.Location = New System.Drawing.Point(6, 6)
+        Me.CameraOpenBtn.Name = "CameraOpenBtn"
+        Me.CameraOpenBtn.Size = New System.Drawing.Size(117, 23)
+        Me.CameraOpenBtn.TabIndex = 21
+        Me.CameraOpenBtn.Text = "Pocket Camera..."
+        Me.CameraOpenBtn.UseVisualStyleBackColor = True
+        '
         'AutoModePinger
         '
         Me.AutoModePinger.Interval = 2000
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(529, 361)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(64, 64)
+        Me.PictureBox1.TabIndex = 21
+        Me.PictureBox1.TabStop = False
+        '
+        'TicketsResetBtn
+        '
+        Me.TicketsResetBtn.Location = New System.Drawing.Point(487, 106)
+        Me.TicketsResetBtn.Name = "TicketsResetBtn"
+        Me.TicketsResetBtn.Size = New System.Drawing.Size(75, 23)
+        Me.TicketsResetBtn.TabIndex = 22
+        Me.TicketsResetBtn.Text = "Reset"
+        Me.TicketsResetBtn.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(605, 441)
+        Me.Controls.Add(Me.TicketsResetBtn)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.TotalTicketsLbl)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TabControl1)
@@ -488,6 +651,11 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -533,5 +701,20 @@ Partial Class Form1
     Friend WithEvents AutoModeStatusLbl As Label
     Friend WithEvents AutoModePinger As Timer
     Friend WithEvents SyncListenChk As CheckBox
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents PrintLabelBtn As Button
+    Friend WithEvents OccupationTxt As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents MediaTxt As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents NameTxt As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents OccuLenLbl As Label
+    Friend WithEvents MediaLenLbl As Label
+    Friend WithEvents NameLenLbl As Label
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents Label12 As Label
     Friend WithEvents CameraOpenBtn As Button
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents TicketsResetBtn As Button
 End Class

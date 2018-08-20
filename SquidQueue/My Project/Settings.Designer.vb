@@ -202,6 +202,18 @@ Namespace My
                 Me("PrinterWidth") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property CurrentTicket() As String
+            Get
+                Return CType(Me("CurrentTicket"),String)
+            End Get
+            Set
+                Me("CurrentTicket") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

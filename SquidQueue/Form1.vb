@@ -11,18 +11,23 @@ Public Class Form1
     Public ElapsedTime As Long
     Public EstimateTime As New List(Of Long)
     Public EstimateResult As Long
+    Private AutoCheckThread As Threading.Thread
     Dim AllSounds As String()
     Dim PreviousResult As String
 
     Private Sub RegisterButton_Click(sender As Object, e As EventArgs) Handles RegisterButton.Click
-        TotalTickets = TotalTickets + 1
-        Dim est As Byte = 0
-        If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
+        ShowAsBusy()
+        TotalTickets += 1
+        My.Settings.CurrentTicket = TotalTickets
+        My.Settings.Save()
+        If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, 0)
         RegisterButton.Enabled = True
+        ShowAsReady()
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         EstimateResult = 0
+        PictureBox1.Image = SystemIcons.Information.ToBitmap
         ElapsedTime = 0
         If My.Settings.PrinterInUse = Nothing Then LoadDefaults()
         TotalTickets = 0
@@ -38,7 +43,7 @@ Public Class Form1
         SlipFooterTxt.Text = My.Settings.SlipFooter
         RafflieChk.Checked = My.Settings.PrintRaffle
         SlipRaffleTxt.Text = My.Settings.RaffleComment
-
+        UpdateLabel()
     End Sub
 
     Private Sub StatusPing_Tick(sender As Object, e As EventArgs) Handles StatusPing.Tick
@@ -76,11 +81,12 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        ShowAsBusy()
         Dim P As New PrinterClass(Application.StartupPath)
         With P
             'Printing Logo
             .RTL = False
-            .PrintLogo()
+            If PrintLogoChk.Enabled = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
@@ -125,13 +131,14 @@ Public Class Form1
             'Ending the session
             .EndDoc()
         End With
+        ShowAsReady()
     End Sub
     Private Sub PrintTicket(e As Long, est As Byte)
         Dim P As New PrinterClass(Application.StartupPath)
         With P
             'Printing Logo
             .RTL = False
-            .PrintLogo()
+            If PrintLogoChk.Enabled = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
@@ -178,7 +185,7 @@ Public Class Form1
                     .FeedPaper(1)
                     .HugeFont()
                     .AlignCenter()
-                    .PrintLogo()
+                    If PrintLogoChk.Enabled = True Then .PrintLogo()
                     .FeedPaper(1)
                     .Bold = True
                     .WriteLine(e)
@@ -200,7 +207,7 @@ Public Class Form1
                         .FeedPaper(1)
                         .HugeFont()
                         .AlignCenter()
-                        .PrintLogo()
+                        If PrintLogoChk.Enabled = True Then .PrintLogo()
                         .FeedPaper(1)
                         .Bold = True
                         .WriteLine(e)
@@ -222,7 +229,7 @@ Public Class Form1
         With P
             'Printing Logo
             .RTL = False
-            .PrintLogo()
+            If PrintLogoChk.Enabled = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
@@ -285,8 +292,10 @@ Public Class Form1
     End Sub
 
     Private Sub PrintExactBtn_Click(sender As Object, e As EventArgs) Handles PrintExactBtn.Click
+        ShowAsBusy()
         Dim est As Byte = 0
         PrintTicket(TicketNumberLbl.Text, est)
+        ShowAsReady()
     End Sub
 
     Private Sub UsePrinterChk_CheckedChanged(sender As Object, e As EventArgs) Handles UsePrinterChk.CheckedChanged
@@ -304,12 +313,13 @@ Public Class Form1
     End Sub
 
     Public Sub CalibrationPage()
+        ShowAsBusy()
         My.Settings.OmitCalibration = True
         Dim P As New PrinterClass(Application.StartupPath)
         With P
             'Printing Logo
             .RTL = False
-            .PrintLogo()
+            If PrintLogoChk.Enabled = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
@@ -356,6 +366,7 @@ Public Class Form1
             .EndDoc()
         End With
         My.Settings.OmitCalibration = False
+        ShowAsReady()
     End Sub
 
     Private Sub CalibrationBtn_Click(sender As Object, e As EventArgs) Handles CalibrationBtn.Click
@@ -392,6 +403,7 @@ Public Class Form1
     End Sub
 
     Private Sub DebugPrintBtn_Click(sender As Object, e As EventArgs) Handles DebugPrintBtn.Click
+        ShowAsBusy()
         Dim P As New PrinterClass(Application.StartupPath)
         With P
             'Printing Logo
@@ -399,7 +411,7 @@ Public Class Form1
             .SetFont()
 
             'Printing Title
-            .FeedPaper(4)
+            .FeedPaper(1)
 
             'Printing Header
             .Bold = False
@@ -427,6 +439,7 @@ Public Class Form1
             'Ending the session
             .EndDoc()
         End With
+        ShowAsReady()
     End Sub
 
     Private Sub SlipTitleTxt_TextChanged(sender As Object, e As EventArgs) Handles SlipTitleTxt.TextChanged
@@ -455,7 +468,9 @@ Public Class Form1
     End Sub
 
     Private Sub CheckTicketBtn_Click(sender As Object, e As EventArgs) Handles CheckTicketBtn.Click
+        ShowAsBusy()
         PrintTicket(0, 0)
+        ShowAsReady()
     End Sub
     Public Function ToTime(e As Long)
         Dim Ret As String
@@ -476,16 +491,36 @@ Public Class Form1
         Return Mins
     End Function
 
+    Private Sub ShowAsBusy()
+        PictureBox1.Image = SystemIcons.Error.ToBitmap
+    End Sub
+
+    Private Sub ShowAsReady()
+        PictureBox1.Image = SystemIcons.Information.ToBitmap
+    End Sub
+
     Private Sub AutoCheck_CheckedChanged(sender As Object, e As EventArgs) Handles AutoCheck.CheckedChanged
-        AutoModePinger.Enabled = AutoCheck.Checked
+        ShowAsBusy()
+        Select Case AutoCheck.Checked
+            Case True
+                AutoCheckThread = New Threading.Thread(AddressOf ThreadTask)
+                AutoCheckThread.IsBackground = True
+                AutoCheckThread.Start()
+            Case False
+                If AutoCheckThread.IsAlive = True Then
+                    AutoCheckThread.Suspend()
+                End If
+        End Select
         RegisterButton.Enabled = Not AutoCheck.Checked
         If Not AutoCheck.Checked Then
             AutoModeStatusLbl.Text = "Auto check is off."
             PreviousResult = Nothing
         End If
+        ShowAsReady()
     End Sub
 
     Private Sub AutoModePinger_Tick(sender As Object, e As EventArgs) Handles AutoModePinger.Tick
+        ShowAsBusy()
         Try
             Dim webClient As New System.Net.WebClient
             Dim result As String = webClient.DownloadString(ListenOnTxt.Text)
@@ -505,9 +540,13 @@ Public Class Form1
                 Dim est As Byte = 0
                 If SyncListenChk.Checked Then
                     TotalTickets = result
+                    My.Settings.CurrentTicket = TotalTickets
+                    My.Settings.Save()
                     If My.Settings.PrinterInUse Then PrintTicket(result, est)
                 Else
                     TotalTickets += 1
+                    My.Settings.CurrentTicket = TotalTickets
+                    My.Settings.Save()
                     If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
                 End If
 
@@ -517,10 +556,131 @@ Public Class Form1
         Catch ex As Exception
             AutoModeStatusLbl.Text = "Problem accessing listen page, trying again... " & DateTime.Now.ToString
         End Try
+        ShowAsReady()
+    End Sub
+
+    Private Sub ThreadTask()
+        Do
+            ShowAsBusy()
+            Threading.Thread.Sleep(50)
+            Try
+                Dim webClient As New System.Net.WebClient
+                Dim result As String = webClient.DownloadString(ListenOnTxt.Text)
+                If PreviousResult = Nothing Then
+                    PreviousResult = result
+                    'AutoModeStatusLbl.Text = result & ", now listening on " & ListenOnTxt.Text & " ... " & DateTime.Now.ToString
+                    ThreadInfoChanger(AutoModeStatusLbl, result & ", now listening on " & ListenOnTxt.Text & " ... " & DateTime.Now.ToString)
+                    Exit Try
+                End If
+                If PreviousResult = result Then
+                    PreviousResult = result
+                    'AutoModeStatusLbl.Text = result & ", no changes, still listening..." & DateTime.Now.ToString
+                    ThreadInfoChanger(AutoModeStatusLbl, result & ", no changes, still listening..." & DateTime.Now.ToString)
+                Else
+                    PreviousResult = result
+                    'AutoModeStatusLbl.Text = "Found a change, printing... " & DateTime.Now.ToString
+                    ThreadInfoChanger(AutoModeStatusLbl, "Found a change, printing... " & DateTime.Now.ToString)
+                    'printing function
+
+                    Dim est As Byte = 0
+                    If SyncListenChk.Checked Then
+                        TotalTickets = result
+                        If My.Settings.PrinterInUse Then PrintTicket(result, est)
+                    Else
+                        TotalTickets += 1
+                        If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
+                    End If
+
+                    RegisterButton.Enabled = True
+                    'end printing function
+                End If
+            Catch ex As Exception
+
+                'AutoModeStatusLbl.Text = "Problem accessing listen page, trying again... " & DateTime.Now.ToString
+                ThreadInfoChanger(AutoModeStatusLbl, "Problem accessing listen page, trying again... " & DateTime.Now.ToString)
+            End Try
+            ShowAsReady()
+
+            Threading.Thread.Sleep(2000)
+        Loop
     End Sub
 
     Private Sub CameraOpenBtn_Click(sender As Object, e As EventArgs) Handles CameraOpenBtn.Click
         CameraForm.Show()
     End Sub
+
+    Private Sub ThreadInfoChanger(ByVal ctl As Control, ByVal e As String)
+        If ctl.InvokeRequired Then
+            ctl.BeginInvoke(New Action(Of Control, String)(AddressOf ThreadInfoChanger), ctl, e)
+        Else
+            ctl.Text = e
+        End If
+    End Sub
+
+    Private Sub PrintLabelBtn_Click(sender As Object, e As EventArgs) Handles PrintLabelBtn.Click
+        ShowAsBusy()
+        MessageBox.Show("Make sure that label is protruding from printer a little and then press OK.", "RaffleRaffle", MessageBoxButtons.OK, MessageBoxIcon.Question)
+        Dim P As New PrinterClass(Application.StartupPath)
+        My.Settings.OmitCalibration = True
+        With P
+            'Printing Logo
+            .RTL = False
+            .SetFont()
+            'Printing Title
+            .FeedPaper(1)
+            .AlignCenter()
+            .Bold = True
+            .BigFont()
+            .WriteLine(NameTxt.Text)
+            .Bold = False
+            .NormalFont()
+            .WriteLine(MediaTxt.Text)
+            .WriteLine(OccupationTxt.Text)
+            '.FeedPaper(1)
+
+
+            .CutPaper() ' Can be used with real printer to cut the paper.
+
+            'Ending the session
+            .EndDoc()
+        End With
+        My.Settings.OmitCalibration = False
+        NameTxt.Focus()
+        ShowAsReady()
+    End Sub
+
+    Private Sub NameTxt_TextChanged(sender As Object, e As EventArgs) Handles NameTxt.TextChanged
+        UpdateLabel()
+    End Sub
+
+    Sub UpdateLabel()
+        Try
+            NameLenLbl.Text = NameTxt.TextLength & " / " & My.Settings.PrinterCalibrate(5)
+            MediaLenLbl.Text = MediaTxt.TextLength & " / " & My.Settings.PrinterCalibrate(2)
+            OccuLenLbl.Text = OccupationTxt.TextLength & " / " & My.Settings.PrinterCalibrate(2)
+        Catch ex As Exception
+        End Try
+
+    End Sub
+
+    Private Sub MediaTxt_TextChanged(sender As Object, e As EventArgs) Handles MediaTxt.TextChanged
+        UpdateLabel()
+    End Sub
+
+    Private Sub OccupationTxt_TextChanged(sender As Object, e As EventArgs) Handles OccupationTxt.TextChanged
+        UpdateLabel()
+    End Sub
+
+    Private Sub TicketsResetBtn_Click(sender As Object, e As EventArgs) Handles TicketsResetBtn.Click
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to reset the counter?", "RaffleRaffle", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If result = DialogResult.Yes Then
+            TotalTickets = 0
+            My.Settings.CurrentTicket = TotalTickets
+            My.Settings.Save()
+            TotalTicketsLbl.Text = 0
+        End If
+    End Sub
 End Class
+
+
 

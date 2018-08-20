@@ -7,6 +7,7 @@ Public Class RunForm
     End Sub
 
     Private Sub RunForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        My.Computer.Audio.Play(My.Resources.run1, AudioPlayMode.background)
+        My.Computer.Audio.Play(My.Resources.run1, AudioPlayMode.Background)
+
     End Sub
 End Class
