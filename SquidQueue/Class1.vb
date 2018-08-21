@@ -5,6 +5,15 @@ Public Class PrinterClass
     Private _Path As String
     Private _Align As TextAlignment = TextAlignment.Default
     Private bIsDebug As Boolean = False
+
+    Public Sub WastePaper(e As Long)
+        If My.Settings.RollRemaining = -1 Then Exit Sub
+        If My.Settings.RollRemaining > e Then
+            My.Settings.RollRemaining -= e
+            My.Settings.Save()
+        End If
+    End Sub
+
     Public Enum TextAlignment As Byte
         [Default] = 0
         Left
@@ -84,6 +93,7 @@ Public Class PrinterClass
         p.DrawWidth = 5
         p.Line(p.Width, p.CurrentY)
         p.CurrentY += 20 ' to move under the drawn line
+        WastePaper(1)
     End Sub
     Public Sub NormalFont()
         Me.FontSize = 9.5F
@@ -206,6 +216,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(0))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(16)
                     Next
                     Exit Sub
                 End If
@@ -215,6 +226,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(1))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(5)
                     Next
                     Exit Sub
                 End If
@@ -224,6 +236,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(2))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(4)
                     Next
                     Exit Sub
                 End If
@@ -233,6 +246,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(3))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(2)
                     Next
                     Exit Sub
                 End If
@@ -241,6 +255,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, 50)
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(1)
                     Next
                     Exit Sub
                 End If
@@ -251,6 +266,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(4))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(17)
                     Next
                     Exit Sub
                 End If
@@ -260,6 +276,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(5))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(6)
                     Next
                     Exit Sub
                 End If
@@ -269,6 +286,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(6))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(5)
                     Next
                     Exit Sub
                 End If
@@ -278,6 +296,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(7))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(3)
                     Next
                     Exit Sub
                 End If

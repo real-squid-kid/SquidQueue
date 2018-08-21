@@ -51,5 +51,11 @@
     <Setting Name="CurrentTicket" Type="System.String" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="RollRemaining" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20000</Value>
+    </Setting>
+    <Setting Name="RollTotal" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

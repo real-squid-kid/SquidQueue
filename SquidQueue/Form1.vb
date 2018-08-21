@@ -11,6 +11,7 @@ Public Class Form1
     Public ElapsedTime As Long
     Public EstimateTime As New List(Of Long)
     Public EstimateResult As Long
+    Public RollPercent As Double
     Private AutoCheckThread As Threading.Thread
     Dim AllSounds As String()
     Dim PreviousResult As String
@@ -49,6 +50,28 @@ Public Class Form1
     Private Sub StatusPing_Tick(sender As Object, e As EventArgs) Handles StatusPing.Tick
         QueueCount = TotalTickets - CurrentTicket
         TotalTicketsLbl.Text = TotalTickets
+        If My.Settings.RollRemaining = -1 Then
+            RemainRollLbl.Text = "---"
+            RemainRollProgress.Style = ProgressBarStyle.Marquee
+            RollPicture.Image = SystemIcons.Asterisk.ToBitmap
+        Else
+            Try
+                RemainRollProgress.Style = ProgressBarStyle.Continuous
+
+                RollPercent = Math.Ceiling(My.Settings.RollRemaining / My.Settings.RollTotal * 100)
+                RemainRollProgress.Value = RollPercent
+                RemainRollLbl.Text = RollPercent & "%"
+                If RollPercent < 11 Then
+                    RollPicture.Image = SystemIcons.Warning.ToBitmap()
+                Else
+                    RollPicture.Image = SystemIcons.Asterisk.ToBitmap
+                End If
+            Catch ex As Exception
+                MessageBox.Show("We found an error in tracking roll: " & ex.Message & ". The settings were reset to non-trackable. Sorry!", "RaffleRaffle", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                My.Settings.RollRemaining = -1
+                My.Settings.RollTotal = 0
+            End Try
+        End If
         If UsePrinterChk.Checked = False Then
             PrintExactBtn.Enabled = False
             PrinterNameTxt.Enabled = False
@@ -503,8 +526,9 @@ Public Class Form1
         ShowAsBusy()
         Select Case AutoCheck.Checked
             Case True
-                AutoCheckThread = New Threading.Thread(AddressOf ThreadTask)
-                AutoCheckThread.IsBackground = True
+                AutoCheckThread = New Threading.Thread(AddressOf ThreadTask) With {
+                    .IsBackground = True
+                }
                 AutoCheckThread.Start()
             Case False
                 If AutoCheckThread.IsAlive = True Then
@@ -518,7 +542,7 @@ Public Class Form1
         End If
         ShowAsReady()
     End Sub
-
+    'deprecated, left for legacy
     Private Sub AutoModePinger_Tick(sender As Object, e As EventArgs) Handles AutoModePinger.Tick
         ShowAsBusy()
         Try
@@ -679,6 +703,22 @@ Public Class Form1
             My.Settings.Save()
             TotalTicketsLbl.Text = 0
         End If
+    End Sub
+
+    Private Sub AllAbilitiesPrintBtn_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub CouponFormBtn_Click(sender As Object, e As EventArgs) Handles CouponFormBtn.Click
+        CouponForm.Show()
+    End Sub
+
+    Private Sub RollServiceBtn_Click(sender As Object, e As EventArgs) Handles RollServiceBtn.Click
+        ChangeRollForm.Show()
+    End Sub
+
+    Private Sub TextExBtn_Click(sender As Object, e As EventArgs) Handles TextExBtn.Click
+        Throw New Exception("OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!")
     End Sub
 End Class
 

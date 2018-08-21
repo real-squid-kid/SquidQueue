@@ -93,6 +93,26 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property Gregg_bod_stairbounce_dead() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Gregg_bod_stairbounce_dead", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property rawr() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("rawr", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property run() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("run", resourceCulture)

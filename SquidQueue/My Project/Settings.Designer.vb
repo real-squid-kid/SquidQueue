@@ -214,6 +214,30 @@ Namespace My
                 Me("CurrentTicket") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("20000")>  _
+        Public Property RollRemaining() As Double
+            Get
+                Return CType(Me("RollRemaining"),Double)
+            End Get
+            Set
+                Me("RollRemaining") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("20000")>  _
+        Public Property RollTotal() As Double
+            Get
+                Return CType(Me("RollTotal"),Double)
+            End Get
+            Set
+                Me("RollTotal") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

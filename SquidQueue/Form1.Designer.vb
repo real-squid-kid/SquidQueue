@@ -29,6 +29,7 @@ Partial Class Form1
         Me.StatusPing = New System.Windows.Forms.Timer(Me.components)
         Me.FontPciker = New System.Windows.Forms.FontDialog()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.RollServiceBtn = New System.Windows.Forms.Button()
         Me.FontSizeBar = New System.Windows.Forms.TrackBar()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.DebugPrintBtn = New System.Windows.Forms.Button()
@@ -76,11 +77,17 @@ Partial Class Form1
         Me.NameLenLbl = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.CouponFormBtn = New System.Windows.Forms.Button()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.CameraOpenBtn = New System.Windows.Forms.Button()
         Me.AutoModePinger = New System.Windows.Forms.Timer(Me.components)
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TicketsResetBtn = New System.Windows.Forms.Button()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.RemainRollProgress = New System.Windows.Forms.ProgressBar()
+        Me.RemainRollLbl = New System.Windows.Forms.Label()
+        Me.RollPicture = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.TextExBtn = New System.Windows.Forms.Button()
         Me.TabPage4.SuspendLayout()
         CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
@@ -88,6 +95,7 @@ Partial Class Form1
         Me.TabPage5.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        CType(Me.RollPicture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -116,6 +124,7 @@ Partial Class Form1
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.RollServiceBtn)
         Me.TabPage4.Controls.Add(Me.FontSizeBar)
         Me.TabPage4.Controls.Add(Me.Label18)
         Me.TabPage4.Controls.Add(Me.DebugPrintBtn)
@@ -129,10 +138,19 @@ Partial Class Form1
         Me.TabPage4.Controls.Add(Me.Button1)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(464, 390)
+        Me.TabPage4.Size = New System.Drawing.Size(464, 346)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "System settings"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'RollServiceBtn
+        '
+        Me.RollServiceBtn.Location = New System.Drawing.Point(290, 69)
+        Me.RollServiceBtn.Name = "RollServiceBtn"
+        Me.RollServiceBtn.Size = New System.Drawing.Size(117, 23)
+        Me.RollServiceBtn.TabIndex = 24
+        Me.RollServiceBtn.Text = "Change roll..."
+        Me.RollServiceBtn.UseVisualStyleBackColor = True
         '
         'FontSizeBar
         '
@@ -227,7 +245,7 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(3, 364)
+        Me.Button1.Location = New System.Drawing.Point(6, 274)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(93, 23)
         Me.Button1.TabIndex = 0
@@ -237,6 +255,7 @@ Partial Class Form1
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.SyncListenChk)
+        Me.TabPage3.Controls.Add(Me.PictureBox1)
         Me.TabPage3.Controls.Add(Me.AutoModeStatusLbl)
         Me.TabPage3.Controls.Add(Me.PrintExactBtn)
         Me.TabPage3.Controls.Add(Me.TicketNumberLbl)
@@ -247,7 +266,7 @@ Partial Class Form1
         Me.TabPage3.Controls.Add(Me.RegisterButton)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(464, 390)
+        Me.TabPage3.Size = New System.Drawing.Size(464, 346)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Register"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -265,7 +284,7 @@ Partial Class Form1
         'AutoModeStatusLbl
         '
         Me.AutoModeStatusLbl.AutoSize = True
-        Me.AutoModeStatusLbl.Location = New System.Drawing.Point(14, 362)
+        Me.AutoModeStatusLbl.Location = New System.Drawing.Point(45, 301)
         Me.AutoModeStatusLbl.Name = "AutoModeStatusLbl"
         Me.AutoModeStatusLbl.Size = New System.Drawing.Size(90, 13)
         Me.AutoModeStatusLbl.TabIndex = 18
@@ -341,7 +360,7 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(13, 13)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(472, 416)
+        Me.TabControl1.Size = New System.Drawing.Size(472, 372)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage5
@@ -361,7 +380,7 @@ Partial Class Form1
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(464, 390)
+        Me.TabPage5.Size = New System.Drawing.Size(464, 346)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "Ticket Editor"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -464,8 +483,6 @@ Partial Class Form1
         'PrintLogoChk
         '
         Me.PrintLogoChk.AutoSize = True
-        Me.PrintLogoChk.Checked = True
-        Me.PrintLogoChk.CheckState = System.Windows.Forms.CheckState.Checked
         Me.PrintLogoChk.Location = New System.Drawing.Point(66, 24)
         Me.PrintLogoChk.Name = "PrintLogoChk"
         Me.PrintLogoChk.Size = New System.Drawing.Size(70, 17)
@@ -488,7 +505,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(464, 390)
+        Me.TabPage1.Size = New System.Drawing.Size(464, 346)
         Me.TabPage1.TabIndex = 5
         Me.TabPage1.Text = "Label Printer"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -579,15 +596,26 @@ Partial Class Form1
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.TextExBtn)
+        Me.TabPage2.Controls.Add(Me.CouponFormBtn)
         Me.TabPage2.Controls.Add(Me.Label12)
         Me.TabPage2.Controls.Add(Me.CameraOpenBtn)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(464, 390)
+        Me.TabPage2.Size = New System.Drawing.Size(464, 346)
         Me.TabPage2.TabIndex = 6
         Me.TabPage2.Text = "Extras"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'CouponFormBtn
+        '
+        Me.CouponFormBtn.Location = New System.Drawing.Point(6, 35)
+        Me.CouponFormBtn.Name = "CouponFormBtn"
+        Me.CouponFormBtn.Size = New System.Drawing.Size(117, 23)
+        Me.CouponFormBtn.TabIndex = 23
+        Me.CouponFormBtn.Text = "Print coupon..."
+        Me.CouponFormBtn.UseVisualStyleBackColor = True
         '
         'Label12
         '
@@ -611,30 +639,76 @@ Partial Class Form1
         '
         Me.AutoModePinger.Interval = 2000
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Location = New System.Drawing.Point(529, 361)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(64, 64)
-        Me.PictureBox1.TabIndex = 21
-        Me.PictureBox1.TabStop = False
-        '
         'TicketsResetBtn
         '
-        Me.TicketsResetBtn.Location = New System.Drawing.Point(487, 106)
+        Me.TicketsResetBtn.Location = New System.Drawing.Point(490, 108)
         Me.TicketsResetBtn.Name = "TicketsResetBtn"
         Me.TicketsResetBtn.Size = New System.Drawing.Size(75, 23)
         Me.TicketsResetBtn.TabIndex = 22
         Me.TicketsResetBtn.Text = "Reset"
         Me.TicketsResetBtn.UseVisualStyleBackColor = True
         '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(13, 413)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(132, 13)
+        Me.Label13.TabIndex = 23
+        Me.Label13.Text = "Approximate roll remaining:"
+        '
+        'RemainRollProgress
+        '
+        Me.RemainRollProgress.Location = New System.Drawing.Point(148, 409)
+        Me.RemainRollProgress.Name = "RemainRollProgress"
+        Me.RemainRollProgress.Size = New System.Drawing.Size(289, 23)
+        Me.RemainRollProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee
+        Me.RemainRollProgress.TabIndex = 24
+        '
+        'RemainRollLbl
+        '
+        Me.RemainRollLbl.AutoSize = True
+        Me.RemainRollLbl.Location = New System.Drawing.Point(443, 413)
+        Me.RemainRollLbl.Name = "RemainRollLbl"
+        Me.RemainRollLbl.Size = New System.Drawing.Size(33, 13)
+        Me.RemainRollLbl.TabIndex = 23
+        Me.RemainRollLbl.Text = "100%"
+        '
+        'RollPicture
+        '
+        Me.RollPicture.Location = New System.Drawing.Point(482, 400)
+        Me.RollPicture.Name = "RollPicture"
+        Me.RollPicture.Size = New System.Drawing.Size(32, 32)
+        Me.RollPicture.TabIndex = 21
+        Me.RollPicture.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(7, 282)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox1.TabIndex = 21
+        Me.PictureBox1.TabStop = False
+        '
+        'TextExBtn
+        '
+        Me.TextExBtn.Location = New System.Drawing.Point(7, 65)
+        Me.TextExBtn.Name = "TextExBtn"
+        Me.TextExBtn.Size = New System.Drawing.Size(116, 23)
+        Me.TextExBtn.TabIndex = 24
+        Me.TextExBtn.Text = "Text exception"
+        Me.TextExBtn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(605, 441)
+        Me.Controls.Add(Me.RemainRollProgress)
+        Me.Controls.Add(Me.RollPicture)
+        Me.Controls.Add(Me.RemainRollLbl)
+        Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.TicketsResetBtn)
-        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.TotalTicketsLbl)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TabControl1)
@@ -655,6 +729,7 @@ Partial Class Form1
         Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        CType(Me.RollPicture, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -717,4 +792,11 @@ Partial Class Form1
     Friend WithEvents CameraOpenBtn As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents TicketsResetBtn As Button
+    Friend WithEvents CouponFormBtn As Button
+    Friend WithEvents RollServiceBtn As Button
+    Friend WithEvents Label13 As Label
+    Friend WithEvents RemainRollProgress As ProgressBar
+    Friend WithEvents RemainRollLbl As Label
+    Friend WithEvents RollPicture As PictureBox
+    Friend WithEvents TextExBtn As Button
 End Class

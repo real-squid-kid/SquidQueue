@@ -46,9 +46,9 @@ Partial Class Form2
         Me.Label2.Font = New System.Drawing.Font("Arial Narrow", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.Label2.Location = New System.Drawing.Point(14, 53)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(328, 25)
+        Me.Label2.Size = New System.Drawing.Size(313, 25)
         Me.Label2.TabIndex = 0
-        Me.Label2.Text = "SquidQueue version 0.3.2, raffle branch"
+        Me.Label2.Text = "SquidQueue version 0.4, raffle branch"
         '
         'Label3
         '
