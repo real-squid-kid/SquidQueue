@@ -18,7 +18,7 @@ Namespace My
                 sw.WriteLine(e.Exception.ToString())
             End Using
             CrashForm.ex = e.Exception
-            CrashForm.Show()
+            CrashForm.ShowDialog()
             '        MessageBox.Show("An unexcpected error occured. Application will be terminated.")
             e.ExitApplication = False
         End Sub

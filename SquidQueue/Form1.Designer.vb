@@ -28,31 +28,38 @@ Partial Class Form1
         Me.TotalTicketsLbl = New System.Windows.Forms.Label()
         Me.StatusPing = New System.Windows.Forms.Timer(Me.components)
         Me.FontPciker = New System.Windows.Forms.FontDialog()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.RollServiceBtn = New System.Windows.Forms.Button()
-        Me.FontSizeBar = New System.Windows.Forms.TrackBar()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.DebugPrintBtn = New System.Windows.Forms.Button()
-        Me.DebugPrintTxt = New System.Windows.Forms.TextBox()
-        Me.PrinterNameTxt = New System.Windows.Forms.TextBox()
-        Me.PrinterFontBtn = New System.Windows.Forms.Button()
-        Me.CalibrationBtn = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.UsePrinterChk = New System.Windows.Forms.CheckBox()
+        Me.SettingsTab = New System.Windows.Forms.TabPage()
+        Me.LockLbl = New System.Windows.Forms.Label()
+        Me.LockBtn = New System.Windows.Forms.Label()
+        Me.PrinterSettingsBox = New System.Windows.Forms.GroupBox()
+        Me.PickPrinterTxt = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.UsePrinterChk = New System.Windows.Forms.CheckBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.CalibrationBtn = New System.Windows.Forms.Button()
+        Me.PrinterFontBtn = New System.Windows.Forms.Button()
+        Me.PrinterNameTxt = New System.Windows.Forms.TextBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.DebugPrintTxt = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.FontSizeBar = New System.Windows.Forms.TrackBar()
+        Me.DebugPrintBtn = New System.Windows.Forms.Button()
+        Me.RollServiceBtn = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.SyncListenChk = New System.Windows.Forms.CheckBox()
+        Me.MainTab = New System.Windows.Forms.TabPage()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.AutoCheck = New System.Windows.Forms.CheckBox()
         Me.AutoModeStatusLbl = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.SyncListenChk = New System.Windows.Forms.CheckBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.ListenOnTxt = New System.Windows.Forms.TextBox()
         Me.PrintExactBtn = New System.Windows.Forms.Button()
         Me.TicketNumberLbl = New System.Windows.Forms.TextBox()
-        Me.ListenOnTxt = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.AutoCheck = New System.Windows.Forms.CheckBox()
         Me.RegisterButton = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.EditorTab = New System.Windows.Forms.TabPage()
         Me.CheckTicketBtn = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.RafflieChk = New System.Windows.Forms.CheckBox()
@@ -65,7 +72,7 @@ Partial Class Form1
         Me.SlipTitleTxt = New System.Windows.Forms.TextBox()
         Me.LogoPathTxt = New System.Windows.Forms.TextBox()
         Me.PrintLogoChk = New System.Windows.Forms.CheckBox()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.LabelTab = New System.Windows.Forms.TabPage()
         Me.PrintLabelBtn = New System.Windows.Forms.Button()
         Me.OccupationTxt = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -76,7 +83,8 @@ Partial Class Form1
         Me.MediaLenLbl = New System.Windows.Forms.Label()
         Me.NameLenLbl = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.ExtrasTab = New System.Windows.Forms.TabPage()
+        Me.TextExBtn = New System.Windows.Forms.Button()
         Me.CouponFormBtn = New System.Windows.Forms.Button()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.CameraOpenBtn = New System.Windows.Forms.Button()
@@ -86,17 +94,19 @@ Partial Class Form1
         Me.RemainRollProgress = New System.Windows.Forms.ProgressBar()
         Me.RemainRollLbl = New System.Windows.Forms.Label()
         Me.RollPicture = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.TextExBtn = New System.Windows.Forms.Button()
-        Me.TabPage4.SuspendLayout()
+        Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
+        Me.SettingsTab.SuspendLayout()
+        Me.PrinterSettingsBox.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage3.SuspendLayout()
-        Me.TabControl1.SuspendLayout()
-        Me.TabPage5.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
-        CType(Me.RollPicture, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MainTab.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControl1.SuspendLayout()
+        Me.EditorTab.SuspendLayout()
+        Me.LabelTab.SuspendLayout()
+        Me.ExtrasTab.SuspendLayout()
+        CType(Me.RollPicture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -122,177 +132,276 @@ Partial Class Form1
         '
         Me.StatusPing.Enabled = True
         '
-        'TabPage4
+        'SettingsTab
         '
-        Me.TabPage4.Controls.Add(Me.RollServiceBtn)
-        Me.TabPage4.Controls.Add(Me.FontSizeBar)
-        Me.TabPage4.Controls.Add(Me.Label18)
-        Me.TabPage4.Controls.Add(Me.DebugPrintBtn)
-        Me.TabPage4.Controls.Add(Me.DebugPrintTxt)
-        Me.TabPage4.Controls.Add(Me.PrinterNameTxt)
-        Me.TabPage4.Controls.Add(Me.PrinterFontBtn)
-        Me.TabPage4.Controls.Add(Me.CalibrationBtn)
-        Me.TabPage4.Controls.Add(Me.Button2)
-        Me.TabPage4.Controls.Add(Me.UsePrinterChk)
-        Me.TabPage4.Controls.Add(Me.Label5)
-        Me.TabPage4.Controls.Add(Me.Button1)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(464, 346)
-        Me.TabPage4.TabIndex = 3
-        Me.TabPage4.Text = "System settings"
-        Me.TabPage4.UseVisualStyleBackColor = True
+        Me.SettingsTab.Controls.Add(Me.LockLbl)
+        Me.SettingsTab.Controls.Add(Me.LockBtn)
+        Me.SettingsTab.Controls.Add(Me.PrinterSettingsBox)
+        Me.SettingsTab.Controls.Add(Me.GroupBox2)
+        Me.SettingsTab.Controls.Add(Me.RollServiceBtn)
+        Me.SettingsTab.Controls.Add(Me.Button1)
+        Me.SettingsTab.Location = New System.Drawing.Point(4, 22)
+        Me.SettingsTab.Name = "SettingsTab"
+        Me.SettingsTab.Size = New System.Drawing.Size(464, 346)
+        Me.SettingsTab.TabIndex = 3
+        Me.SettingsTab.Text = "Printer settings"
+        Me.SettingsTab.UseVisualStyleBackColor = True
         '
-        'RollServiceBtn
+        'LockLbl
         '
-        Me.RollServiceBtn.Location = New System.Drawing.Point(290, 69)
-        Me.RollServiceBtn.Name = "RollServiceBtn"
-        Me.RollServiceBtn.Size = New System.Drawing.Size(117, 23)
-        Me.RollServiceBtn.TabIndex = 24
-        Me.RollServiceBtn.Text = "Change roll..."
-        Me.RollServiceBtn.UseVisualStyleBackColor = True
+        Me.LockLbl.AutoSize = True
+        Me.LockLbl.Location = New System.Drawing.Point(56, 319)
+        Me.LockLbl.Name = "LockLbl"
+        Me.LockLbl.Size = New System.Drawing.Size(247, 13)
+        Me.LockLbl.TabIndex = 29
+        Me.LockLbl.Text = "Press Lock to lock settings and additional features."
         '
-        'FontSizeBar
+        'LockBtn
         '
-        Me.FontSizeBar.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.FontSizeBar.Location = New System.Drawing.Point(61, 211)
-        Me.FontSizeBar.Maximum = 4
-        Me.FontSizeBar.Name = "FontSizeBar"
-        Me.FontSizeBar.Size = New System.Drawing.Size(104, 45)
-        Me.FontSizeBar.TabIndex = 15
-        Me.FontSizeBar.Value = 2
+        Me.LockBtn.AutoSize = True
+        Me.LockBtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.LockBtn.Location = New System.Drawing.Point(5, 305)
+        Me.LockBtn.Name = "LockBtn"
+        Me.LockBtn.Size = New System.Drawing.Size(45, 39)
+        Me.LockBtn.TabIndex = 28
+        Me.LockBtn.Text = "🔓"
         '
-        'Label18
+        'PrinterSettingsBox
         '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(3, 216)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(52, 13)
-        Me.Label18.TabIndex = 14
-        Me.Label18.Text = "Font size:"
+        Me.PrinterSettingsBox.Controls.Add(Me.PickPrinterTxt)
+        Me.PrinterSettingsBox.Controls.Add(Me.Label5)
+        Me.PrinterSettingsBox.Controls.Add(Me.UsePrinterChk)
+        Me.PrinterSettingsBox.Controls.Add(Me.Button2)
+        Me.PrinterSettingsBox.Controls.Add(Me.CalibrationBtn)
+        Me.PrinterSettingsBox.Controls.Add(Me.PrinterFontBtn)
+        Me.PrinterSettingsBox.Controls.Add(Me.PrinterNameTxt)
+        Me.PrinterSettingsBox.Location = New System.Drawing.Point(6, 3)
+        Me.PrinterSettingsBox.Name = "PrinterSettingsBox"
+        Me.PrinterSettingsBox.Size = New System.Drawing.Size(271, 149)
+        Me.PrinterSettingsBox.TabIndex = 27
+        Me.PrinterSettingsBox.TabStop = False
+        Me.PrinterSettingsBox.Text = "Printer settings"
         '
-        'DebugPrintBtn
+        'PickPrinterTxt
         '
-        Me.DebugPrintBtn.Location = New System.Drawing.Point(171, 211)
-        Me.DebugPrintBtn.Name = "DebugPrintBtn"
-        Me.DebugPrintBtn.Size = New System.Drawing.Size(99, 23)
-        Me.DebugPrintBtn.TabIndex = 12
-        Me.DebugPrintBtn.Text = "Debug Print This"
-        Me.DebugPrintBtn.UseVisualStyleBackColor = True
+        Me.PickPrinterTxt.Location = New System.Drawing.Point(185, 39)
+        Me.PickPrinterTxt.Name = "PickPrinterTxt"
+        Me.PickPrinterTxt.Size = New System.Drawing.Size(75, 23)
+        Me.PickPrinterTxt.TabIndex = 25
+        Me.PickPrinterTxt.Text = "Pick..."
+        Me.PickPrinterTxt.UseVisualStyleBackColor = True
         '
-        'DebugPrintTxt
+        'Label5
         '
-        Me.DebugPrintTxt.Location = New System.Drawing.Point(6, 111)
-        Me.DebugPrintTxt.Multiline = True
-        Me.DebugPrintTxt.Name = "DebugPrintTxt"
-        Me.DebugPrintTxt.Size = New System.Drawing.Size(264, 94)
-        Me.DebugPrintTxt.TabIndex = 11
-        Me.DebugPrintTxt.Text = "Jackdaws love my big sphinx of quartz. 1234567890"
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(5, 44)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(68, 13)
+        Me.Label5.TabIndex = 1
+        Me.Label5.Text = "Printer Name"
         '
-        'PrinterNameTxt
+        'UsePrinterChk
         '
-        Me.PrinterNameTxt.Location = New System.Drawing.Point(77, 43)
-        Me.PrinterNameTxt.Name = "PrinterNameTxt"
-        Me.PrinterNameTxt.Size = New System.Drawing.Size(100, 20)
-        Me.PrinterNameTxt.TabIndex = 2
-        Me.PrinterNameTxt.Text = "POS-58"
+        Me.UsePrinterChk.AutoSize = True
+        Me.UsePrinterChk.Location = New System.Drawing.Point(6, 19)
+        Me.UsePrinterChk.Name = "UsePrinterChk"
+        Me.UsePrinterChk.Size = New System.Drawing.Size(91, 17)
+        Me.UsePrinterChk.TabIndex = 3
+        Me.UsePrinterChk.Text = "Enable printer"
+        Me.UsePrinterChk.UseVisualStyleBackColor = True
         '
-        'PrinterFontBtn
+        'Button2
         '
-        Me.PrinterFontBtn.Location = New System.Drawing.Point(6, 69)
-        Me.PrinterFontBtn.Name = "PrinterFontBtn"
-        Me.PrinterFontBtn.Size = New System.Drawing.Size(75, 23)
-        Me.PrinterFontBtn.TabIndex = 10
-        Me.PrinterFontBtn.Text = "Font..."
-        Me.PrinterFontBtn.UseVisualStyleBackColor = True
+        Me.Button2.Location = New System.Drawing.Point(6, 107)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(104, 23)
+        Me.Button2.TabIndex = 5
+        Me.Button2.Text = "Test font"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'CalibrationBtn
         '
-        Me.CalibrationBtn.Location = New System.Drawing.Point(168, 69)
+        Me.CalibrationBtn.Location = New System.Drawing.Point(144, 78)
         Me.CalibrationBtn.Name = "CalibrationBtn"
         Me.CalibrationBtn.Size = New System.Drawing.Size(116, 23)
         Me.CalibrationBtn.TabIndex = 6
         Me.CalibrationBtn.Text = "Font calibration..."
         Me.CalibrationBtn.UseVisualStyleBackColor = True
         '
-        'Button2
+        'PrinterFontBtn
         '
-        Me.Button2.Location = New System.Drawing.Point(87, 69)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 5
-        Me.Button2.Text = "Test font"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.PrinterFontBtn.Location = New System.Drawing.Point(6, 78)
+        Me.PrinterFontBtn.Name = "PrinterFontBtn"
+        Me.PrinterFontBtn.Size = New System.Drawing.Size(104, 23)
+        Me.PrinterFontBtn.TabIndex = 10
+        Me.PrinterFontBtn.Text = "Font..."
+        Me.PrinterFontBtn.UseVisualStyleBackColor = True
         '
-        'UsePrinterChk
+        'PrinterNameTxt
         '
-        Me.UsePrinterChk.AutoSize = True
-        Me.UsePrinterChk.Location = New System.Drawing.Point(6, 13)
-        Me.UsePrinterChk.Name = "UsePrinterChk"
-        Me.UsePrinterChk.Size = New System.Drawing.Size(77, 17)
-        Me.UsePrinterChk.TabIndex = 3
-        Me.UsePrinterChk.Text = "Use printer"
-        Me.UsePrinterChk.UseVisualStyleBackColor = True
+        Me.PrinterNameTxt.Location = New System.Drawing.Point(79, 41)
+        Me.PrinterNameTxt.Name = "PrinterNameTxt"
+        Me.PrinterNameTxt.Size = New System.Drawing.Size(100, 20)
+        Me.PrinterNameTxt.TabIndex = 2
+        Me.PrinterNameTxt.Text = "POS-58"
         '
-        'Label5
+        'GroupBox2
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(3, 46)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(68, 13)
-        Me.Label5.TabIndex = 1
-        Me.Label5.Text = "Printer Name"
+        Me.GroupBox2.Controls.Add(Me.DebugPrintTxt)
+        Me.GroupBox2.Controls.Add(Me.Label18)
+        Me.GroupBox2.Controls.Add(Me.FontSizeBar)
+        Me.GroupBox2.Controls.Add(Me.DebugPrintBtn)
+        Me.GroupBox2.Location = New System.Drawing.Point(6, 158)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(271, 144)
+        Me.GroupBox2.TabIndex = 26
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Debug printer"
+        '
+        'DebugPrintTxt
+        '
+        Me.DebugPrintTxt.Location = New System.Drawing.Point(8, 19)
+        Me.DebugPrintTxt.Multiline = True
+        Me.DebugPrintTxt.Name = "DebugPrintTxt"
+        Me.DebugPrintTxt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.DebugPrintTxt.Size = New System.Drawing.Size(226, 52)
+        Me.DebugPrintTxt.TabIndex = 11
+        Me.DebugPrintTxt.Text = "Jackdaws love my big sphinx of quartz. 1234567890"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(13, 82)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(52, 13)
+        Me.Label18.TabIndex = 14
+        Me.Label18.Text = "Font size:"
+        '
+        'FontSizeBar
+        '
+        Me.FontSizeBar.AutoSize = False
+        Me.FontSizeBar.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.FontSizeBar.Location = New System.Drawing.Point(71, 77)
+        Me.FontSizeBar.Maximum = 4
+        Me.FontSizeBar.Name = "FontSizeBar"
+        Me.FontSizeBar.Size = New System.Drawing.Size(104, 38)
+        Me.FontSizeBar.TabIndex = 15
+        Me.FontSizeBar.Value = 2
+        '
+        'DebugPrintBtn
+        '
+        Me.DebugPrintBtn.Location = New System.Drawing.Point(135, 115)
+        Me.DebugPrintBtn.Name = "DebugPrintBtn"
+        Me.DebugPrintBtn.Size = New System.Drawing.Size(99, 23)
+        Me.DebugPrintBtn.TabIndex = 12
+        Me.DebugPrintBtn.Text = "Debug Print This"
+        Me.DebugPrintBtn.UseVisualStyleBackColor = True
+        '
+        'RollServiceBtn
+        '
+        Me.RollServiceBtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.RollServiceBtn.Location = New System.Drawing.Point(283, 42)
+        Me.RollServiceBtn.Name = "RollServiceBtn"
+        Me.RollServiceBtn.Size = New System.Drawing.Size(164, 52)
+        Me.RollServiceBtn.TabIndex = 24
+        Me.RollServiceBtn.Text = "Change roll..."
+        Me.RollServiceBtn.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(6, 274)
+        Me.Button1.Location = New System.Drawing.Point(366, 314)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(93, 23)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "About me..."
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'TabPage3
+        'MainTab
         '
-        Me.TabPage3.Controls.Add(Me.SyncListenChk)
-        Me.TabPage3.Controls.Add(Me.PictureBox1)
-        Me.TabPage3.Controls.Add(Me.AutoModeStatusLbl)
-        Me.TabPage3.Controls.Add(Me.PrintExactBtn)
-        Me.TabPage3.Controls.Add(Me.TicketNumberLbl)
-        Me.TabPage3.Controls.Add(Me.ListenOnTxt)
-        Me.TabPage3.Controls.Add(Me.Label4)
-        Me.TabPage3.Controls.Add(Me.Label3)
-        Me.TabPage3.Controls.Add(Me.AutoCheck)
-        Me.TabPage3.Controls.Add(Me.RegisterButton)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(464, 346)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Register"
-        Me.TabPage3.UseVisualStyleBackColor = True
+        Me.MainTab.Controls.Add(Me.GroupBox1)
+        Me.MainTab.Controls.Add(Me.PrintExactBtn)
+        Me.MainTab.Controls.Add(Me.TicketNumberLbl)
+        Me.MainTab.Controls.Add(Me.Label4)
+        Me.MainTab.Controls.Add(Me.RegisterButton)
+        Me.MainTab.Location = New System.Drawing.Point(4, 22)
+        Me.MainTab.Name = "MainTab"
+        Me.MainTab.Size = New System.Drawing.Size(464, 346)
+        Me.MainTab.TabIndex = 2
+        Me.MainTab.Text = "Register"
+        Me.MainTab.UseVisualStyleBackColor = True
         '
-        'SyncListenChk
+        'GroupBox1
         '
-        Me.SyncListenChk.AutoSize = True
-        Me.SyncListenChk.Location = New System.Drawing.Point(7, 118)
-        Me.SyncListenChk.Name = "SyncListenChk"
-        Me.SyncListenChk.Size = New System.Drawing.Size(215, 17)
-        Me.SyncListenChk.TabIndex = 19
-        Me.SyncListenChk.Text = "Sync printing number with listening page"
-        Me.SyncListenChk.UseVisualStyleBackColor = True
+        Me.GroupBox1.Controls.Add(Me.AutoCheck)
+        Me.GroupBox1.Controls.Add(Me.AutoModeStatusLbl)
+        Me.GroupBox1.Controls.Add(Me.PictureBox1)
+        Me.GroupBox1.Controls.Add(Me.SyncListenChk)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.ListenOnTxt)
+        Me.GroupBox1.Location = New System.Drawing.Point(11, 170)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(448, 126)
+        Me.GroupBox1.TabIndex = 22
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Automatic mode"
+        '
+        'AutoCheck
+        '
+        Me.AutoCheck.AutoSize = True
+        Me.AutoCheck.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.AutoCheck.Location = New System.Drawing.Point(9, 59)
+        Me.AutoCheck.Name = "AutoCheck"
+        Me.AutoCheck.Size = New System.Drawing.Size(85, 22)
+        Me.AutoCheck.TabIndex = 1
+        Me.AutoCheck.Text = "Turn on"
+        Me.AutoCheck.UseVisualStyleBackColor = True
         '
         'AutoModeStatusLbl
         '
         Me.AutoModeStatusLbl.AutoSize = True
-        Me.AutoModeStatusLbl.Location = New System.Drawing.Point(45, 301)
+        Me.AutoModeStatusLbl.Location = New System.Drawing.Point(47, 97)
         Me.AutoModeStatusLbl.Name = "AutoModeStatusLbl"
         Me.AutoModeStatusLbl.Size = New System.Drawing.Size(90, 13)
         Me.AutoModeStatusLbl.TabIndex = 18
         Me.AutoModeStatusLbl.Text = "Auto check is off."
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(9, 88)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox1.TabIndex = 21
+        Me.PictureBox1.TabStop = False
+        '
+        'SyncListenChk
+        '
+        Me.SyncListenChk.AutoSize = True
+        Me.SyncListenChk.Location = New System.Drawing.Point(9, 36)
+        Me.SyncListenChk.Name = "SyncListenChk"
+        Me.SyncListenChk.Size = New System.Drawing.Size(174, 17)
+        Me.SyncListenChk.TabIndex = 19
+        Me.SyncListenChk.Text = "Sync printing number with page"
+        Me.SyncListenChk.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(6, 16)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(53, 13)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "Listen on:"
+        '
+        'ListenOnTxt
+        '
+        Me.ListenOnTxt.Location = New System.Drawing.Point(65, 13)
+        Me.ListenOnTxt.Name = "ListenOnTxt"
+        Me.ListenOnTxt.Size = New System.Drawing.Size(377, 20)
+        Me.ListenOnTxt.TabIndex = 3
+        '
         'PrintExactBtn
         '
-        Me.PrintExactBtn.Location = New System.Drawing.Point(345, 68)
+        Me.PrintExactBtn.Location = New System.Drawing.Point(166, 313)
         Me.PrintExactBtn.Name = "PrintExactBtn"
         Me.PrintExactBtn.Size = New System.Drawing.Size(75, 23)
         Me.PrintExactBtn.TabIndex = 16
@@ -301,89 +410,64 @@ Partial Class Form1
         '
         'TicketNumberLbl
         '
-        Me.TicketNumberLbl.Location = New System.Drawing.Point(288, 70)
+        Me.TicketNumberLbl.Location = New System.Drawing.Point(109, 315)
         Me.TicketNumberLbl.Name = "TicketNumberLbl"
         Me.TicketNumberLbl.Size = New System.Drawing.Size(51, 20)
         Me.TicketNumberLbl.TabIndex = 15
         '
-        'ListenOnTxt
-        '
-        Me.ListenOnTxt.Location = New System.Drawing.Point(64, 92)
-        Me.ListenOnTxt.Name = "ListenOnTxt"
-        Me.ListenOnTxt.Size = New System.Drawing.Size(100, 20)
-        Me.ListenOnTxt.TabIndex = 3
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(187, 70)
+        Me.Label4.Location = New System.Drawing.Point(8, 318)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(95, 13)
         Me.Label4.TabIndex = 14
         Me.Label4.Text = "Print ticket number"
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(4, 92)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(53, 13)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Listen on:"
-        '
-        'AutoCheck
-        '
-        Me.AutoCheck.AutoSize = True
-        Me.AutoCheck.Location = New System.Drawing.Point(7, 68)
-        Me.AutoCheck.Name = "AutoCheck"
-        Me.AutoCheck.Size = New System.Drawing.Size(103, 17)
-        Me.AutoCheck.TabIndex = 1
-        Me.AutoCheck.Text = "Automatic Mode"
-        Me.AutoCheck.UseVisualStyleBackColor = True
-        '
         'RegisterButton
         '
-        Me.RegisterButton.Location = New System.Drawing.Point(3, 3)
+        Me.RegisterButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.RegisterButton.Location = New System.Drawing.Point(11, 13)
         Me.RegisterButton.Name = "RegisterButton"
-        Me.RegisterButton.Size = New System.Drawing.Size(164, 57)
+        Me.RegisterButton.Size = New System.Drawing.Size(448, 151)
         Me.RegisterButton.TabIndex = 0
-        Me.RegisterButton.Text = "Register another ticket"
+        Me.RegisterButton.Text = "NEXT"
         Me.RegisterButton.UseVisualStyleBackColor = True
         '
         'TabControl1
         '
-        Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage4)
-        Me.TabControl1.Controls.Add(Me.TabPage5)
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.MainTab)
+        Me.TabControl1.Controls.Add(Me.SettingsTab)
+        Me.TabControl1.Controls.Add(Me.EditorTab)
+        Me.TabControl1.Controls.Add(Me.LabelTab)
+        Me.TabControl1.Controls.Add(Me.ExtrasTab)
         Me.TabControl1.Location = New System.Drawing.Point(13, 13)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(472, 372)
         Me.TabControl1.TabIndex = 0
         '
-        'TabPage5
+        'EditorTab
         '
-        Me.TabPage5.Controls.Add(Me.CheckTicketBtn)
-        Me.TabPage5.Controls.Add(Me.Label8)
-        Me.TabPage5.Controls.Add(Me.RafflieChk)
-        Me.TabPage5.Controls.Add(Me.SlipDateTimeChk)
-        Me.TabPage5.Controls.Add(Me.Label9)
-        Me.TabPage5.Controls.Add(Me.Label10)
-        Me.TabPage5.Controls.Add(Me.Label6)
-        Me.TabPage5.Controls.Add(Me.SlipFooterTxt)
-        Me.TabPage5.Controls.Add(Me.SlipRaffleTxt)
-        Me.TabPage5.Controls.Add(Me.SlipTitleTxt)
-        Me.TabPage5.Controls.Add(Me.LogoPathTxt)
-        Me.TabPage5.Controls.Add(Me.PrintLogoChk)
-        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(464, 346)
-        Me.TabPage5.TabIndex = 4
-        Me.TabPage5.Text = "Ticket Editor"
-        Me.TabPage5.UseVisualStyleBackColor = True
+        Me.EditorTab.Controls.Add(Me.CheckTicketBtn)
+        Me.EditorTab.Controls.Add(Me.Label8)
+        Me.EditorTab.Controls.Add(Me.RafflieChk)
+        Me.EditorTab.Controls.Add(Me.SlipDateTimeChk)
+        Me.EditorTab.Controls.Add(Me.Label9)
+        Me.EditorTab.Controls.Add(Me.Label10)
+        Me.EditorTab.Controls.Add(Me.Label6)
+        Me.EditorTab.Controls.Add(Me.SlipFooterTxt)
+        Me.EditorTab.Controls.Add(Me.SlipRaffleTxt)
+        Me.EditorTab.Controls.Add(Me.SlipTitleTxt)
+        Me.EditorTab.Controls.Add(Me.LogoPathTxt)
+        Me.EditorTab.Controls.Add(Me.PrintLogoChk)
+        Me.EditorTab.Location = New System.Drawing.Point(4, 22)
+        Me.EditorTab.Name = "EditorTab"
+        Me.EditorTab.Padding = New System.Windows.Forms.Padding(3)
+        Me.EditorTab.Size = New System.Drawing.Size(464, 346)
+        Me.EditorTab.TabIndex = 4
+        Me.EditorTab.Text = "Ticket Editor"
+        Me.EditorTab.UseVisualStyleBackColor = True
         '
         'CheckTicketBtn
         '
@@ -490,25 +574,25 @@ Partial Class Form1
         Me.PrintLogoChk.Text = "Print logo"
         Me.PrintLogoChk.UseVisualStyleBackColor = True
         '
-        'TabPage1
+        'LabelTab
         '
-        Me.TabPage1.Controls.Add(Me.PrintLabelBtn)
-        Me.TabPage1.Controls.Add(Me.OccupationTxt)
-        Me.TabPage1.Controls.Add(Me.Label11)
-        Me.TabPage1.Controls.Add(Me.MediaTxt)
-        Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Controls.Add(Me.NameTxt)
-        Me.TabPage1.Controls.Add(Me.OccuLenLbl)
-        Me.TabPage1.Controls.Add(Me.MediaLenLbl)
-        Me.TabPage1.Controls.Add(Me.NameLenLbl)
-        Me.TabPage1.Controls.Add(Me.Label1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(464, 346)
-        Me.TabPage1.TabIndex = 5
-        Me.TabPage1.Text = "Label Printer"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.LabelTab.Controls.Add(Me.PrintLabelBtn)
+        Me.LabelTab.Controls.Add(Me.OccupationTxt)
+        Me.LabelTab.Controls.Add(Me.Label11)
+        Me.LabelTab.Controls.Add(Me.MediaTxt)
+        Me.LabelTab.Controls.Add(Me.Label7)
+        Me.LabelTab.Controls.Add(Me.NameTxt)
+        Me.LabelTab.Controls.Add(Me.OccuLenLbl)
+        Me.LabelTab.Controls.Add(Me.MediaLenLbl)
+        Me.LabelTab.Controls.Add(Me.NameLenLbl)
+        Me.LabelTab.Controls.Add(Me.Label1)
+        Me.LabelTab.Location = New System.Drawing.Point(4, 22)
+        Me.LabelTab.Name = "LabelTab"
+        Me.LabelTab.Padding = New System.Windows.Forms.Padding(3)
+        Me.LabelTab.Size = New System.Drawing.Size(464, 346)
+        Me.LabelTab.TabIndex = 5
+        Me.LabelTab.Text = "Label Printer"
+        Me.LabelTab.UseVisualStyleBackColor = True
         '
         'PrintLabelBtn
         '
@@ -594,19 +678,28 @@ Partial Class Form1
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Name"
         '
-        'TabPage2
+        'ExtrasTab
         '
-        Me.TabPage2.Controls.Add(Me.TextExBtn)
-        Me.TabPage2.Controls.Add(Me.CouponFormBtn)
-        Me.TabPage2.Controls.Add(Me.Label12)
-        Me.TabPage2.Controls.Add(Me.CameraOpenBtn)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(464, 346)
-        Me.TabPage2.TabIndex = 6
-        Me.TabPage2.Text = "Extras"
-        Me.TabPage2.UseVisualStyleBackColor = True
+        Me.ExtrasTab.Controls.Add(Me.TextExBtn)
+        Me.ExtrasTab.Controls.Add(Me.CouponFormBtn)
+        Me.ExtrasTab.Controls.Add(Me.Label12)
+        Me.ExtrasTab.Controls.Add(Me.CameraOpenBtn)
+        Me.ExtrasTab.Location = New System.Drawing.Point(4, 22)
+        Me.ExtrasTab.Name = "ExtrasTab"
+        Me.ExtrasTab.Padding = New System.Windows.Forms.Padding(3)
+        Me.ExtrasTab.Size = New System.Drawing.Size(464, 346)
+        Me.ExtrasTab.TabIndex = 6
+        Me.ExtrasTab.Text = "Extras"
+        Me.ExtrasTab.UseVisualStyleBackColor = True
+        '
+        'TextExBtn
+        '
+        Me.TextExBtn.Location = New System.Drawing.Point(7, 65)
+        Me.TextExBtn.Name = "TextExBtn"
+        Me.TextExBtn.Size = New System.Drawing.Size(116, 23)
+        Me.TextExBtn.TabIndex = 24
+        Me.TextExBtn.Text = "Text exception"
+        Me.TextExBtn.UseVisualStyleBackColor = True
         '
         'CouponFormBtn
         '
@@ -641,7 +734,7 @@ Partial Class Form1
         '
         'TicketsResetBtn
         '
-        Me.TicketsResetBtn.Location = New System.Drawing.Point(490, 108)
+        Me.TicketsResetBtn.Location = New System.Drawing.Point(490, 106)
         Me.TicketsResetBtn.Name = "TicketsResetBtn"
         Me.TicketsResetBtn.Size = New System.Drawing.Size(75, 23)
         Me.TicketsResetBtn.TabIndex = 22
@@ -682,25 +775,13 @@ Partial Class Form1
         Me.RollPicture.TabIndex = 21
         Me.RollPicture.TabStop = False
         '
-        'PictureBox1
+        'PrintDialog1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(7, 282)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox1.TabIndex = 21
-        Me.PictureBox1.TabStop = False
-        '
-        'TextExBtn
-        '
-        Me.TextExBtn.Location = New System.Drawing.Point(7, 65)
-        Me.TextExBtn.Name = "TextExBtn"
-        Me.TextExBtn.Size = New System.Drawing.Size(116, 23)
-        Me.TextExBtn.TabIndex = 24
-        Me.TextExBtn.Text = "Text exception"
-        Me.TextExBtn.UseVisualStyleBackColor = True
+        Me.PrintDialog1.UseEXDialog = True
         '
         'Form1
         '
+        Me.AcceptButton = Me.RegisterButton
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(605, 441)
@@ -717,20 +798,26 @@ Partial Class Form1
         Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "RaffleRaffle"
-        Me.TabPage4.ResumeLayout(False)
-        Me.TabPage4.PerformLayout()
+        Me.SettingsTab.ResumeLayout(False)
+        Me.SettingsTab.PerformLayout()
+        Me.PrinterSettingsBox.ResumeLayout(False)
+        Me.PrinterSettingsBox.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         CType(Me.FontSizeBar, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage3.ResumeLayout(False)
-        Me.TabPage3.PerformLayout()
-        Me.TabControl1.ResumeLayout(False)
-        Me.TabPage5.ResumeLayout(False)
-        Me.TabPage5.PerformLayout()
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
-        CType(Me.RollPicture, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MainTab.ResumeLayout(False)
+        Me.MainTab.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControl1.ResumeLayout(False)
+        Me.EditorTab.ResumeLayout(False)
+        Me.EditorTab.PerformLayout()
+        Me.LabelTab.ResumeLayout(False)
+        Me.LabelTab.PerformLayout()
+        Me.ExtrasTab.ResumeLayout(False)
+        Me.ExtrasTab.PerformLayout()
+        CType(Me.RollPicture, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -739,7 +826,7 @@ Partial Class Form1
     Friend WithEvents TotalTicketsLbl As Label
     Friend WithEvents StatusPing As Timer
     Friend WithEvents FontPciker As FontDialog
-    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents SettingsTab As TabPage
     Friend WithEvents DebugPrintBtn As Button
     Friend WithEvents DebugPrintTxt As TextBox
     Friend WithEvents PrinterNameTxt As TextBox
@@ -749,7 +836,7 @@ Partial Class Form1
     Friend WithEvents UsePrinterChk As CheckBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Button1 As Button
-    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents MainTab As TabPage
     Friend WithEvents PrintExactBtn As Button
     Friend WithEvents TicketNumberLbl As TextBox
     Friend WithEvents ListenOnTxt As TextBox
@@ -758,7 +845,7 @@ Partial Class Form1
     Friend WithEvents AutoCheck As CheckBox
     Friend WithEvents RegisterButton As Button
     Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents TabPage5 As TabPage
+    Friend WithEvents EditorTab As TabPage
     Friend WithEvents LogoPathTxt As TextBox
     Friend WithEvents PrintLogoChk As CheckBox
     Friend WithEvents Label8 As Label
@@ -776,7 +863,7 @@ Partial Class Form1
     Friend WithEvents AutoModeStatusLbl As Label
     Friend WithEvents AutoModePinger As Timer
     Friend WithEvents SyncListenChk As CheckBox
-    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents LabelTab As TabPage
     Friend WithEvents PrintLabelBtn As Button
     Friend WithEvents OccupationTxt As TextBox
     Friend WithEvents Label11 As Label
@@ -787,7 +874,7 @@ Partial Class Form1
     Friend WithEvents OccuLenLbl As Label
     Friend WithEvents MediaLenLbl As Label
     Friend WithEvents NameLenLbl As Label
-    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents ExtrasTab As TabPage
     Friend WithEvents Label12 As Label
     Friend WithEvents CameraOpenBtn As Button
     Friend WithEvents PictureBox1 As PictureBox
@@ -799,4 +886,11 @@ Partial Class Form1
     Friend WithEvents RemainRollLbl As Label
     Friend WithEvents RollPicture As PictureBox
     Friend WithEvents TextExBtn As Button
+    Friend WithEvents PickPrinterTxt As Button
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents PrintDialog1 As PrintDialog
+    Friend WithEvents LockLbl As Label
+    Friend WithEvents LockBtn As Label
+    Friend WithEvents PrinterSettingsBox As GroupBox
+    Friend WithEvents GroupBox2 As GroupBox
 End Class

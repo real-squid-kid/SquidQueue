@@ -12,6 +12,8 @@ Public Class Form1
     Public EstimateTime As New List(Of Long)
     Public EstimateResult As Long
     Public RollPercent As Double
+    Public CurrentPassword As String
+    Public Blocked As Boolean
     Private AutoCheckThread As Threading.Thread
     Dim AllSounds As String()
     Dim PreviousResult As String
@@ -28,6 +30,7 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         EstimateResult = 0
+        Blocked = False
         PictureBox1.Image = SystemIcons.Information.ToBitmap
         ElapsedTime = 0
         If My.Settings.PrinterInUse = Nothing Then LoadDefaults()
@@ -100,7 +103,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Form2.Show()
+        Form2.ShowDialog()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -394,7 +397,7 @@ Public Class Form1
 
     Private Sub CalibrationBtn_Click(sender As Object, e As EventArgs) Handles CalibrationBtn.Click
         CalibrationPage()
-        CalibrationForm.Show()
+        CalibrationForm.ShowDialog()
     End Sub
 
     Private Sub LogoPathTxt_TextChanged(sender As Object, e As EventArgs) Handles LogoPathTxt.TextChanged
@@ -630,7 +633,7 @@ Public Class Form1
     End Sub
 
     Private Sub CameraOpenBtn_Click(sender As Object, e As EventArgs) Handles CameraOpenBtn.Click
-        CameraForm.Show()
+        CameraForm.ShowDialog()
     End Sub
 
     Private Sub ThreadInfoChanger(ByVal ctl As Control, ByVal e As String)
@@ -710,15 +713,42 @@ Public Class Form1
     End Sub
 
     Private Sub CouponFormBtn_Click(sender As Object, e As EventArgs) Handles CouponFormBtn.Click
-        CouponForm.Show()
+        CouponForm.ShowDialog()
     End Sub
 
     Private Sub RollServiceBtn_Click(sender As Object, e As EventArgs) Handles RollServiceBtn.Click
-        ChangeRollForm.Show()
+        ChangeRollForm.ShowDialog()
     End Sub
 
     Private Sub TextExBtn_Click(sender As Object, e As EventArgs) Handles TextExBtn.Click
         Throw New Exception("OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!")
+    End Sub
+
+    Private Sub PickPrinterTxt_Click(sender As Object, e As EventArgs) Handles PickPrinterTxt.Click
+        PrintDialog1.ShowDialog()
+        PrinterNameTxt.Text = PrintDialog1.PrinterSettings.PrinterName
+    End Sub
+
+    Public Sub Block()
+        PrinterSettingsBox.Enabled = False
+        EditorTab.Enabled = False
+        LabelTab.Enabled = False
+        ExtrasTab.Enabled = False
+        LockBtn.Text = "🔒"
+        LockLbl.Text = "Press Lock to unlock controls."
+    End Sub
+
+    Public Sub Unblock()
+        PrinterSettingsBox.Enabled = True
+        EditorTab.Enabled = True
+        LabelTab.Enabled = True
+        ExtrasTab.Enabled = True
+        LockBtn.Text = "🔓"
+        LockLbl.Text = "Press Lock to lock settings and additional features."
+    End Sub
+
+    Private Sub LockBtn_Click(sender As Object, e As EventArgs) Handles LockBtn.Click
+        LockForm.ShowDialog()
     End Sub
 End Class
 
