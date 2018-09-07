@@ -11,4 +11,8 @@
         My.Settings.Save()
         Me.Close()
     End Sub
+
+    Private Sub ChangeRollForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DebugLbl.Text = "Debug stat (for nerds):" & My.Settings.RollRemaining
+    End Sub
 End Class

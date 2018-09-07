@@ -23,7 +23,7 @@ Public Class Form1
         TotalTickets += 1
         My.Settings.CurrentTicket = TotalTickets
         My.Settings.Save()
-        If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, 0)
+        PrintTicket(TotalTickets, 0)
         RegisterButton.Enabled = True
         ShowAsReady()
     End Sub
@@ -37,16 +37,16 @@ Public Class Form1
         TotalTickets = 0
         CurrentTicket = 0
         LogoPathTxt.Text = My.Settings.LogoPath
-        Try
-            UsePrinterChk.Checked = My.Settings.PrinterInUse
-        Catch
-            My.Settings.PrinterInUse = False
-        End Try
         SlipTitleTxt.Text = My.Settings.SlipTitle
         SlipDateTimeChk.Checked = My.Settings.PrintDateAndTime
         SlipFooterTxt.Text = My.Settings.SlipFooter
         RafflieChk.Checked = My.Settings.PrintRaffle
         SlipRaffleTxt.Text = My.Settings.RaffleComment
+        AlwaysRaffleChk.Checked = My.Settings.AlwaysRaffle
+        PrefixTxt.MaxLength = My.Settings.PrinterCalibrate(4)
+        PrefixTxt.Text = My.Settings.Prefix
+        PrefixChk.Checked = My.Settings.PrintPrefix - 1
+        PrintLogoChk.Checked = My.Settings.PrintLogo
         UpdateLabel()
     End Sub
 
@@ -75,31 +75,6 @@ Public Class Form1
                 My.Settings.RollTotal = 0
             End Try
         End If
-        If UsePrinterChk.Checked = False Then
-            PrintExactBtn.Enabled = False
-            PrinterNameTxt.Enabled = False
-            TicketNumberLbl.Enabled = False
-            Button2.Enabled = False
-            CalibrationBtn.Enabled = False
-            PrintLogoChk.Enabled = False
-            LogoPathTxt.Enabled = False
-            PrinterFontBtn.Enabled = False
-            DebugPrintBtn.Enabled = False
-            DebugPrintTxt.Enabled = False
-            CheckTicketBtn.Enabled = False
-        Else
-            PrintExactBtn.Enabled = True
-            PrinterNameTxt.Enabled = True
-            TicketNumberLbl.Enabled = True
-            Button2.Enabled = True
-            CalibrationBtn.Enabled = True
-            PrintLogoChk.Enabled = True
-            LogoPathTxt.Enabled = True
-            PrinterFontBtn.Enabled = True
-            DebugPrintBtn.Enabled = True
-            DebugPrintTxt.Enabled = True
-            CheckTicketBtn.Enabled = True
-        End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -112,7 +87,7 @@ Public Class Form1
         With P
             'Printing Logo
             .RTL = False
-            If PrintLogoChk.Enabled = True Then .PrintLogo()
+            If My.Settings.PrintLogo = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
@@ -164,11 +139,11 @@ Public Class Form1
         With P
             'Printing Logo
             .RTL = False
-            If PrintLogoChk.Enabled = True Then .PrintLogo()
+            If My.Settings.PrintLogo = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
-            .FeedPaper(4)
+            .FeedPaper(1)
             .AlignLeft()
             .BigFont()
             .Bold = True
@@ -189,6 +164,9 @@ Public Class Form1
             .Bold = True
             .HugeFont()
             .AlignCenter()
+            If My.Settings.PrintPrefix = True Then
+                .WriteLine(My.Settings.Prefix & "-")
+            End If
             .WriteLine(e)
             'Estimated time
             .Bold = False
@@ -211,7 +189,7 @@ Public Class Form1
                     .FeedPaper(1)
                     .HugeFont()
                     .AlignCenter()
-                    If PrintLogoChk.Enabled = True Then .PrintLogo()
+                    If My.Settings.PrintLogo = True Then .PrintLogo()
                     .FeedPaper(1)
                     .Bold = True
                     .WriteLine(e)
@@ -223,19 +201,22 @@ Public Class Form1
                     .CutPaper()
                     .EndDoc()
                 Else
-                    Dim Result As Integer = MessageBox.Show("Press OK to print the raffle part.", "RaffleRaffle", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
-                    If Result = DialogResult.OK Then
+                    If My.Settings.AlwaysRaffle = True Then
                         .RTL = False
                         'Raffle
                         .DrawLine()
                         .FeedPaper(1)
                         .DrawLine()
                         .FeedPaper(1)
+                        .NormalFont()
+                        If My.Settings.PrintDateAndTime Then .WriteLine(DateTime.Now.ToString)
                         .HugeFont()
                         .AlignCenter()
-                        If PrintLogoChk.Enabled = True Then .PrintLogo()
-                        .FeedPaper(1)
+                        If My.Settings.PrintLogo = True Then .PrintLogo()
                         .Bold = True
+                        If My.Settings.PrintPrefix = True Then
+                            .WriteLine(My.Settings.Prefix & "-")
+                        End If
                         .WriteLine(e)
                         .NormalFont()
                         .Bold = False
@@ -244,9 +225,36 @@ Public Class Form1
                         .FeedPaper(1)
                         .CutPaper()
                         .EndDoc()
+                    Else
+                        Dim Result As Integer = MessageBox.Show("Press OK to print the raffle part.", "RaffleRaffle", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+                        If Result = DialogResult.OK Then
+                            .RTL = False
+                            'Raffle
+                            .DrawLine()
+                            .FeedPaper(1)
+                            .DrawLine()
+                            .FeedPaper(1)
+                            .NormalFont()
+                            If My.Settings.PrintDateAndTime Then .WriteLine(DateTime.Now.ToString)
+                            .HugeFont()
+                            .AlignCenter()
+                            If My.Settings.PrintLogo = True Then .PrintLogo()
+                            .Bold = True
+                            If My.Settings.PrintPrefix = True Then
+                                .WriteLine(My.Settings.Prefix & "-")
+                            End If
+                            .WriteLine(e)
+                            .NormalFont()
+                            .Bold = False
+                            .AlignLeft()
+                            .WriteLine(My.Settings.RaffleComment)
+                            .FeedPaper(1)
+                            .CutPaper()
+                            .EndDoc()
+                        End If
                     End If
                 End If
-            End If
+                End If
         End With
     End Sub
 
@@ -255,7 +263,7 @@ Public Class Form1
         With P
             'Printing Logo
             .RTL = False
-            If PrintLogoChk.Enabled = True Then .PrintLogo()
+            If My.Settings.PrintLogo = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
@@ -324,16 +332,6 @@ Public Class Form1
         ShowAsReady()
     End Sub
 
-    Private Sub UsePrinterChk_CheckedChanged(sender As Object, e As EventArgs) Handles UsePrinterChk.CheckedChanged
-        If UsePrinterChk.Checked = True Then
-            My.Settings.PrinterInUse = True
-            MessageBox.Show("Please be informed that this software was written with one particular printer in mind, and other printers could produce undesirable result. You can change the code dedicated to printing solution to suit your needs. Check the 'About Me' section for the source code.", "RaffleRaffle", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Else
-            My.Settings.PrinterInUse = False
-        End If
-
-    End Sub
-
     Private Sub PrinterNameTxt_TextChanged(sender As Object, e As EventArgs) Handles PrinterNameTxt.TextChanged
         My.Settings.PrinterName = PrinterNameTxt.Text
     End Sub
@@ -345,7 +343,7 @@ Public Class Form1
         With P
             'Printing Logo
             .RTL = False
-            If PrintLogoChk.Enabled = True Then .PrintLogo()
+            If My.Settings.PrintLogo = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
@@ -407,7 +405,7 @@ Public Class Form1
         With My.Settings
             .PrinterName = "POS-58"
             .LogoPath = Nothing
-            .PrinterInUse = False
+            .PrinterInUse = True
             .PrinterFont = "Times New Roman"
             .PrinterCalibrate(0) = 7
             .PrinterCalibrate(1) = 18
@@ -569,12 +567,12 @@ Public Class Form1
                     TotalTickets = result
                     My.Settings.CurrentTicket = TotalTickets
                     My.Settings.Save()
-                    If My.Settings.PrinterInUse Then PrintTicket(result, est)
+                    PrintTicket(result, est)
                 Else
                     TotalTickets += 1
                     My.Settings.CurrentTicket = TotalTickets
                     My.Settings.Save()
-                    If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
+                    PrintTicket(TotalTickets, est)
                 End If
 
                 RegisterButton.Enabled = True
@@ -612,10 +610,10 @@ Public Class Form1
                     Dim est As Byte = 0
                     If SyncListenChk.Checked Then
                         TotalTickets = result
-                        If My.Settings.PrinterInUse Then PrintTicket(result, est)
+                        PrintTicket(result, est)
                     Else
                         TotalTickets += 1
-                        If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
+                        PrintTicket(TotalTickets, est)
                     End If
 
                     RegisterButton.Enabled = True
@@ -749,6 +747,32 @@ Public Class Form1
 
     Private Sub LockBtn_Click(sender As Object, e As EventArgs) Handles LockBtn.Click
         LockForm.ShowDialog()
+    End Sub
+
+    Private Sub AlwaysRaffleChk_CheckedChanged(sender As Object, e As EventArgs) Handles AlwaysRaffleChk.CheckedChanged
+        My.Settings.AlwaysRaffle = AlwaysRaffleChk.Checked
+    End Sub
+
+    Private Sub PrefixChk_CheckedChanged(sender As Object, e As EventArgs) Handles PrefixChk.CheckedChanged
+        My.Settings.PrintPrefix = PrefixChk.Checked
+    End Sub
+
+    Private Sub PrefixTxt_TextChanged(sender As Object, e As EventArgs) Handles PrefixTxt.TextChanged
+        My.Settings.Prefix = PrefixTxt.Text
+    End Sub
+
+    Private Sub PrintLogoChk_CheckedChanged(sender As Object, e As EventArgs) Handles PrintLogoChk.CheckedChanged
+        My.Settings.PrintLogo = PrintLogoChk.Checked
+    End Sub
+
+    Private Sub PickImageBtn_Click(sender As Object, e As EventArgs) Handles PickImageBtn.Click
+        Dim open As New OpenFileDialog
+        open.Title = "Select an image"
+        open.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyPictures
+        open.Filter = "Images|*.jpg;*.png;*.bmp"
+        If open.ShowDialog() = DialogResult.OK Then
+            LogoPathTxt.Text = open.FileName
+        End If
     End Sub
 End Class
 

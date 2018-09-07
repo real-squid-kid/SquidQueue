@@ -34,7 +34,6 @@ Partial Class Form1
         Me.PrinterSettingsBox = New System.Windows.Forms.GroupBox()
         Me.PickPrinterTxt = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.UsePrinterChk = New System.Windows.Forms.CheckBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.CalibrationBtn = New System.Windows.Forms.Button()
         Me.PrinterFontBtn = New System.Windows.Forms.Button()
@@ -47,6 +46,9 @@ Partial Class Form1
         Me.RollServiceBtn = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.MainTab = New System.Windows.Forms.TabPage()
+        Me.AlwaysRaffleChk = New System.Windows.Forms.CheckBox()
+        Me.PrefixTxt = New System.Windows.Forms.TextBox()
+        Me.PrefixChk = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.AutoCheck = New System.Windows.Forms.CheckBox()
         Me.AutoModeStatusLbl = New System.Windows.Forms.Label()
@@ -95,6 +97,7 @@ Partial Class Form1
         Me.RemainRollLbl = New System.Windows.Forms.Label()
         Me.RollPicture = New System.Windows.Forms.PictureBox()
         Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
+        Me.PickImageBtn = New System.Windows.Forms.Button()
         Me.SettingsTab.SuspendLayout()
         Me.PrinterSettingsBox.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -170,21 +173,20 @@ Partial Class Form1
         '
         Me.PrinterSettingsBox.Controls.Add(Me.PickPrinterTxt)
         Me.PrinterSettingsBox.Controls.Add(Me.Label5)
-        Me.PrinterSettingsBox.Controls.Add(Me.UsePrinterChk)
         Me.PrinterSettingsBox.Controls.Add(Me.Button2)
         Me.PrinterSettingsBox.Controls.Add(Me.CalibrationBtn)
         Me.PrinterSettingsBox.Controls.Add(Me.PrinterFontBtn)
         Me.PrinterSettingsBox.Controls.Add(Me.PrinterNameTxt)
         Me.PrinterSettingsBox.Location = New System.Drawing.Point(6, 3)
         Me.PrinterSettingsBox.Name = "PrinterSettingsBox"
-        Me.PrinterSettingsBox.Size = New System.Drawing.Size(271, 149)
+        Me.PrinterSettingsBox.Size = New System.Drawing.Size(271, 122)
         Me.PrinterSettingsBox.TabIndex = 27
         Me.PrinterSettingsBox.TabStop = False
         Me.PrinterSettingsBox.Text = "Printer settings"
         '
         'PickPrinterTxt
         '
-        Me.PickPrinterTxt.Location = New System.Drawing.Point(185, 39)
+        Me.PickPrinterTxt.Location = New System.Drawing.Point(187, 18)
         Me.PickPrinterTxt.Name = "PickPrinterTxt"
         Me.PickPrinterTxt.Size = New System.Drawing.Size(75, 23)
         Me.PickPrinterTxt.TabIndex = 25
@@ -194,25 +196,15 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(5, 44)
+        Me.Label5.Location = New System.Drawing.Point(7, 23)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(68, 13)
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "Printer Name"
         '
-        'UsePrinterChk
-        '
-        Me.UsePrinterChk.AutoSize = True
-        Me.UsePrinterChk.Location = New System.Drawing.Point(6, 19)
-        Me.UsePrinterChk.Name = "UsePrinterChk"
-        Me.UsePrinterChk.Size = New System.Drawing.Size(91, 17)
-        Me.UsePrinterChk.TabIndex = 3
-        Me.UsePrinterChk.Text = "Enable printer"
-        Me.UsePrinterChk.UseVisualStyleBackColor = True
-        '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(6, 107)
+        Me.Button2.Location = New System.Drawing.Point(8, 86)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(104, 23)
         Me.Button2.TabIndex = 5
@@ -221,7 +213,7 @@ Partial Class Form1
         '
         'CalibrationBtn
         '
-        Me.CalibrationBtn.Location = New System.Drawing.Point(144, 78)
+        Me.CalibrationBtn.Location = New System.Drawing.Point(146, 57)
         Me.CalibrationBtn.Name = "CalibrationBtn"
         Me.CalibrationBtn.Size = New System.Drawing.Size(116, 23)
         Me.CalibrationBtn.TabIndex = 6
@@ -230,7 +222,7 @@ Partial Class Form1
         '
         'PrinterFontBtn
         '
-        Me.PrinterFontBtn.Location = New System.Drawing.Point(6, 78)
+        Me.PrinterFontBtn.Location = New System.Drawing.Point(8, 57)
         Me.PrinterFontBtn.Name = "PrinterFontBtn"
         Me.PrinterFontBtn.Size = New System.Drawing.Size(104, 23)
         Me.PrinterFontBtn.TabIndex = 10
@@ -239,7 +231,7 @@ Partial Class Form1
         '
         'PrinterNameTxt
         '
-        Me.PrinterNameTxt.Location = New System.Drawing.Point(79, 41)
+        Me.PrinterNameTxt.Location = New System.Drawing.Point(81, 20)
         Me.PrinterNameTxt.Name = "PrinterNameTxt"
         Me.PrinterNameTxt.Size = New System.Drawing.Size(100, 20)
         Me.PrinterNameTxt.TabIndex = 2
@@ -251,9 +243,9 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.Label18)
         Me.GroupBox2.Controls.Add(Me.FontSizeBar)
         Me.GroupBox2.Controls.Add(Me.DebugPrintBtn)
-        Me.GroupBox2.Location = New System.Drawing.Point(6, 158)
+        Me.GroupBox2.Location = New System.Drawing.Point(6, 131)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(271, 144)
+        Me.GroupBox2.Size = New System.Drawing.Size(271, 171)
         Me.GroupBox2.TabIndex = 26
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Debug printer"
@@ -264,14 +256,14 @@ Partial Class Form1
         Me.DebugPrintTxt.Multiline = True
         Me.DebugPrintTxt.Name = "DebugPrintTxt"
         Me.DebugPrintTxt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.DebugPrintTxt.Size = New System.Drawing.Size(226, 52)
+        Me.DebugPrintTxt.Size = New System.Drawing.Size(254, 79)
         Me.DebugPrintTxt.TabIndex = 11
         Me.DebugPrintTxt.Text = "Jackdaws love my big sphinx of quartz. 1234567890"
         '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(13, 82)
+        Me.Label18.Location = New System.Drawing.Point(13, 109)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(52, 13)
         Me.Label18.TabIndex = 14
@@ -281,7 +273,7 @@ Partial Class Form1
         '
         Me.FontSizeBar.AutoSize = False
         Me.FontSizeBar.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.FontSizeBar.Location = New System.Drawing.Point(71, 77)
+        Me.FontSizeBar.Location = New System.Drawing.Point(71, 104)
         Me.FontSizeBar.Maximum = 4
         Me.FontSizeBar.Name = "FontSizeBar"
         Me.FontSizeBar.Size = New System.Drawing.Size(104, 38)
@@ -290,7 +282,7 @@ Partial Class Form1
         '
         'DebugPrintBtn
         '
-        Me.DebugPrintBtn.Location = New System.Drawing.Point(135, 115)
+        Me.DebugPrintBtn.Location = New System.Drawing.Point(135, 142)
         Me.DebugPrintBtn.Name = "DebugPrintBtn"
         Me.DebugPrintBtn.Size = New System.Drawing.Size(99, 23)
         Me.DebugPrintBtn.TabIndex = 12
@@ -318,6 +310,9 @@ Partial Class Form1
         '
         'MainTab
         '
+        Me.MainTab.Controls.Add(Me.AlwaysRaffleChk)
+        Me.MainTab.Controls.Add(Me.PrefixTxt)
+        Me.MainTab.Controls.Add(Me.PrefixChk)
         Me.MainTab.Controls.Add(Me.GroupBox1)
         Me.MainTab.Controls.Add(Me.PrintExactBtn)
         Me.MainTab.Controls.Add(Me.TicketNumberLbl)
@@ -330,6 +325,33 @@ Partial Class Form1
         Me.MainTab.Text = "Register"
         Me.MainTab.UseVisualStyleBackColor = True
         '
+        'AlwaysRaffleChk
+        '
+        Me.AlwaysRaffleChk.AutoSize = True
+        Me.AlwaysRaffleChk.Location = New System.Drawing.Point(265, 205)
+        Me.AlwaysRaffleChk.Name = "AlwaysRaffleChk"
+        Me.AlwaysRaffleChk.Size = New System.Drawing.Size(129, 17)
+        Me.AlwaysRaffleChk.TabIndex = 25
+        Me.AlwaysRaffleChk.Text = "Always print raffle part"
+        Me.AlwaysRaffleChk.UseVisualStyleBackColor = True
+        '
+        'PrefixTxt
+        '
+        Me.PrefixTxt.Location = New System.Drawing.Point(344, 179)
+        Me.PrefixTxt.Name = "PrefixTxt"
+        Me.PrefixTxt.Size = New System.Drawing.Size(100, 20)
+        Me.PrefixTxt.TabIndex = 24
+        '
+        'PrefixChk
+        '
+        Me.PrefixChk.AutoSize = True
+        Me.PrefixChk.Location = New System.Drawing.Point(265, 182)
+        Me.PrefixChk.Name = "PrefixChk"
+        Me.PrefixChk.Size = New System.Drawing.Size(73, 17)
+        Me.PrefixChk.TabIndex = 23
+        Me.PrefixChk.Text = "Add prefix"
+        Me.PrefixChk.UseVisualStyleBackColor = True
+        '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.AutoCheck)
@@ -340,7 +362,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.ListenOnTxt)
         Me.GroupBox1.Location = New System.Drawing.Point(11, 170)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(448, 126)
+        Me.GroupBox1.Size = New System.Drawing.Size(248, 126)
         Me.GroupBox1.TabIndex = 22
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Automatic mode"
@@ -396,7 +418,7 @@ Partial Class Form1
         '
         Me.ListenOnTxt.Location = New System.Drawing.Point(65, 13)
         Me.ListenOnTxt.Name = "ListenOnTxt"
-        Me.ListenOnTxt.Size = New System.Drawing.Size(377, 20)
+        Me.ListenOnTxt.Size = New System.Drawing.Size(165, 20)
         Me.ListenOnTxt.TabIndex = 3
         '
         'PrintExactBtn
@@ -449,6 +471,7 @@ Partial Class Form1
         '
         'EditorTab
         '
+        Me.EditorTab.Controls.Add(Me.PickImageBtn)
         Me.EditorTab.Controls.Add(Me.CheckTicketBtn)
         Me.EditorTab.Controls.Add(Me.Label8)
         Me.EditorTab.Controls.Add(Me.RafflieChk)
@@ -561,7 +584,7 @@ Partial Class Form1
         '
         Me.LogoPathTxt.Location = New System.Drawing.Point(142, 22)
         Me.LogoPathTxt.Name = "LogoPathTxt"
-        Me.LogoPathTxt.Size = New System.Drawing.Size(199, 20)
+        Me.LogoPathTxt.Size = New System.Drawing.Size(118, 20)
         Me.LogoPathTxt.TabIndex = 12
         '
         'PrintLogoChk
@@ -698,7 +721,7 @@ Partial Class Form1
         Me.TextExBtn.Name = "TextExBtn"
         Me.TextExBtn.Size = New System.Drawing.Size(116, 23)
         Me.TextExBtn.TabIndex = 24
-        Me.TextExBtn.Text = "Text exception"
+        Me.TextExBtn.Text = "Test exception"
         Me.TextExBtn.UseVisualStyleBackColor = True
         '
         'CouponFormBtn
@@ -779,6 +802,15 @@ Partial Class Form1
         '
         Me.PrintDialog1.UseEXDialog = True
         '
+        'PickImageBtn
+        '
+        Me.PickImageBtn.Location = New System.Drawing.Point(266, 20)
+        Me.PickImageBtn.Name = "PickImageBtn"
+        Me.PickImageBtn.Size = New System.Drawing.Size(75, 23)
+        Me.PickImageBtn.TabIndex = 18
+        Me.PickImageBtn.Text = "Pick..."
+        Me.PickImageBtn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AcceptButton = Me.RegisterButton
@@ -833,7 +865,6 @@ Partial Class Form1
     Friend WithEvents PrinterFontBtn As Button
     Friend WithEvents CalibrationBtn As Button
     Friend WithEvents Button2 As Button
-    Friend WithEvents UsePrinterChk As CheckBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents MainTab As TabPage
@@ -893,4 +924,8 @@ Partial Class Form1
     Friend WithEvents LockBtn As Label
     Friend WithEvents PrinterSettingsBox As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents AlwaysRaffleChk As CheckBox
+    Friend WithEvents PrefixTxt As TextBox
+    Friend WithEvents PrefixChk As CheckBox
+    Friend WithEvents PickImageBtn As Button
 End Class

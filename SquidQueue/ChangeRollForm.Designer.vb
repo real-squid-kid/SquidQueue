@@ -27,6 +27,7 @@ Partial Class ChangeRollForm
         Me.RollLengthTxt = New System.Windows.Forms.TextBox()
         Me.OKButton = New System.Windows.Forms.Button()
         Me.NoTrackBtn = New System.Windows.Forms.Button()
+        Me.DebugLbl = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -75,11 +76,22 @@ Partial Class ChangeRollForm
         Me.NoTrackBtn.Text = "I don't want roll tracking for now"
         Me.NoTrackBtn.UseVisualStyleBackColor = True
         '
+        'DebugLbl
+        '
+        Me.DebugLbl.AutoSize = True
+        Me.DebugLbl.Location = New System.Drawing.Point(15, 230)
+        Me.DebugLbl.Name = "DebugLbl"
+        Me.DebugLbl.Size = New System.Drawing.Size(39, 13)
+        Me.DebugLbl.TabIndex = 4
+        Me.DebugLbl.Text = "Label2"
+        '
         'ChangeRollForm
         '
+        Me.AcceptButton = Me.OKButton
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(491, 254)
+        Me.Controls.Add(Me.DebugLbl)
         Me.Controls.Add(Me.NoTrackBtn)
         Me.Controls.Add(Me.OKButton)
         Me.Controls.Add(Me.RollLengthTxt)
@@ -99,4 +111,5 @@ Partial Class ChangeRollForm
     Friend WithEvents RollLengthTxt As TextBox
     Friend WithEvents OKButton As Button
     Friend WithEvents NoTrackBtn As Button
+    Friend WithEvents DebugLbl As Label
 End Class
