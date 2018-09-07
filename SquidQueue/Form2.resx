@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Label3.Text" xml:space="preserve">
+    <value>A ticket printing software for executing raffles. 
+(initially an open-source electronic queue management 
+program. Will support working on a separate
+computer, ticket printing and customized
+branding (via branches).
+
+Distributed under GNU GPL 3.0 license.</value>
+  </data>
 </root>

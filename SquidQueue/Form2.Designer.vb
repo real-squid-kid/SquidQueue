@@ -22,6 +22,7 @@ Partial Class Form2
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -46,9 +47,9 @@ Partial Class Form2
         Me.Label2.Font = New System.Drawing.Font("Arial Narrow", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.Label2.Location = New System.Drawing.Point(14, 53)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(328, 25)
+        Me.Label2.Size = New System.Drawing.Size(117, 25)
         Me.Label2.TabIndex = 0
-        Me.Label2.Text = "SquidQueue version 0.4.2, raffle branch"
+        Me.Label2.Text = "Version 0.4.6"
         '
         'Label3
         '
@@ -56,18 +57,16 @@ Partial Class Form2
         Me.Label3.Font = New System.Drawing.Font("Arial Narrow", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.Label3.Location = New System.Drawing.Point(15, 122)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(294, 120)
+        Me.Label3.Size = New System.Drawing.Size(339, 140)
         Me.Label3.TabIndex = 0
-        Me.Label3.Text = "An open-source electronic queue management " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "program. Will support working on a s" &
-    "eparate" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "computer, ticket printing and customized" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "branding (via branches)." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "D" &
-    "istributed under GNU GPL 3.0 license."
+        Me.Label3.Text = resources.GetString("Label3.Text")
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Arial Narrow", 12.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.Label4.Location = New System.Drawing.Point(15, 261)
+        Me.Label4.Location = New System.Drawing.Point(15, 277)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(150, 20)
         Me.Label4.TabIndex = 0
@@ -79,9 +78,9 @@ Partial Class Form2
         Me.Label5.Font = New System.Drawing.Font("Arial Narrow", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.Label5.Location = New System.Drawing.Point(15, 87)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(274, 20)
+        Me.Label5.Size = New System.Drawing.Size(205, 20)
         Me.Label5.TabIndex = 0
-        Me.Label5.Text = "Original branch by Vasily ""SquidKid"" Makrov"
+        Me.Label5.Text = "Original branch by Greggory Lee"
         '
         'Label6
         '
