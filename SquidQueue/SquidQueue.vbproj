@@ -8,12 +8,12 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>SquidQueue.My.MyApplication</StartupObject>
     <RootNamespace>SquidQueue</RootNamespace>
-    <AssemblyName>SquidQueue</AssemblyName>
+    <AssemblyName>RaffleRaffle</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>C:\Users\vasilymakrov\Desktop\Deploy\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -24,8 +24,9 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>0.2.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -35,7 +36,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>SquidQueue.xml</DocumentationFile>
+    <DocumentationFile>RaffleRaffle.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -45,7 +46,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>SquidQueue.xml</DocumentationFile>
+    <DocumentationFile>RaffleRaffle.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -66,16 +67,28 @@
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>871AE59494BF4634A63713C1A0712CA2699EB763</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>SquidQueue_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FL_PowerPacks, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\FL_PowerPacks.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.PointOfService, Version=1.12.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Point Of Service\SDK\Microsoft.PointOfService.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic.Compatibility" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Microsoft.VisualBasic.PowerPacks.Vs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -85,9 +98,11 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WebCam_Capture">
+      <HintPath>..\..\WebCam_Capture.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Import Include="Microsoft.PointOfService" />
     <Import Include="Microsoft.VisualBasic.Compatibility.VB6" />
     <Import Include="System" />
     <Import Include="System.Collections.Generic" />
@@ -106,7 +121,31 @@
     <Compile Include="CalibrationForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CameraForm.Designer.vb">
+      <DependentUpon>CameraForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CameraForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeRollForm.Designer.vb">
+      <DependentUpon>ChangeRollForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeRollForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Class1.vb" />
+    <Compile Include="CouponForm.Designer.vb">
+      <DependentUpon>CouponForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CouponForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrashFrom.Designer.vb">
+      <DependentUpon>CrashFrom.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrashFrom.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +157,12 @@
       <DependentUpon>Form2.vb</DependentUpon>
     </Compile>
     <Compile Include="Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LockForm.Designer.vb">
+      <DependentUpon>LockForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LockForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -141,23 +186,33 @@
     <Compile Include="RunForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screen.Designer.vb">
-      <DependentUpon>Screen.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Screen.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Settings.vb" />
+    <Compile Include="WebCamClass.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CalibrationForm.resx">
       <DependentUpon>CalibrationForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CameraForm.resx">
+      <DependentUpon>CameraForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangeRollForm.resx">
+      <DependentUpon>ChangeRollForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CouponForm.resx">
+      <DependentUpon>CouponForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrashFrom.resx">
+      <DependentUpon>CrashFrom.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LockForm.resx">
+      <DependentUpon>LockForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -167,9 +222,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RunForm.resx">
       <DependentUpon>RunForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Screen.resx">
-      <DependentUpon>Screen.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +238,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="SquidQueue_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\train_station.wav" />
@@ -204,6 +257,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Custom-Icon-Design-Pretty-Office-2-My-tickets.ico" />
+    <None Include="Resources\Gregg_bod_stairbounce_dead.png" />
+    <None Include="Resources\rawr.jpg" />
+    <None Include="Resources\calibration.bmp" />
+    <None Include="Resources\top.bmp" />
+    <None Include="Resources\bottom.bmp" />
     <None Include="Resources\background.jpg" />
     <None Include="Resources\run.wav" />
     <None Include="Resources\run.jpg" />

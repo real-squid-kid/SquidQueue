@@ -1,7 +1,8 @@
 ﻿Imports System.Drawing
 Imports Microsoft.VisualBasic.PowerPacks.Printing.Compatibility.VB6
 Imports System.IO
-
+Imports System.Net.Sockets
+Imports System.Text
 Public Class Form1
 
     Public CurrentTicket As Long
@@ -10,55 +11,31 @@ Public Class Form1
     Public ElapsedTime As Long
     Public EstimateTime As New List(Of Long)
     Public EstimateResult As Long
+    Public RollPercent As Double
+    Public CurrentPassword As String
+    Public Blocked As Boolean
+    Private AutoCheckThread As Threading.Thread
     Dim AllSounds As String()
     Dim PreviousResult As String
 
-    Private Sub ShowScreenBtn_Click(sender As Object, e As EventArgs) Handles ShowScreenBtn.Click
-        Screen.Show()
-    End Sub
-
-    Private Sub ClockCheck_CheckedChanged(sender As Object, e As EventArgs) Handles ClockCheck.CheckedChanged
-        If ClockCheck.Checked = True Then
-            Screen.ClockLabel.Visible = True
-        Else
-            Screen.ClockLabel.Visible = False
-        End If
-    End Sub
-
-    Private Sub CustomCheck_CheckedChanged(sender As Object, e As EventArgs) Handles CustomCheck.CheckedChanged
-        If CustomCheck.Checked = True Then
-            Screen.CustomLabel.Visible = True
-        Else
-            Screen.CustomLabel.Visible = False
-        End If
-    End Sub
-
-    Private Sub CustomLabel_TextChanged(sender As Object, e As EventArgs) Handles CustomLabel.TextChanged
-        My.Settings.ScreenLabel = CustomLabel.Text
-        Screen.CustomLabel.Text = My.Settings.ScreenLabel
-    End Sub
-
     Private Sub RegisterButton_Click(sender As Object, e As EventArgs) Handles RegisterButton.Click
-        TotalTickets = TotalTickets + 1
-        Dim est As Byte = 0
-        If AutoEstimateRdo.Checked Then est = 2
-        If ManualEstimateRdo.Checked Then est = 1
-        If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
+        ShowAsBusy()
+        TotalTickets += 1
+        My.Settings.CurrentTicket = TotalTickets
+        My.Settings.Save()
+        If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, 0)
         RegisterButton.Enabled = True
-        ReEnableTimer.Enabled = True
+        ShowAsReady()
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        UseImageTxt.Text = My.Settings.UseImagePath
-        FlashScreenChk.Checked = My.Settings.ScreenFlash
-        UseImageLbl.Checked = My.Settings.UseImage
-        ScreenEstimatedChk.Checked = My.Settings.ShowEstimatedTime
         EstimateResult = 0
+        Blocked = False
+        PictureBox1.Image = SystemIcons.Information.ToBitmap
         ElapsedTime = 0
         If My.Settings.PrinterInUse = Nothing Then LoadDefaults()
         TotalTickets = 0
         CurrentTicket = 0
-        CustomLabel.Text = My.Settings.ScreenLabel
         LogoPathTxt.Text = My.Settings.LogoPath
         Try
             UsePrinterChk.Checked = My.Settings.PrinterInUse
@@ -70,61 +47,34 @@ Public Class Form1
         SlipFooterTxt.Text = My.Settings.SlipFooter
         RafflieChk.Checked = My.Settings.PrintRaffle
         SlipRaffleTxt.Text = My.Settings.RaffleComment
-        SoundList.Items.Add("None")
-        SoundList.Items.Add("Default")
-        Dim path As String = Directory.GetCurrentDirectory
-        path &= "\sounds\"
-        AllSounds = Directory.GetFiles(path)
-        For Each a In AllSounds
-            Dim m As String() = a.Split("\")
-            SoundList.Items.Add(m(m.GetUpperBound(0)))
-        Next
-    End Sub
-
-    Public Function SoundCrop(e As String)
-        Dim ret As String
-        Dim a As String() = e.Split("\")
-        ret = a(a.GetUpperBound(0))
-        Return ret
-    End Function
-
-    Private Sub ReEnableTimer_Tick(sender As Object, e As EventArgs) Handles ReEnableTimer.Tick
-
-        RegisterButton.Enabled = True
-        RegisterButton.Text = "Register another ticket"
-        If TotalTickets > 0 Then
-            ServeButton.Text = "Serve"
-            ServeButton.Enabled = True
-        End If
-
-    End Sub
-
-    Private Sub ServeButton_Click(sender As Object, e As EventArgs) Handles ServeButton.Click
-        If TotalTickets = CurrentTicket Then
-            ServeButton.Text = "Can't serve, no more free tickets"
-            ReEnableTimer.Enabled = True
-            ServeButton.Enabled = False
-            Exit Sub
-        End If
-        SecsCount.Start()
-        EstimateTime.Add(ElapsedTime)
-        ElapsedTime = 0
-        CurrentTicket = CurrentTicket + 1
-        Screen.CallOut(CurrentTicket)
-        'count estimate time
-        EstimateResult = 0
-        For Each n In EstimateTime
-            EstimateResult += n
-        Next
-        EstimateResult = Math.Round(EstimateResult / (EstimateTime.Count) / 60)
-        EstimateResultLbl.Text = ToTime(EstimateResult)
+        UpdateLabel()
     End Sub
 
     Private Sub StatusPing_Tick(sender As Object, e As EventArgs) Handles StatusPing.Tick
         QueueCount = TotalTickets - CurrentTicket
-        QueueCountLbl.Text = QueueCount
-        CurrentTicketLbl.Text = CurrentTicket
         TotalTicketsLbl.Text = TotalTickets
+        If My.Settings.RollRemaining = -1 Then
+            RemainRollLbl.Text = "---"
+            RemainRollProgress.Style = ProgressBarStyle.Marquee
+            RollPicture.Image = SystemIcons.Asterisk.ToBitmap
+        Else
+            Try
+                RemainRollProgress.Style = ProgressBarStyle.Continuous
+
+                RollPercent = Math.Ceiling(My.Settings.RollRemaining / My.Settings.RollTotal * 100)
+                RemainRollProgress.Value = RollPercent
+                RemainRollLbl.Text = RollPercent & "%"
+                If RollPercent < 11 Then
+                    RollPicture.Image = SystemIcons.Warning.ToBitmap()
+                Else
+                    RollPicture.Image = SystemIcons.Asterisk.ToBitmap
+                End If
+            Catch ex As Exception
+                MessageBox.Show("We found an error in tracking roll: " & ex.Message & ". The settings were reset to non-trackable. Sorry!", "RaffleRaffle", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                My.Settings.RollRemaining = -1
+                My.Settings.RollTotal = 0
+            End Try
+        End If
         If UsePrinterChk.Checked = False Then
             PrintExactBtn.Enabled = False
             PrinterNameTxt.Enabled = False
@@ -137,11 +87,6 @@ Public Class Form1
             DebugPrintBtn.Enabled = False
             DebugPrintTxt.Enabled = False
             CheckTicketBtn.Enabled = False
-            NoEstimateRdo.Checked = True
-            NoEstimateRdo.Enabled = False
-            AutoEstimateRdo.Enabled = False
-            ManualEstimateRdo.Enabled = False
-            ManualEstimateTxt.Enabled = False
         Else
             PrintExactBtn.Enabled = True
             PrinterNameTxt.Enabled = True
@@ -154,34 +99,20 @@ Public Class Form1
             DebugPrintBtn.Enabled = True
             DebugPrintTxt.Enabled = True
             CheckTicketBtn.Enabled = True
-            NoEstimateRdo.Enabled = True
-            AutoEstimateRdo.Enabled = True
-            ManualEstimateRdo.Enabled = True
-            ManualEstimateTxt.Enabled = True
         End If
-        OverrideChk.Enabled = ScreenEstimatedChk.Checked
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Form2.Show()
-    End Sub
-
-    Private Sub ColorPickerBtn_Click(sender As Object, e As EventArgs) Handles ColorPickerBtn.Click
-        Dim cDialog As New ColorDialog() With {
-            .Color = Color.White ' initial selection is current color.
-            }
-        If (cDialog.ShowDialog() = DialogResult.OK) Then
-            My.Settings.ScreenFontColor = cDialog.Color
-            Screen.Brand() ' update with user selected color.
-        End If
+        Form2.ShowDialog()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        ShowAsBusy()
         Dim P As New PrinterClass(Application.StartupPath)
         With P
             'Printing Logo
             .RTL = False
-            .PrintLogo()
+            If PrintLogoChk.Enabled = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
@@ -226,13 +157,14 @@ Public Class Form1
             'Ending the session
             .EndDoc()
         End With
+        ShowAsReady()
     End Sub
     Private Sub PrintTicket(e As Long, est As Byte)
         Dim P As New PrinterClass(Application.StartupPath)
         With P
             'Printing Logo
             .RTL = False
-            .PrintLogo()
+            If PrintLogoChk.Enabled = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
@@ -253,28 +185,12 @@ Public Class Form1
 
             'Number
             .BigFont()
-            .WriteLine("Ваш номер в очереди:")
+            .WriteLine("Ваш номер:")
             .Bold = True
             .HugeFont()
             .AlignCenter()
             .WriteLine(e)
             'Estimated time
-            If est = 2 Then
-                .NormalFont()
-                .WriteLine("Примерное время ожидания:")
-                .BigFont()
-                .AlignCenter()
-                .WriteLine(EstimateResult * QueueCount & " минут")
-                .Bold = False
-            End If
-            If est = 1 Then
-                .NormalFont()
-                .WriteLine("Примерное время ожидания:")
-                .BigFont()
-                .AlignCenter()
-                .WriteLine(ManualEstimateTxt.Text & " минут")
-                .Bold = False
-            End If
             .Bold = False
             'Additional
             .NormalFont()
@@ -295,7 +211,7 @@ Public Class Form1
                     .FeedPaper(1)
                     .HugeFont()
                     .AlignCenter()
-                    .PrintLogo()
+                    If PrintLogoChk.Enabled = True Then .PrintLogo()
                     .FeedPaper(1)
                     .Bold = True
                     .WriteLine(e)
@@ -307,7 +223,7 @@ Public Class Form1
                     .CutPaper()
                     .EndDoc()
                 Else
-                    Dim Result As Integer = MessageBox.Show("Press OK to print the raffle part.", "SquidQueue", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+                    Dim Result As Integer = MessageBox.Show("Press OK to print the raffle part.", "RaffleRaffle", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
                     If Result = DialogResult.OK Then
                         .RTL = False
                         'Raffle
@@ -317,7 +233,7 @@ Public Class Form1
                         .FeedPaper(1)
                         .HugeFont()
                         .AlignCenter()
-                        .PrintLogo()
+                        If PrintLogoChk.Enabled = True Then .PrintLogo()
                         .FeedPaper(1)
                         .Bold = True
                         .WriteLine(e)
@@ -339,7 +255,7 @@ Public Class Form1
         With P
             'Printing Logo
             .RTL = False
-            .PrintLogo()
+            If PrintLogoChk.Enabled = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
@@ -402,16 +318,16 @@ Public Class Form1
     End Sub
 
     Private Sub PrintExactBtn_Click(sender As Object, e As EventArgs) Handles PrintExactBtn.Click
+        ShowAsBusy()
         Dim est As Byte = 0
-        If AutoEstimateRdo.Checked Then est = 2
-        If ManualEstimateRdo.Checked Then est = 1
         PrintTicket(TicketNumberLbl.Text, est)
+        ShowAsReady()
     End Sub
 
     Private Sub UsePrinterChk_CheckedChanged(sender As Object, e As EventArgs) Handles UsePrinterChk.CheckedChanged
         If UsePrinterChk.Checked = True Then
             My.Settings.PrinterInUse = True
-            MessageBox.Show("Please be informed that this software was written with one particular printer in mind, and other printers could produce undesirable result. You can change the code dedicated to printing solution to suit your needs. Check the 'About Me' section for the source code.", "SquidQueue", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Please be informed that this software was written with one particular printer in mind, and other printers could produce undesirable result. You can change the code dedicated to printing solution to suit your needs. Check the 'About Me' section for the source code.", "RaffleRaffle", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             My.Settings.PrinterInUse = False
         End If
@@ -423,12 +339,13 @@ Public Class Form1
     End Sub
 
     Public Sub CalibrationPage()
+        ShowAsBusy()
         My.Settings.OmitCalibration = True
         Dim P As New PrinterClass(Application.StartupPath)
         With P
             'Printing Logo
             .RTL = False
-            .PrintLogo()
+            If PrintLogoChk.Enabled = True Then .PrintLogo()
             .SetFont()
 
             'Printing Title
@@ -475,41 +392,21 @@ Public Class Form1
             .EndDoc()
         End With
         My.Settings.OmitCalibration = False
+        ShowAsReady()
     End Sub
 
     Private Sub CalibrationBtn_Click(sender As Object, e As EventArgs) Handles CalibrationBtn.Click
         CalibrationPage()
-        CalibrationForm.Show()
+        CalibrationForm.ShowDialog()
     End Sub
 
     Private Sub LogoPathTxt_TextChanged(sender As Object, e As EventArgs) Handles LogoPathTxt.TextChanged
         My.Settings.LogoPath = LogoPathTxt.Text
     End Sub
-
-    Private Sub FullHDCheck_CheckedChanged(sender As Object, e As EventArgs) Handles FullHDCheck.CheckedChanged
-        If FullHDCheck.Checked = True Then
-            Screen.WindowState = FormWindowState.Maximized
-        End If
-    End Sub
-
-    Private Sub HDCheck_CheckedChanged(sender As Object, e As EventArgs) Handles HDCheck.CheckedChanged
-        If HDCheck.Checked = True Then
-            Screen.WindowState = FormWindowState.Normal
-        End If
-    End Sub
-
-    Private Sub FontPickerBtn_Click(sender As Object, e As EventArgs) Handles FontPickerBtn.Click
-        FontPciker.ShowDialog()
-        My.Settings.ScreenFont = FontPciker.Font.Name
-        Screen.Brand()
-    End Sub
     Public Sub LoadDefaults()
         With My.Settings
             .PrinterName = "POS-58"
             .LogoPath = Nothing
-            .ScreenFont = "Century Gothic"
-            .ScreenFontColor = Color.White
-            .ScreenLabel = "SquidQueue"
             .PrinterInUse = False
             .PrinterFont = "Times New Roman"
             .PrinterCalibrate(0) = 7
@@ -532,6 +429,7 @@ Public Class Form1
     End Sub
 
     Private Sub DebugPrintBtn_Click(sender As Object, e As EventArgs) Handles DebugPrintBtn.Click
+        ShowAsBusy()
         Dim P As New PrinterClass(Application.StartupPath)
         With P
             'Printing Logo
@@ -539,7 +437,7 @@ Public Class Form1
             .SetFont()
 
             'Printing Title
-            .FeedPaper(4)
+            .FeedPaper(1)
 
             'Printing Header
             .Bold = False
@@ -567,22 +465,7 @@ Public Class Form1
             'Ending the session
             .EndDoc()
         End With
-    End Sub
-
-    Private Sub JustCallOutBtn_Click(sender As Object, e As EventArgs) Handles JustCallOutBtn.Click
-        SecsCount.Start()
-        EstimateTime.Add(ElapsedTime)
-        ElapsedTime = 0
-        Screen.CallOut(CallOutTxt.Text)
-    End Sub
-
-    Private Sub ChgOrderButton_Click(sender As Object, e As EventArgs) Handles ChgOrderButton.Click
-        SecsCount.Start()
-        EstimateTime.Add(ElapsedTime)
-        ElapsedTime = 0
-        If CallOutTxt.Text > TotalTickets Then TotalTickets = CallOutTxt.Text
-        CurrentTicket = CallOutTxt.Text
-        Screen.CallOut(CallOutTxt.Text)
+        ShowAsReady()
     End Sub
 
     Private Sub SlipTitleTxt_TextChanged(sender As Object, e As EventArgs) Handles SlipTitleTxt.TextChanged
@@ -611,7 +494,9 @@ Public Class Form1
     End Sub
 
     Private Sub CheckTicketBtn_Click(sender As Object, e As EventArgs) Handles CheckTicketBtn.Click
+        ShowAsBusy()
         PrintTicket(0, 0)
+        ShowAsReady()
     End Sub
     Public Function ToTime(e As Long)
         Dim Ret As String
@@ -632,52 +517,37 @@ Public Class Form1
         Return Mins
     End Function
 
-    Private Sub SecsCount_Tick(sender As Object, e As EventArgs) Handles SecsCount.Tick
-        ElapsedTime += 1
-        ElapsedTimeLbl.Text = ToTime(ElapsedTime)
+    Private Sub ShowAsBusy()
+        PictureBox1.Image = SystemIcons.Error.ToBitmap
     End Sub
 
-    Private Sub BackPickerBtn_Click(sender As Object, e As EventArgs) Handles BackPickerBtn.Click
-        Dim cDialog As New ColorDialog() With {
-    .Color = Color.White ' initial selection is current color.
-    }
-        If (cDialog.ShowDialog() = DialogResult.OK) Then
-            My.Settings.BackColor = cDialog.Color
-            Screen.Brand() ' update with user selected color.
-        End If
-    End Sub
-
-    Private Sub ScreenEstimatedChk_CheckedChanged(sender As Object, e As EventArgs) Handles ScreenEstimatedChk.CheckedChanged
-        My.Settings.ShowEstimatedTime = ScreenEstimatedChk.Checked
-    End Sub
-
-    Private Sub SoundList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SoundList.SelectedIndexChanged
-        If SoundList.SelectedItem = "None" Then
-            My.Settings.Sound = Nothing
-        Else
-            If SoundList.SelectedItem = "Default" Then
-                My.Settings.Sound = "Default"
-            Else
-
-                My.Settings.Sound = SoundList.SelectedItem
-            End If
-        End If
-    End Sub
-
-    Private Sub FlashScreenChk_CheckedChanged(sender As Object, e As EventArgs) Handles FlashScreenChk.CheckedChanged
-        My.Settings.ScreenFlash = FlashScreenChk.Checked
+    Private Sub ShowAsReady()
+        PictureBox1.Image = SystemIcons.Information.ToBitmap
     End Sub
 
     Private Sub AutoCheck_CheckedChanged(sender As Object, e As EventArgs) Handles AutoCheck.CheckedChanged
-        AutoModePinger.Enabled = AutoCheck.Checked
+        ShowAsBusy()
+        Select Case AutoCheck.Checked
+            Case True
+                AutoCheckThread = New Threading.Thread(AddressOf ThreadTask) With {
+                    .IsBackground = True
+                }
+                AutoCheckThread.Start()
+            Case False
+                If AutoCheckThread.IsAlive = True Then
+                    AutoCheckThread.Suspend()
+                End If
+        End Select
         RegisterButton.Enabled = Not AutoCheck.Checked
         If Not AutoCheck.Checked Then
             AutoModeStatusLbl.Text = "Auto check is off."
             PreviousResult = Nothing
         End If
+        ShowAsReady()
     End Sub
-
+    'deprecated, left for legacy
     Private Sub AutoModePinger_Tick(sender As Object, e As EventArgs) Handles AutoModePinger.Tick
+        ShowAsBusy()
         Try
             Dim webClient As New System.Net.WebClient
             Dim result As String = webClient.DownloadString(ListenOnTxt.Text)
@@ -695,59 +565,192 @@ Public Class Form1
                 'printing function
 
                 Dim est As Byte = 0
-                If AutoEstimateRdo.Checked Then est = 2
-                If ManualEstimateRdo.Checked Then est = 1
                 If SyncListenChk.Checked Then
                     TotalTickets = result
+                    My.Settings.CurrentTicket = TotalTickets
+                    My.Settings.Save()
                     If My.Settings.PrinterInUse Then PrintTicket(result, est)
                 Else
                     TotalTickets += 1
+                    My.Settings.CurrentTicket = TotalTickets
+                    My.Settings.Save()
                     If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
                 End If
 
                 RegisterButton.Enabled = True
-                ReEnableTimer.Enabled = True
                 'end printing function
             End If
         Catch ex As Exception
             AutoModeStatusLbl.Text = "Problem accessing listen page, trying again... " & DateTime.Now.ToString
         End Try
+        ShowAsReady()
     End Sub
 
-    Private Sub UseImageLbl_CheckedChanged(sender As Object, e As EventArgs) Handles UseImageLbl.CheckedChanged
-        My.Settings.UseImage = UseImageLbl.Checked
-        ChangeBack()
-
-    End Sub
-
-    Private Sub UseImageTxt_TextChanged(sender As Object, e As EventArgs) Handles UseImageTxt.TextChanged
-        My.Settings.UseImagePath = UseImageTxt.Text
-    End Sub
-
-    Public Sub ChangeBack()
-        If My.Settings.UseImage Then
+    Private Sub ThreadTask()
+        Do
+            ShowAsBusy()
+            Threading.Thread.Sleep(50)
             Try
-                Screen.BackgroundImage = Image.FromFile(My.Settings.UseImagePath)
+                Dim webClient As New System.Net.WebClient
+                Dim result As String = webClient.DownloadString(ListenOnTxt.Text)
+                If PreviousResult = Nothing Then
+                    PreviousResult = result
+                    'AutoModeStatusLbl.Text = result & ", now listening on " & ListenOnTxt.Text & " ... " & DateTime.Now.ToString
+                    ThreadInfoChanger(AutoModeStatusLbl, result & ", now listening on " & ListenOnTxt.Text & " ... " & DateTime.Now.ToString)
+                    Exit Try
+                End If
+                If PreviousResult = result Then
+                    PreviousResult = result
+                    'AutoModeStatusLbl.Text = result & ", no changes, still listening..." & DateTime.Now.ToString
+                    ThreadInfoChanger(AutoModeStatusLbl, result & ", no changes, still listening..." & DateTime.Now.ToString)
+                Else
+                    PreviousResult = result
+                    'AutoModeStatusLbl.Text = "Found a change, printing... " & DateTime.Now.ToString
+                    ThreadInfoChanger(AutoModeStatusLbl, "Found a change, printing... " & DateTime.Now.ToString)
+                    'printing function
+
+                    Dim est As Byte = 0
+                    If SyncListenChk.Checked Then
+                        TotalTickets = result
+                        If My.Settings.PrinterInUse Then PrintTicket(result, est)
+                    Else
+                        TotalTickets += 1
+                        If My.Settings.PrinterInUse Then PrintTicket(TotalTickets, est)
+                    End If
+
+                    RegisterButton.Enabled = True
+                    'end printing function
+                End If
             Catch ex As Exception
-                MessageBox.Show("Missing or not a valid background file. Please use .jpg files.", "SquidQueue", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-                My.Settings.UseImage = False
+
+                'AutoModeStatusLbl.Text = "Problem accessing listen page, trying again... " & DateTime.Now.ToString
+                ThreadInfoChanger(AutoModeStatusLbl, "Problem accessing listen page, trying again... " & DateTime.Now.ToString)
             End Try
-            Screen.Label1.BackColor = Color.Transparent
-            Screen.ClockLabel.BackColor = Color.Transparent
-            Screen.CustomLabel.BackColor = Color.Transparent
-            Screen.TicketLabel.BackColor = Color.Transparent
-            Screen.QueueCountLbl.BackColor = Color.Transparent
-            Screen.EstimateResultLbl.BackColor = Color.Transparent
+            ShowAsReady()
+
+            Threading.Thread.Sleep(2000)
+        Loop
+    End Sub
+
+    Private Sub CameraOpenBtn_Click(sender As Object, e As EventArgs) Handles CameraOpenBtn.Click
+        CameraForm.ShowDialog()
+    End Sub
+
+    Private Sub ThreadInfoChanger(ByVal ctl As Control, ByVal e As String)
+        If ctl.InvokeRequired Then
+            ctl.BeginInvoke(New Action(Of Control, String)(AddressOf ThreadInfoChanger), ctl, e)
         Else
-            Screen.BackgroundImage = Nothing
-            Screen.BackColor = My.Settings.BackColor
-            Screen.Label1.BackColor = My.Settings.BackColor
-            Screen.ClockLabel.BackColor = My.Settings.BackColor
-            Screen.CustomLabel.BackColor = My.Settings.BackColor
-            Screen.TicketLabel.BackColor = My.Settings.BackColor
-            Screen.QueueCountLbl.BackColor = My.Settings.BackColor
-            Screen.EstimateResultLbl.BackColor = My.Settings.BackColor
+            ctl.Text = e
         End If
     End Sub
+
+    Private Sub PrintLabelBtn_Click(sender As Object, e As EventArgs) Handles PrintLabelBtn.Click
+        ShowAsBusy()
+        MessageBox.Show("Make sure that label is protruding from printer a little and then press OK.", "RaffleRaffle", MessageBoxButtons.OK, MessageBoxIcon.Question)
+        Dim P As New PrinterClass(Application.StartupPath)
+        My.Settings.OmitCalibration = True
+        With P
+            'Printing Logo
+            .RTL = False
+            .SetFont()
+            'Printing Title
+            .FeedPaper(1)
+            .AlignCenter()
+            .Bold = True
+            .BigFont()
+            .WriteLine(NameTxt.Text)
+            .Bold = False
+            .NormalFont()
+            .WriteLine(MediaTxt.Text)
+            .WriteLine(OccupationTxt.Text)
+            '.FeedPaper(1)
+
+
+            .CutPaper() ' Can be used with real printer to cut the paper.
+
+            'Ending the session
+            .EndDoc()
+        End With
+        My.Settings.OmitCalibration = False
+        NameTxt.Focus()
+        ShowAsReady()
+    End Sub
+
+    Private Sub NameTxt_TextChanged(sender As Object, e As EventArgs) Handles NameTxt.TextChanged
+        UpdateLabel()
+    End Sub
+
+    Sub UpdateLabel()
+        Try
+            NameLenLbl.Text = NameTxt.TextLength & " / " & My.Settings.PrinterCalibrate(5)
+            MediaLenLbl.Text = MediaTxt.TextLength & " / " & My.Settings.PrinterCalibrate(2)
+            OccuLenLbl.Text = OccupationTxt.TextLength & " / " & My.Settings.PrinterCalibrate(2)
+        Catch ex As Exception
+        End Try
+
+    End Sub
+
+    Private Sub MediaTxt_TextChanged(sender As Object, e As EventArgs) Handles MediaTxt.TextChanged
+        UpdateLabel()
+    End Sub
+
+    Private Sub OccupationTxt_TextChanged(sender As Object, e As EventArgs) Handles OccupationTxt.TextChanged
+        UpdateLabel()
+    End Sub
+
+    Private Sub TicketsResetBtn_Click(sender As Object, e As EventArgs) Handles TicketsResetBtn.Click
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to reset the counter?", "RaffleRaffle", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If result = DialogResult.Yes Then
+            TotalTickets = 0
+            My.Settings.CurrentTicket = TotalTickets
+            My.Settings.Save()
+            TotalTicketsLbl.Text = 0
+        End If
+    End Sub
+
+    Private Sub AllAbilitiesPrintBtn_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub CouponFormBtn_Click(sender As Object, e As EventArgs) Handles CouponFormBtn.Click
+        CouponForm.ShowDialog()
+    End Sub
+
+    Private Sub RollServiceBtn_Click(sender As Object, e As EventArgs) Handles RollServiceBtn.Click
+        ChangeRollForm.ShowDialog()
+    End Sub
+
+    Private Sub TextExBtn_Click(sender As Object, e As EventArgs) Handles TextExBtn.Click
+        Throw New Exception("OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!")
+    End Sub
+
+    Private Sub PickPrinterTxt_Click(sender As Object, e As EventArgs) Handles PickPrinterTxt.Click
+        PrintDialog1.ShowDialog()
+        PrinterNameTxt.Text = PrintDialog1.PrinterSettings.PrinterName
+    End Sub
+
+    Public Sub Block()
+        PrinterSettingsBox.Enabled = False
+        EditorTab.Enabled = False
+        LabelTab.Enabled = False
+        ExtrasTab.Enabled = False
+        LockBtn.Text = "🔒"
+        LockLbl.Text = "Press Lock to unlock controls."
+    End Sub
+
+    Public Sub Unblock()
+        PrinterSettingsBox.Enabled = True
+        EditorTab.Enabled = True
+        LabelTab.Enabled = True
+        ExtrasTab.Enabled = True
+        LockBtn.Text = "🔓"
+        LockLbl.Text = "Press Lock to lock settings and additional features."
+    End Sub
+
+    Private Sub LockBtn_Click(sender As Object, e As EventArgs) Handles LockBtn.Click
+        LockForm.ShowDialog()
+    End Sub
 End Class
+
+
 

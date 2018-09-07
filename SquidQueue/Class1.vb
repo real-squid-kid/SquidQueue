@@ -5,6 +5,15 @@ Public Class PrinterClass
     Private _Path As String
     Private _Align As TextAlignment = TextAlignment.Default
     Private bIsDebug As Boolean = False
+
+    Public Sub WastePaper(e As Long)
+        If My.Settings.RollRemaining = -1 Then Exit Sub
+        If My.Settings.RollRemaining > e Then
+            My.Settings.RollRemaining -= e
+            My.Settings.Save()
+        End If
+    End Sub
+
     Public Enum TextAlignment As Byte
         [Default] = 0
         Left
@@ -27,11 +36,12 @@ Public Class PrinterClass
                 Exit For
             End If
         Next
-        p.DocumentName = "SquidQueue Slip"
+        p.DocumentName = "POS Printer Slip"
         '   Me.Path = AppPath
         If bIsDebug Then
             p.PrintAction = Printing.PrintAction.PrintToPreview
         End If
+        p.Width = 2800
     End Sub
 #End Region
 #Region "Font"
@@ -69,6 +79,7 @@ Public Class PrinterClass
         Set(ByVal value As Single)
             p.FontSize = value
         End Set
+
     End Property
     Public Property Bold() As Boolean
         Get
@@ -82,6 +93,7 @@ Public Class PrinterClass
         p.DrawWidth = 5
         p.Line(p.Width, p.CurrentY)
         p.CurrentY += 20 ' to move under the drawn line
+        WastePaper(1)
     End Sub
     Public Sub NormalFont()
         Me.FontSize = 9.5F
@@ -118,22 +130,26 @@ Optional ByVal BoldType As Boolean = False)
         End Set
     End Property
     Public Sub PrintLogo()
-        If Form1.PrintLogoChk.Checked = True Then
-            Try
-                Me.PrintImage(My.Settings.LogoPath)
-            Catch
-                MessageBox.Show("Can't print logo, incorrect file provided or no file provided at all.", "SquidQueue", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-            End Try
-        End If
+        Try
+            Me.PrintImage(My.Settings.LogoPath)
+        Catch
+            MessageBox.Show("Can't print logo, incorrect file provided or no file provided at all.", "Printer", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+        End Try
 
     End Sub
-    Private Sub PrintImage(ByVal FileName As String)
+    Public Sub PrintImage(ByVal FileName As String)
         Dim pic As Image
 
         pic = pic.FromFile(FileName)
 
         p.PaintPicture(pic, p.CurrentX, p.CurrentY)
         p.CurrentY = p.CurrentY + pic.Height * 12
+
+    End Sub
+
+    Public Sub PrintImageDirect(ByVal DirectImage As Bitmap)
+        p.PaintPicture(DirectImage, p.CurrentX, p.CurrentY)
+        p.CurrentY = p.CurrentY + DirectImage.Height * 12
 
     End Sub
 #End Region
@@ -185,7 +201,7 @@ Optional ByVal BoldType As Boolean = False)
             Case TextAlignment.Left
                 p.CurrentX = 0
             Case TextAlignment.Center
-                p.CurrentX = (p.Width - sTextWidth) / 2.7
+                p.CurrentX = (p.Width - sTextWidth) / 2
             Case TextAlignment.Right
                 p.CurrentX = (p.Width - sTextWidth)
         End Select
@@ -194,12 +210,13 @@ Optional ByVal BoldType As Boolean = False)
             Exit Sub
         Else
             If Me.Bold = False Then
-                '       'huge
+                'huge
                 If Me.FontSize = 48.0F Then
                     Dim t As List(Of String)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(0))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(16)
                     Next
                     Exit Sub
                 End If
@@ -209,6 +226,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(1))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(5)
                     Next
                     Exit Sub
                 End If
@@ -218,6 +236,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(2))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(4)
                     Next
                     Exit Sub
                 End If
@@ -227,6 +246,7 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(3))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(2)
                     Next
                     Exit Sub
                 End If
@@ -235,16 +255,18 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, 50)
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(1)
                     Next
                     Exit Sub
                 End If
             Else
-                '       'huge
+                'huge
                 If Me.FontSize = 48.0F Then
                     Dim t As List(Of String)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(4))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(17)
                     Next
                     Exit Sub
                 End If
@@ -254,24 +276,27 @@ Optional ByVal BoldType As Boolean = False)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(5))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(6)
                     Next
                     Exit Sub
                 End If
-                'normal
+                ' normal
                 If Me.FontSize = 9.5F Then
                     Dim t As List(Of String)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(6))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(5)
                     Next
                     Exit Sub
                 End If
-                'small
+                ' small
                 If Me.FontSize = 6.0F Then
                     Dim t As List(Of String)
                     t = WrapText(Text, My.Settings.PrinterCalibrate(7))
                     For a = 0 To t.Count - 1
                         p.Print(t(a))
+                        WastePaper(3)
                     Next
                     Exit Sub
                 End If

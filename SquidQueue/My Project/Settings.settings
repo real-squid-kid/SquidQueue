@@ -8,15 +8,6 @@
     <Setting Name="LogoPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\vasilymakrov\Desktop\msiLogo_2017.bmp</Value>
     </Setting>
-    <Setting Name="ScreenFont" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Century Gothic</Value>
-    </Setting>
-    <Setting Name="ScreenFontColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">White</Value>
-    </Setting>
-    <Setting Name="ScreenLabel" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SquidQueue</Value>
-    </Setting>
     <Setting Name="PrinterInUse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -40,7 +31,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="SlipTitle" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SquidQueue Очередь</Value>
+      <Value Profile="(Default)">RaffleRaffle</Value>
     </Setting>
     <Setting Name="PrintDateAndTime" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -54,23 +45,17 @@
     <Setting Name="RaffleComment" Type="System.String" Scope="User">
       <Value Profile="(Default)">ОПУСТИ МЕНЯ В БАРАБАН</Value>
     </Setting>
-    <Setting Name="BackColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">DarkGray</Value>
+    <Setting Name="PrinterWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">180</Value>
     </Setting>
-    <Setting Name="ShowEstimatedTime" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+    <Setting Name="CurrentTicket" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="Sound" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Default</Value>
+    <Setting Name="RollRemaining" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20000</Value>
     </Setting>
-    <Setting Name="ScreenFlash" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="UseImage" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="UseImagePath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\vasilymakrov\Desktop\background.jpg</Value>
+    <Setting Name="RollTotal" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20000</Value>
     </Setting>
   </Settings>
 </SettingsFile>
