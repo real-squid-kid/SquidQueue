@@ -188,6 +188,7 @@ Optional ByVal BoldType As Boolean = False)
         p.FontUnderline = False
     End Sub
     Public Sub EndDoc()
+        My.Computer.Audio.Play(My.Resources.ding, Microsoft.VisualBasic.AudioPlayMode.Background)
         p.EndDoc()
     End Sub
     Public Sub EndJob()

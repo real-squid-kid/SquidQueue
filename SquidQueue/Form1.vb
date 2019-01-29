@@ -19,13 +19,21 @@ Public Class Form1
     Dim PreviousResult As String
 
     Private Sub RegisterButton_Click(sender As Object, e As EventArgs) Handles RegisterButton.Click
-        ShowAsBusy()
-        TotalTickets += 1
-        My.Settings.CurrentTicket = TotalTickets
-        My.Settings.Save()
-        PrintTicket(TotalTickets, 0)
-        RegisterButton.Enabled = True
-        ShowAsReady()
+        Dim n = 1
+        n = RepeatTxt.Text
+        If n > 1 Then
+            Dim response As DialogResult = MessageBox.Show("Printing several tickets could take a LONG time. The program may look hung up while your tickets are preparing. Are you sure?", "RaffleRaffle", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+            If response = DialogResult.Cancel Then Exit Sub
+        End If
+        For i = 1 To n Step 1
+            ShowAsBusy()
+            TotalTickets += 1
+            My.Settings.CurrentTicket = TotalTickets
+            My.Settings.Save()
+            PrintTicket(TotalTickets, 0)
+            RegisterButton.Enabled = True
+            ShowAsReady()
+        Next i
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -34,8 +42,8 @@ Public Class Form1
         PictureBox1.Image = SystemIcons.Information.ToBitmap
         ElapsedTime = 0
         If My.Settings.PrinterInUse = Nothing Then LoadDefaults()
-        TotalTickets = 0
-        CurrentTicket = 0
+        TotalTickets = My.Settings.CurrentTicket
+        CurrentTicket = My.Settings.CurrentTicket
         LogoPathTxt.Text = My.Settings.LogoPath
         SlipTitleTxt.Text = My.Settings.SlipTitle
         SlipDateTimeChk.Checked = My.Settings.PrintDateAndTime
@@ -45,9 +53,10 @@ Public Class Form1
         AlwaysRaffleChk.Checked = My.Settings.AlwaysRaffle
         PrefixTxt.MaxLength = My.Settings.PrinterCalibrate(4)
         PrefixTxt.Text = My.Settings.Prefix
-        PrefixChk.Checked = My.Settings.PrintPrefix - 1
+        PrefixChk.Checked = My.Settings.PrintPrefix
         PrintLogoChk.Checked = My.Settings.PrintLogo
-        UpdateLabel()
+        PrinterNameTxt.Text = My.Settings.PrinterName
+        'UpdateLabel()
     End Sub
 
     Private Sub StatusPing_Tick(sender As Object, e As EventArgs) Handles StatusPing.Tick
@@ -91,7 +100,7 @@ Public Class Form1
             .SetFont()
 
             'Printing Title
-            .FeedPaper(4)
+            .FeedPaper(1)
             .AlignCenter()
             .BigFont()
             .Bold = True
@@ -141,14 +150,11 @@ Public Class Form1
             .RTL = False
             If My.Settings.PrintLogo = True Then .PrintLogo()
             .SetFont()
-
             'Printing Title
-            .FeedPaper(1)
             .AlignLeft()
             .BigFont()
             .Bold = True
             .WriteLine(My.Settings.SlipTitle)
-
             'Printing Date
             .Bold = False
             .GotoSixth(1)
@@ -157,7 +163,6 @@ Public Class Form1
             If My.Settings.PrintDateAndTime Then .WriteLine(DateTime.Now.ToString)
             .DrawLine()
             .FeedPaper(1)
-
             'Number
             .BigFont()
             .WriteLine("Ваш номер:")
@@ -183,15 +188,19 @@ Public Class Form1
                 If AutoCheck.Checked Then
                     .RTL = False
                     'Raffle
-                    .DrawLine()
-                    .FeedPaper(1)
-                    .DrawLine()
-                    .FeedPaper(1)
-                    .HugeFont()
-                    .AlignCenter()
                     If My.Settings.PrintLogo = True Then .PrintLogo()
+                    .NormalFont()
+                    .DrawLine()
                     .FeedPaper(1)
+                    .DrawLine()
+                    .NormalFont()
+                    If My.Settings.PrintDateAndTime Then .WriteLine(DateTime.Now.ToString)
+                    .HugeFont()
+                    .AlignLeft()
                     .Bold = True
+                    If My.Settings.PrintPrefix = True Then
+                        .WriteLine(My.Settings.Prefix & "-")
+                    End If
                     .WriteLine(e)
                     .NormalFont()
                     .Bold = False
@@ -204,15 +213,15 @@ Public Class Form1
                     If My.Settings.AlwaysRaffle = True Then
                         .RTL = False
                         'Raffle
+                        If My.Settings.PrintLogo = True Then .PrintLogo()
+                        .NormalFont()
                         .DrawLine()
                         .FeedPaper(1)
                         .DrawLine()
-                        .FeedPaper(1)
                         .NormalFont()
                         If My.Settings.PrintDateAndTime Then .WriteLine(DateTime.Now.ToString)
                         .HugeFont()
-                        .AlignCenter()
-                        If My.Settings.PrintLogo = True Then .PrintLogo()
+                        .AlignLeft()
                         .Bold = True
                         If My.Settings.PrintPrefix = True Then
                             .WriteLine(My.Settings.Prefix & "-")
@@ -230,15 +239,15 @@ Public Class Form1
                         If Result = DialogResult.OK Then
                             .RTL = False
                             'Raffle
+                            If My.Settings.PrintLogo = True Then .PrintLogo()
+                            .NormalFont()
                             .DrawLine()
                             .FeedPaper(1)
                             .DrawLine()
-                            .FeedPaper(1)
                             .NormalFont()
                             If My.Settings.PrintDateAndTime Then .WriteLine(DateTime.Now.ToString)
                             .HugeFont()
-                            .AlignCenter()
-                            If My.Settings.PrintLogo = True Then .PrintLogo()
+                            .AlignLeft()
                             .Bold = True
                             If My.Settings.PrintPrefix = True Then
                                 .WriteLine(My.Settings.Prefix & "-")
@@ -254,7 +263,8 @@ Public Class Form1
                         End If
                     End If
                 End If
-                End If
+            End If
+
         End With
     End Sub
 
@@ -267,7 +277,7 @@ Public Class Form1
             .SetFont()
 
             'Printing Title
-            .FeedPaper(4)
+            .FeedPaper(1)
             .AlignCenter()
             .BigFont()
             .Bold = True
@@ -334,6 +344,7 @@ Public Class Form1
 
     Private Sub PrinterNameTxt_TextChanged(sender As Object, e As EventArgs) Handles PrinterNameTxt.TextChanged
         My.Settings.PrinterName = PrinterNameTxt.Text
+        My.Settings.Save()
     End Sub
 
     Public Sub CalibrationPage()
@@ -347,7 +358,7 @@ Public Class Form1
             .SetFont()
 
             'Printing Title
-            .FeedPaper(4)
+            .FeedPaper(1)
             .AlignCenter()
             .BigFont()
             .Bold = True
@@ -403,7 +414,7 @@ Public Class Form1
     End Sub
     Public Sub LoadDefaults()
         With My.Settings
-            .PrinterName = "POS-58"
+            .PrinterName = ""
             .LogoPath = Nothing
             .PrinterInUse = True
             .PrinterFont = "Times New Roman"
@@ -537,7 +548,7 @@ Public Class Form1
                 End If
         End Select
         RegisterButton.Enabled = Not AutoCheck.Checked
-        If Not AutoCheck.Checked Then
+        If AutoCheck.Checked = False Then
             AutoModeStatusLbl.Text = "Auto check is off."
             PreviousResult = Nothing
         End If
@@ -589,6 +600,7 @@ Public Class Form1
             ShowAsBusy()
             Threading.Thread.Sleep(50)
             Try
+                ThreadInfoChanger(AutoModeStatusLbl, "Working...")
                 Dim webClient As New System.Net.WebClient
                 Dim result As String = webClient.DownloadString(ListenOnTxt.Text)
                 If PreviousResult = Nothing Then
@@ -605,6 +617,7 @@ Public Class Form1
                     PreviousResult = result
                     'AutoModeStatusLbl.Text = "Found a change, printing... " & DateTime.Now.ToString
                     ThreadInfoChanger(AutoModeStatusLbl, "Found a change, printing... " & DateTime.Now.ToString)
+                    My.Computer.Audio.Play(My.Resources.tracker, Microsoft.VisualBasic.AudioPlayMode.Background)
                     'printing function
 
                     Dim est As Byte = 0
@@ -622,7 +635,7 @@ Public Class Form1
             Catch ex As Exception
 
                 'AutoModeStatusLbl.Text = "Problem accessing listen page, trying again... " & DateTime.Now.ToString
-                ThreadInfoChanger(AutoModeStatusLbl, "Problem accessing listen page, trying again... " & DateTime.Now.ToString)
+                ThreadInfoChanger(AutoModeStatusLbl, ex.Message)
             End Try
             ShowAsReady()
 
@@ -675,25 +688,25 @@ Public Class Form1
     End Sub
 
     Private Sub NameTxt_TextChanged(sender As Object, e As EventArgs) Handles NameTxt.TextChanged
-        UpdateLabel()
+        '     UpdateLabel()
     End Sub
 
-    Sub UpdateLabel()
-        Try
-            NameLenLbl.Text = NameTxt.TextLength & " / " & My.Settings.PrinterCalibrate(5)
-            MediaLenLbl.Text = MediaTxt.TextLength & " / " & My.Settings.PrinterCalibrate(2)
-            OccuLenLbl.Text = OccupationTxt.TextLength & " / " & My.Settings.PrinterCalibrate(2)
-        Catch ex As Exception
-        End Try
+    '  Sub UpdateLabel()
+    ' Try
+    '        NameLenLbl.Text = NameTxt.TextLength & " / " & My.Settings.PrinterCalibrate(5)
+    '       MediaLenLbl.Text = MediaTxt.TextLength & " / " & My.Settings.PrinterCalibrate(2)
+    '      OccuLenLbl.Text = OccupationTxt.TextLength & " / " & My.Settings.PrinterCalibrate(2)
+    'Catch ex As Exception
+    'End Try
 
-    End Sub
+    'End Sub
 
     Private Sub MediaTxt_TextChanged(sender As Object, e As EventArgs) Handles MediaTxt.TextChanged
-        UpdateLabel()
+        '    UpdateLabel()
     End Sub
 
     Private Sub OccupationTxt_TextChanged(sender As Object, e As EventArgs) Handles OccupationTxt.TextChanged
-        UpdateLabel()
+        '    UpdateLabel()
     End Sub
 
     Private Sub TicketsResetBtn_Click(sender As Object, e As EventArgs) Handles TicketsResetBtn.Click
@@ -725,6 +738,8 @@ Public Class Form1
     Private Sub PickPrinterTxt_Click(sender As Object, e As EventArgs) Handles PickPrinterTxt.Click
         PrintDialog1.ShowDialog()
         PrinterNameTxt.Text = PrintDialog1.PrinterSettings.PrinterName
+        My.Settings.PrinterName = PrinterNameTxt.Text
+        My.Settings.Save()
     End Sub
 
     Public Sub Block()
@@ -766,13 +781,47 @@ Public Class Form1
     End Sub
 
     Private Sub PickImageBtn_Click(sender As Object, e As EventArgs) Handles PickImageBtn.Click
+#Disable Warning IDE0017 ' Simplify object initialization
         Dim open As New OpenFileDialog
+#Enable Warning IDE0017 ' Simplify object initialization
         open.Title = "Select an image"
         open.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyPictures
         open.Filter = "Images|*.jpg;*.png;*.bmp"
         If open.ShowDialog() = DialogResult.OK Then
             LogoPathTxt.Text = open.FileName
         End If
+    End Sub
+
+    Public Sub PrintWheelCoupon(times As Integer)
+        Dim P As New PrinterClass(Application.StartupPath)
+        My.Settings.OmitCalibration = True
+        For i = 1 To times Step 1
+            With P
+                .RTL = False
+                'Raffle
+                .DrawLine()
+                .FeedPaper(1)
+                .DrawLine()
+                .HugeFont()
+                .AlignCenter()
+                If My.Settings.PrintLogo = True Then .PrintLogo()
+                .Bold = True
+                .WriteLine("*")
+                .NormalFont()
+                .Bold = False
+                .AlignLeft()
+                .WriteLine("Купон на одну попытку на")
+                .WriteLine("колесе удачи")
+                .FeedPaper(1)
+                .CutPaper()
+                .EndDoc()
+            End With
+        Next i
+
+    End Sub
+
+    Private Sub PrintWheelCouponBtn_Click(sender As Object, e As EventArgs) Handles PrintWheelCouponBtn.Click
+        PrintWheelCoupon(PrinWheelTimesTxt.Text)
     End Sub
 End Class
 

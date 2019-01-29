@@ -262,6 +262,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Custom-Icon-Design-Pretty-Office-2-My-tickets.ico" />
+    <None Include="Resources\tracker.wav" />
+    <None Include="Resources\ding.wav" />
     <None Include="Resources\Gregg_bod_stairbounce_dead.png" />
     <None Include="Resources\rawr.jpg" />
     <None Include="Resources\calibration.bmp" />
