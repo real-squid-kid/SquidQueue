@@ -62,28 +62,6 @@ Public Class Form1
     Private Sub StatusPing_Tick(sender As Object, e As EventArgs) Handles StatusPing.Tick
         QueueCount = TotalTickets - CurrentTicket
         TotalTicketsLbl.Text = TotalTickets
-        If My.Settings.RollRemaining = -1 Then
-            RemainRollLbl.Text = "---"
-            RemainRollProgress.Style = ProgressBarStyle.Marquee
-            RollPicture.Image = SystemIcons.Asterisk.ToBitmap
-        Else
-            Try
-                RemainRollProgress.Style = ProgressBarStyle.Continuous
-
-                RollPercent = Math.Ceiling(My.Settings.RollRemaining / My.Settings.RollTotal * 100)
-                RemainRollProgress.Value = RollPercent
-                RemainRollLbl.Text = RollPercent & "%"
-                If RollPercent < 11 Then
-                    RollPicture.Image = SystemIcons.Warning.ToBitmap()
-                Else
-                    RollPicture.Image = SystemIcons.Asterisk.ToBitmap
-                End If
-            Catch ex As Exception
-                MessageBox.Show("We found an error in tracking roll: " & ex.Message & ". The settings were reset to non-trackable. Sorry!", "RaffleRaffle", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                My.Settings.RollRemaining = -1
-                My.Settings.RollTotal = 0
-            End Try
-        End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -655,7 +633,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub PrintLabelBtn_Click(sender As Object, e As EventArgs) Handles PrintLabelBtn.Click
+    Private Sub PrintLabelBtn_Click(sender As Object, e As EventArgs)
         ShowAsBusy()
         MessageBox.Show("Make sure that label is protruding from printer a little and then press OK.", "RaffleRaffle", MessageBoxButtons.OK, MessageBoxIcon.Question)
         Dim P As New PrinterClass(Application.StartupPath)
@@ -687,7 +665,7 @@ Public Class Form1
         ShowAsReady()
     End Sub
 
-    Private Sub NameTxt_TextChanged(sender As Object, e As EventArgs) Handles NameTxt.TextChanged
+    Private Sub NameTxt_TextChanged(sender As Object, e As EventArgs)
         '     UpdateLabel()
     End Sub
 
@@ -701,11 +679,11 @@ Public Class Form1
 
     'End Sub
 
-    Private Sub MediaTxt_TextChanged(sender As Object, e As EventArgs) Handles MediaTxt.TextChanged
+    Private Sub MediaTxt_TextChanged(sender As Object, e As EventArgs)
         '    UpdateLabel()
     End Sub
 
-    Private Sub OccupationTxt_TextChanged(sender As Object, e As EventArgs) Handles OccupationTxt.TextChanged
+    Private Sub OccupationTxt_TextChanged(sender As Object, e As EventArgs)
         '    UpdateLabel()
     End Sub
 
@@ -745,7 +723,6 @@ Public Class Form1
     Public Sub Block()
         PrinterSettingsBox.Enabled = False
         EditorTab.Enabled = False
-        LabelTab.Enabled = False
         ExtrasTab.Enabled = False
         LockBtn.Text = "🔒"
         LockLbl.Text = "Press Lock to unlock controls."
@@ -754,7 +731,6 @@ Public Class Form1
     Public Sub Unblock()
         PrinterSettingsBox.Enabled = True
         EditorTab.Enabled = True
-        LabelTab.Enabled = True
         ExtrasTab.Enabled = True
         LockBtn.Text = "🔓"
         LockLbl.Text = "Press Lock to lock settings and additional features."

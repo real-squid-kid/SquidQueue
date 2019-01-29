@@ -25,6 +25,7 @@
                 Me.Close()
             Else
                 TextBox1.SelectAll()
+                Console.Beep(3000, 1000)
                 Label1.Text = "Wrong password."
             End If
         Else

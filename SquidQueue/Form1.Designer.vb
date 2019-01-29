@@ -77,14 +77,6 @@ Partial Class Form1
         Me.SlipTitleTxt = New System.Windows.Forms.TextBox()
         Me.LogoPathTxt = New System.Windows.Forms.TextBox()
         Me.PrintLogoChk = New System.Windows.Forms.CheckBox()
-        Me.LabelTab = New System.Windows.Forms.TabPage()
-        Me.PrintLabelBtn = New System.Windows.Forms.Button()
-        Me.OccupationTxt = New System.Windows.Forms.TextBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.MediaTxt = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.NameTxt = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.ExtrasTab = New System.Windows.Forms.TabPage()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.PrinWheelTimesTxt = New System.Windows.Forms.TextBox()
@@ -95,11 +87,14 @@ Partial Class Form1
         Me.CameraOpenBtn = New System.Windows.Forms.Button()
         Me.AutoModePinger = New System.Windows.Forms.Timer(Me.components)
         Me.TicketsResetBtn = New System.Windows.Forms.Button()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.RemainRollProgress = New System.Windows.Forms.ProgressBar()
-        Me.RemainRollLbl = New System.Windows.Forms.Label()
-        Me.RollPicture = New System.Windows.Forms.PictureBox()
         Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
+        Me.PrintLabelBtn = New System.Windows.Forms.Button()
+        Me.OccupationTxt = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.MediaTxt = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.NameTxt = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SettingsTab.SuspendLayout()
         Me.PrinterSettingsBox.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -109,9 +104,7 @@ Partial Class Form1
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.EditorTab.SuspendLayout()
-        Me.LabelTab.SuspendLayout()
         Me.ExtrasTab.SuspendLayout()
-        CType(Me.RollPicture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -180,7 +173,7 @@ Partial Class Form1
         Me.PrinterSettingsBox.Controls.Add(Me.PrinterNameTxt)
         Me.PrinterSettingsBox.Location = New System.Drawing.Point(18, 17)
         Me.PrinterSettingsBox.Name = "PrinterSettingsBox"
-        Me.PrinterSettingsBox.Size = New System.Drawing.Size(481, 226)
+        Me.PrinterSettingsBox.Size = New System.Drawing.Size(481, 267)
         Me.PrinterSettingsBox.TabIndex = 27
         Me.PrinterSettingsBox.TabStop = False
         Me.PrinterSettingsBox.Text = "Printer settings"
@@ -214,7 +207,7 @@ Partial Class Form1
         '
         'CalibrationBtn
         '
-        Me.CalibrationBtn.Location = New System.Drawing.Point(243, 181)
+        Me.CalibrationBtn.Location = New System.Drawing.Point(243, 214)
         Me.CalibrationBtn.Name = "CalibrationBtn"
         Me.CalibrationBtn.Size = New System.Drawing.Size(232, 39)
         Me.CalibrationBtn.TabIndex = 6
@@ -351,7 +344,7 @@ Partial Class Form1
         '
         Me.AlwaysRaffleChk.AutoSize = True
         Me.AlwaysRaffleChk.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.AlwaysRaffleChk.Location = New System.Drawing.Point(476, 280)
+        Me.AlwaysRaffleChk.Location = New System.Drawing.Point(516, 272)
         Me.AlwaysRaffleChk.Name = "AlwaysRaffleChk"
         Me.AlwaysRaffleChk.Size = New System.Drawing.Size(244, 29)
         Me.AlwaysRaffleChk.TabIndex = 25
@@ -361,7 +354,7 @@ Partial Class Form1
         'PrefixTxt
         '
         Me.PrefixTxt.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.PrefixTxt.Location = New System.Drawing.Point(620, 233)
+        Me.PrefixTxt.Location = New System.Drawing.Point(660, 225)
         Me.PrefixTxt.Name = "PrefixTxt"
         Me.PrefixTxt.Size = New System.Drawing.Size(100, 31)
         Me.PrefixTxt.TabIndex = 24
@@ -370,7 +363,7 @@ Partial Class Form1
         '
         Me.PrefixChk.AutoSize = True
         Me.PrefixChk.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.PrefixChk.Location = New System.Drawing.Point(476, 235)
+        Me.PrefixChk.Location = New System.Drawing.Point(516, 227)
         Me.PrefixChk.Name = "PrefixChk"
         Me.PrefixChk.Size = New System.Drawing.Size(128, 29)
         Me.PrefixChk.TabIndex = 23
@@ -397,7 +390,7 @@ Partial Class Form1
         '
         Me.AutoCheck.AutoSize = True
         Me.AutoCheck.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.AutoCheck.Location = New System.Drawing.Point(6, 103)
+        Me.AutoCheck.Location = New System.Drawing.Point(12, 130)
         Me.AutoCheck.Name = "AutoCheck"
         Me.AutoCheck.Size = New System.Drawing.Size(112, 29)
         Me.AutoCheck.TabIndex = 1
@@ -408,7 +401,7 @@ Partial Class Form1
         '
         Me.AutoModeStatusLbl.AutoSize = True
         Me.AutoModeStatusLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.AutoModeStatusLbl.Location = New System.Drawing.Point(76, 169)
+        Me.AutoModeStatusLbl.Location = New System.Drawing.Point(44, 172)
         Me.AutoModeStatusLbl.Name = "AutoModeStatusLbl"
         Me.AutoModeStatusLbl.Size = New System.Drawing.Size(177, 25)
         Me.AutoModeStatusLbl.TabIndex = 18
@@ -416,7 +409,7 @@ Partial Class Form1
         '
         'PictureBox1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(28, 165)
+        Me.PictureBox1.Location = New System.Drawing.Point(6, 165)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(32, 32)
         Me.PictureBox1.TabIndex = 21
@@ -426,7 +419,7 @@ Partial Class Form1
         '
         Me.SyncListenChk.AutoSize = True
         Me.SyncListenChk.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.SyncListenChk.Location = New System.Drawing.Point(6, 68)
+        Me.SyncListenChk.Location = New System.Drawing.Point(12, 68)
         Me.SyncListenChk.Name = "SyncListenChk"
         Me.SyncListenChk.Size = New System.Drawing.Size(332, 29)
         Me.SyncListenChk.TabIndex = 19
@@ -448,7 +441,7 @@ Partial Class Form1
         Me.ListenOnTxt.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.ListenOnTxt.Location = New System.Drawing.Point(118, 25)
         Me.ListenOnTxt.Name = "ListenOnTxt"
-        Me.ListenOnTxt.Size = New System.Drawing.Size(332, 31)
+        Me.ListenOnTxt.Size = New System.Drawing.Size(321, 31)
         Me.ListenOnTxt.TabIndex = 3
         '
         'PrintExactBtn
@@ -482,9 +475,9 @@ Partial Class Form1
         'RegisterButton
         '
         Me.RegisterButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.RegisterButton.Location = New System.Drawing.Point(3, 46)
+        Me.RegisterButton.Location = New System.Drawing.Point(274, 46)
         Me.RegisterButton.Name = "RegisterButton"
-        Me.RegisterButton.Size = New System.Drawing.Size(1144, 161)
+        Me.RegisterButton.Size = New System.Drawing.Size(637, 113)
         Me.RegisterButton.TabIndex = 0
         Me.RegisterButton.Text = "NEXT"
         Me.RegisterButton.UseVisualStyleBackColor = True
@@ -494,7 +487,6 @@ Partial Class Form1
         Me.TabControl1.Controls.Add(Me.MainTab)
         Me.TabControl1.Controls.Add(Me.SettingsTab)
         Me.TabControl1.Controls.Add(Me.EditorTab)
-        Me.TabControl1.Controls.Add(Me.LabelTab)
         Me.TabControl1.Controls.Add(Me.ExtrasTab)
         Me.TabControl1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(13, 13)
@@ -644,82 +636,15 @@ Partial Class Form1
         Me.PrintLogoChk.Text = "Print logo"
         Me.PrintLogoChk.UseVisualStyleBackColor = True
         '
-        'LabelTab
-        '
-        Me.LabelTab.Controls.Add(Me.PrintLabelBtn)
-        Me.LabelTab.Controls.Add(Me.OccupationTxt)
-        Me.LabelTab.Controls.Add(Me.Label11)
-        Me.LabelTab.Controls.Add(Me.MediaTxt)
-        Me.LabelTab.Controls.Add(Me.Label7)
-        Me.LabelTab.Controls.Add(Me.NameTxt)
-        Me.LabelTab.Controls.Add(Me.Label1)
-        Me.LabelTab.Location = New System.Drawing.Point(4, 34)
-        Me.LabelTab.Name = "LabelTab"
-        Me.LabelTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.LabelTab.Size = New System.Drawing.Size(1150, 544)
-        Me.LabelTab.TabIndex = 5
-        Me.LabelTab.Text = "Label Printer"
-        Me.LabelTab.UseVisualStyleBackColor = True
-        '
-        'PrintLabelBtn
-        '
-        Me.PrintLabelBtn.Location = New System.Drawing.Point(184, 206)
-        Me.PrintLabelBtn.Name = "PrintLabelBtn"
-        Me.PrintLabelBtn.Size = New System.Drawing.Size(255, 35)
-        Me.PrintLabelBtn.TabIndex = 4
-        Me.PrintLabelBtn.Text = "Print"
-        Me.PrintLabelBtn.UseVisualStyleBackColor = True
-        '
-        'OccupationTxt
-        '
-        Me.OccupationTxt.Location = New System.Drawing.Point(184, 146)
-        Me.OccupationTxt.Name = "OccupationTxt"
-        Me.OccupationTxt.Size = New System.Drawing.Size(255, 31)
-        Me.OccupationTxt.TabIndex = 3
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(25, 149)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(121, 25)
-        Me.Label11.TabIndex = 0
-        Me.Label11.Text = "Occupation"
-        '
-        'MediaTxt
-        '
-        Me.MediaTxt.Location = New System.Drawing.Point(184, 85)
-        Me.MediaTxt.Name = "MediaTxt"
-        Me.MediaTxt.Size = New System.Drawing.Size(255, 31)
-        Me.MediaTxt.TabIndex = 2
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(25, 85)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(71, 25)
-        Me.Label7.TabIndex = 0
-        Me.Label7.Text = "Media"
-        '
-        'NameTxt
-        '
-        Me.NameTxt.Location = New System.Drawing.Point(184, 28)
-        Me.NameTxt.Name = "NameTxt"
-        Me.NameTxt.Size = New System.Drawing.Size(255, 31)
-        Me.NameTxt.TabIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(25, 28)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(68, 25)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Name"
-        '
         'ExtrasTab
         '
+        Me.ExtrasTab.Controls.Add(Me.PrintLabelBtn)
+        Me.ExtrasTab.Controls.Add(Me.OccupationTxt)
+        Me.ExtrasTab.Controls.Add(Me.Label11)
+        Me.ExtrasTab.Controls.Add(Me.MediaTxt)
+        Me.ExtrasTab.Controls.Add(Me.Label7)
+        Me.ExtrasTab.Controls.Add(Me.NameTxt)
+        Me.ExtrasTab.Controls.Add(Me.Label1)
         Me.ExtrasTab.Controls.Add(Me.Label15)
         Me.ExtrasTab.Controls.Add(Me.PrinWheelTimesTxt)
         Me.ExtrasTab.Controls.Add(Me.PrintWheelCouponBtn)
@@ -812,55 +737,73 @@ Partial Class Form1
         Me.TicketsResetBtn.Text = "Reset"
         Me.TicketsResetBtn.UseVisualStyleBackColor = False
         '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(10, 626)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(132, 13)
-        Me.Label13.TabIndex = 23
-        Me.Label13.Text = "Approximate roll remaining:"
-        '
-        'RemainRollProgress
-        '
-        Me.RemainRollProgress.Location = New System.Drawing.Point(148, 622)
-        Me.RemainRollProgress.Name = "RemainRollProgress"
-        Me.RemainRollProgress.Size = New System.Drawing.Size(1028, 23)
-        Me.RemainRollProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee
-        Me.RemainRollProgress.TabIndex = 24
-        '
-        'RemainRollLbl
-        '
-        Me.RemainRollLbl.AutoSize = True
-        Me.RemainRollLbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.RemainRollLbl.Location = New System.Drawing.Point(1182, 620)
-        Me.RemainRollLbl.Name = "RemainRollLbl"
-        Me.RemainRollLbl.Size = New System.Drawing.Size(67, 25)
-        Me.RemainRollLbl.TabIndex = 23
-        Me.RemainRollLbl.Text = "100%"
-        '
-        'RollPicture
-        '
-        Me.RollPicture.Location = New System.Drawing.Point(1202, 563)
-        Me.RollPicture.Name = "RollPicture"
-        Me.RollPicture.Size = New System.Drawing.Size(32, 32)
-        Me.RollPicture.TabIndex = 21
-        Me.RollPicture.TabStop = False
-        '
         'PrintDialog1
         '
         Me.PrintDialog1.UseEXDialog = True
+        '
+        'PrintLabelBtn
+        '
+        Me.PrintLabelBtn.Location = New System.Drawing.Point(173, 492)
+        Me.PrintLabelBtn.Name = "PrintLabelBtn"
+        Me.PrintLabelBtn.Size = New System.Drawing.Size(255, 35)
+        Me.PrintLabelBtn.TabIndex = 33
+        Me.PrintLabelBtn.Text = "Print"
+        Me.PrintLabelBtn.UseVisualStyleBackColor = True
+        '
+        'OccupationTxt
+        '
+        Me.OccupationTxt.Location = New System.Drawing.Point(173, 432)
+        Me.OccupationTxt.Name = "OccupationTxt"
+        Me.OccupationTxt.Size = New System.Drawing.Size(255, 31)
+        Me.OccupationTxt.TabIndex = 32
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(14, 435)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(121, 25)
+        Me.Label11.TabIndex = 27
+        Me.Label11.Text = "Occupation"
+        '
+        'MediaTxt
+        '
+        Me.MediaTxt.Location = New System.Drawing.Point(173, 371)
+        Me.MediaTxt.Name = "MediaTxt"
+        Me.MediaTxt.Size = New System.Drawing.Size(255, 31)
+        Me.MediaTxt.TabIndex = 31
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(14, 371)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(71, 25)
+        Me.Label7.TabIndex = 28
+        Me.Label7.Text = "Media"
+        '
+        'NameTxt
+        '
+        Me.NameTxt.Location = New System.Drawing.Point(173, 314)
+        Me.NameTxt.Name = "NameTxt"
+        Me.NameTxt.Size = New System.Drawing.Size(255, 31)
+        Me.NameTxt.TabIndex = 30
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(14, 314)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(68, 25)
+        Me.Label1.TabIndex = 29
+        Me.Label1.Text = "Name"
         '
         'Form1
         '
         Me.AcceptButton = Me.RegisterButton
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1264, 661)
-        Me.Controls.Add(Me.RemainRollProgress)
-        Me.Controls.Add(Me.RollPicture)
-        Me.Controls.Add(Me.RemainRollLbl)
-        Me.Controls.Add(Me.Label13)
+        Me.ClientSize = New System.Drawing.Size(1264, 609)
         Me.Controls.Add(Me.RollServiceBtn)
         Me.Controls.Add(Me.TicketsResetBtn)
         Me.Controls.Add(Me.TotalTicketsLbl)
@@ -868,7 +811,6 @@ Partial Class Form1
         Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "RaffleRaffle"
         Me.SettingsTab.ResumeLayout(False)
@@ -886,11 +828,8 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.EditorTab.ResumeLayout(False)
         Me.EditorTab.PerformLayout()
-        Me.LabelTab.ResumeLayout(False)
-        Me.LabelTab.PerformLayout()
         Me.ExtrasTab.ResumeLayout(False)
         Me.ExtrasTab.PerformLayout()
-        CType(Me.RollPicture, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -935,14 +874,6 @@ Partial Class Form1
     Friend WithEvents AutoModeStatusLbl As Label
     Friend WithEvents AutoModePinger As Timer
     Friend WithEvents SyncListenChk As CheckBox
-    Friend WithEvents LabelTab As TabPage
-    Friend WithEvents PrintLabelBtn As Button
-    Friend WithEvents OccupationTxt As TextBox
-    Friend WithEvents Label11 As Label
-    Friend WithEvents MediaTxt As TextBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents NameTxt As TextBox
-    Friend WithEvents Label1 As Label
     Friend WithEvents ExtrasTab As TabPage
     Friend WithEvents Label12 As Label
     Friend WithEvents CameraOpenBtn As Button
@@ -950,10 +881,6 @@ Partial Class Form1
     Friend WithEvents TicketsResetBtn As Button
     Friend WithEvents CouponFormBtn As Button
     Friend WithEvents RollServiceBtn As Button
-    Friend WithEvents Label13 As Label
-    Friend WithEvents RemainRollProgress As ProgressBar
-    Friend WithEvents RemainRollLbl As Label
-    Friend WithEvents RollPicture As PictureBox
     Friend WithEvents TextExBtn As Button
     Friend WithEvents PickPrinterTxt As Button
     Friend WithEvents GroupBox1 As GroupBox
@@ -971,4 +898,11 @@ Partial Class Form1
     Friend WithEvents PrintWheelCouponBtn As Button
     Friend WithEvents Label15 As Label
     Friend WithEvents PrinWheelTimesTxt As TextBox
+    Friend WithEvents PrintLabelBtn As Button
+    Friend WithEvents OccupationTxt As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents MediaTxt As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents NameTxt As TextBox
+    Friend WithEvents Label1 As Label
 End Class

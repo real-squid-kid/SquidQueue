@@ -4,7 +4,7 @@ Public Class PrinterClass
     Private p As Printer
     Private _Path As String
     Private _Align As TextAlignment = TextAlignment.Default
-    Private bIsDebug As Boolean = False
+    Private ReadOnly bIsDebug As Boolean = False
 
     Public Sub WastePaper(e As Long)
         If My.Settings.RollRemaining = -1 Then Exit Sub
