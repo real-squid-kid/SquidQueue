@@ -41,7 +41,8 @@ Public Class PrinterClass
         If bIsDebug Then
             p.PrintAction = Printing.PrintAction.PrintToPreview
         End If
-        p.Width = 2800
+        p.Width = 4000
+        '56 mm = 2800
     End Sub
 #End Region
 #Region "Font"

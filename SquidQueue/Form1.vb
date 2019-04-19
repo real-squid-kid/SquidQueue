@@ -174,7 +174,7 @@ Public Class Form1
                     .NormalFont()
                     If My.Settings.PrintDateAndTime Then .WriteLine(DateTime.Now.ToString)
                     .HugeFont()
-                    .AlignLeft()
+                    .AlignCenter()
                     .Bold = True
                     If My.Settings.PrintPrefix = True Then
                         .WriteLine(My.Settings.Prefix & "-")
@@ -199,7 +199,7 @@ Public Class Form1
                         .NormalFont()
                         If My.Settings.PrintDateAndTime Then .WriteLine(DateTime.Now.ToString)
                         .HugeFont()
-                        .AlignLeft()
+                        .AlignCenter()
                         .Bold = True
                         If My.Settings.PrintPrefix = True Then
                             .WriteLine(My.Settings.Prefix & "-")
@@ -225,7 +225,7 @@ Public Class Form1
                             .NormalFont()
                             If My.Settings.PrintDateAndTime Then .WriteLine(DateTime.Now.ToString)
                             .HugeFont()
-                            .AlignLeft()
+                            .AlignCenter()
                             .Bold = True
                             If My.Settings.PrintPrefix = True Then
                                 .WriteLine(My.Settings.Prefix & "-")
@@ -725,6 +725,8 @@ Public Class Form1
         EditorTab.Enabled = False
         ExtrasTab.Enabled = False
         LockBtn.Text = "🔒"
+        TicketsResetBtn.Enabled = False
+
         LockLbl.Text = "Press Lock to unlock controls."
     End Sub
 
@@ -732,6 +734,7 @@ Public Class Form1
         PrinterSettingsBox.Enabled = True
         EditorTab.Enabled = True
         ExtrasTab.Enabled = True
+        TicketsResetBtn.Enabled = True
         LockBtn.Text = "🔓"
         LockLbl.Text = "Press Lock to lock settings and additional features."
     End Sub
