@@ -40,13 +40,6 @@ Partial Class RunForm
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.SquidQueue.My.Resources.Resources.run
-        Me.PictureBox1.Location = New System.Drawing.Point(12, 42)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(260, 237)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
         '
         'RunForm
         '
